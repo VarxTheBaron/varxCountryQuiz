@@ -21,3 +21,6 @@ Anpassade serverguiden för quiz-api.varxthebaron.se och borttagning av gamla Co
 
 Deploy-kommando - 2026-09-24 13:46
 Lade till api/deploy.sh för att hämta kod, validera konfiguration och uppdatera Docker-tjänsterna med ett kommando. Dokumenterade användningen och säkrade LF-radslut för shellskript.
+
+Fler regioner och quizfrågor - 2026-09-24 14:20
+Utökade till fem regioner och 13 länder med två frågor vardera. Kopplade upplåsningskrav till föregående region och verifierade bygge, progression och API-svar.

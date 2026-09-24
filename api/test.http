@@ -14,6 +14,18 @@ GET {{baseUrl}}/regions
 ### En region med land-id:n — 200
 GET {{baseUrl}}/regions/{{regionId}}
 
+### Centraleuropa — kräver fyra länder i Norden
+GET {{baseUrl}}/regions/central-europe
+
+### Västeuropa — kräver två länder i Centraleuropa
+GET {{baseUrl}}/regions/western-europe
+
+### Östeuropa — kräver två länder i Västeuropa
+GET {{baseUrl}}/regions/eastern-europe
+
+### Nordamerika — kräver två länder i Östeuropa
+GET {{baseUrl}}/regions/north-america
+
 ### Alla länder — 200
 GET {{baseUrl}}/countries
 

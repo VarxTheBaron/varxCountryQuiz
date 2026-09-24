@@ -58,11 +58,18 @@ På en fysisk mobil ersätter du `localhost` med datorns lokala IP-adress.
 
 Lägg till data i respektive fil under `src/data/`. Varje land kopplas till en region
 med `regionId` och läggs även till i regionens `countries`-lista.
-Regionens `requiredCountries` anger hur många länder spelaren behöver klara.
+Regionens `requiredCountries` anger både vilken region och hur många av dess länder
+spelaren behöver klara. `null` betyder upplåst från början (Norden).
+Exempel för Centraleuropa: `requiredCountries: { regionId: 'norden', count: 4 }`.
+Det betyder fyra av Nordens fem länder. Därefter går ordningen Centraleuropa →
+Västeuropa → Östeuropa → Nordamerika, med krav på båda exempelländerna i föregående region.
+Appen räknar unika avklarade land-id:n som finns i den angivna regionens `countries`.
+Detta ersätter det tidigare numeriska fältet; appen behöver läsa `regionId` och `count`.
 Landet innehåller `flag`, `difficulty` (1–3) och en `questions`-lista.
 Frågorna skrivs i `questionsByCountry` i `questions.ts` och kopplas till landet
 i `countries.ts`, exempelvis med `questions: questionsByCountry.sweden`.
 Varje fråga innehåller `id`, `question`, `answers` och `correctAnswer`.
+Exempeldatan innehåller 13 länder med två frågor vardera.
 Använd numeriska fråge-id:n som är unika i hela API:t. `correctAnswer` är
 index i `answers`, räknat från 0. Alla frågor samlas automatiskt i `/questions`.
 Facit skickas med så att appen kan rätta svar lokalt. XP och progression
