@@ -27,3 +27,6 @@ Utökade till fem regioner och 13 länder med två frågor vardera. Kopplade upp
 
 Enklare spelarprogress - 2026-09-24 15:33
 Flyttade atomen utanför hooken och kopplade inläsning och sparning till AsyncStorage med två useEffect. Lade till enkel kontroll av lagrad data, felmeddelande och laddningsstatus. Bytte till includes för dubbletter och ignorerar tomma lands-ID:n. Progress ändras först efter inläsning för att skydda sparad data. Behöll lösningen enkel för skolprojektet, utan sparningskö eller nya beroenden. TypeScript och lint för båda filerna passerar; lagringsfunktionerna verifierade med simulerad lagring för standardvärden, sparning/inläsning, ogiltig data och lagringsfel. Inte körtestat på mobil.
+
+Synlig startvy i mobilen - 2026-09-24 17:08
+Lade till flex: 1 på index-vyns SafeAreaView så att innehållet får skärmens höjd. Förenklade RegionCard till Text utan egna safe-area-behållare och lade till laddnings- och feltext för regionhämtningen. TypeScript-kontrollen passerar. Lint kunde inte köras eftersom ESLint saknas lokalt. Inte verifierat i Expo Go på telefon.
