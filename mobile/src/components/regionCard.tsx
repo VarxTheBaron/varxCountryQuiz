@@ -1,4 +1,5 @@
-import { Text } from "react-native";
+import { Link } from "expo-router";
+import { Pressable } from "react-native";
 import { type Region } from "../../../api/src/data/regions";
 
 interface Props {
@@ -7,7 +8,9 @@ interface Props {
 
 const RegionCard = ({ region }: Props) => {
   return (
-    <Text>{region.name}</Text>
+    <Pressable>
+      <Link href={`/region/${region.id}`}>{region.name}</Link>
+    </Pressable>
   );
 };
 
