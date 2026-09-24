@@ -8,27 +8,26 @@ export type PlayerProgress = {
 const playerDataKey = "playerprogress";
 
 export async function storePlayerProgress(data: PlayerProgress) {
-  try {
-    await AsyncStorage.setItem(playerDataKey, JSON.stringify(data));
-  } catch (e) {
-    // not implemented yet
-  }
+  await AsyncStorage.setItem(playerDataKey, JSON.stringify(data));
 }
 
 export async function getPlayerProgress(): Promise<PlayerProgress> {
-  try {
-    const value = await AsyncStorage.getItem(playerDataKey);
-    if (value === null) {
-      await setDefaultProgress();
-      return { xp: 0, completedCountries: [] };
-    }
+  const value = await AsyncStorage.getItem(playerDataKey);
+  if (value === null) return { xp: 0, completedCountries: [] };
 
-    return await JSON.parse(value);
-  } catch (e) {
-    return { xp: 0, completedCountries: [] };
+  const data = JSON.parse(value);
+  if (
+    data === null ||
+    typeof data.xp !== "number" ||
+    !Number.isFinite(data.xp) ||
+    data.xp < 0 ||
+    !Array.isArray(data.completedCountries) ||
+    !data.completedCountries.every(
+      (id: unknown) => typeof id === "string" && id.trim().length > 0,
+    )
+  ) {
+    throw new Error("Invalid saved player progress");
   }
-}
 
-async function setDefaultProgress() {
-  await storePlayerProgress({ xp: 0, completedCountries: [] });
+  return data;
 }
