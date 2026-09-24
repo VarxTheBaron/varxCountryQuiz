@@ -30,3 +30,6 @@ Flyttade atomen utanför hooken och kopplade inläsning och sparning till AsyncS
 
 Synlig startvy i mobilen - 2026-09-24 17:08
 Lade till flex: 1 på index-vyns SafeAreaView så att innehållet får skärmens höjd. Förenklade RegionCard till Text utan egna safe-area-behållare och lade till laddnings- och feltext för regionhämtningen. TypeScript-kontrollen passerar. Lint kunde inte köras eftersom ESLint saknas lokalt. Inte verifierat i Expo Go på telefon.
+
+Regionkort och karusell på startsidan - 2026-09-24 17:54
+Stylade RegionCard som ett helt klickbart kort med rundade hörn, ljuslila bakgrund, centrerad text och visuell respons vid tryck. Anpassade FlatList i index.tsx till innehållets höjd och dolde scrollindikatorn. Lade till centrering av första och sista kortet samt fasta stoppunkter för formatet föregående–nuvarande–nästa. Kort utanför dessa tre visas med 25 procent opacitet. Justerade avståndet mellan korten till totalt 20 inklusive marginaler och separerade breddberäkningen från mellanrummet för korrekt centrering. TypeScript-kontrollen passerar; lint kunde inte köras eftersom ESLint saknas lokalt. Användaren bekräftade att korten ser centrerade ut; ingen egen verifiering på telefon utförd.
