@@ -114,7 +114,19 @@ Testa `https://quiz-api.varxthebaron.se/regions` och använd
 
 ### Uppdatera och felsöka
 
-Hämta ny kod med `git pull` och kör `docker compose up -d --build` i `api`-mappen.
+När `deploy.sh` finns på servern uppdaterar du med ett kommando från valfri mapp:
+
+```sh
+sh /srv/apps/varxCountryQuiz/api/deploy.sh
+```
+
+Skriptet hämtar senaste koden från den aktuella grenens upstream med `git pull --ff-only`,
+kontrollerar Compose och Caddy, bygger om och startar containrarna samt laddar om Caddy.
+Det avbryter om ett kommando misslyckas. Serverns `.env` behålls.
+Ändringar behöver vara committade och pushade innan du kör kommandot.
+Första gången behöver du köra `git pull` på servern för att hämta själva skriptet.
+
+Visa status och loggar:
 
 ```sh
 docker compose ps

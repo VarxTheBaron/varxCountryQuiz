@@ -18,3 +18,6 @@ Samlade API och Caddy i en Compose-fil med eget nätverk, domän via .env och in
 
 Domän och gamla Docker-appar - 2026-09-24 13:13
 Anpassade serverguiden för quiz-api.varxthebaron.se och borttagning av gamla Compose-appar. Inga ändringar utförda på servern.
+
+Deploy-kommando - 2026-09-24 13:46
+Lade till api/deploy.sh för att hämta kod, validera konfiguration och uppdatera Docker-tjänsterna med ett kommando. Dokumenterade användningen och säkrade LF-radslut för shellskript.
