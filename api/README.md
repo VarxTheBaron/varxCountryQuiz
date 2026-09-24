@@ -23,6 +23,7 @@ src/
   routes/
     regions.ts         # Hämtar regioner
     countries.ts       # Hämtar länder och frågor
+    questions.ts       # Hämtar alla frågor eller en specifik fråga
 ```
 
 ## Endpoints
@@ -31,13 +32,15 @@ src/
 | --- | --- | --- |
 | GET | `/` | Ett välkomstmeddelande |
 | GET | `/regions` | Alla regioner |
-| GET | `/regions/nordics` | Norden med tillhörande länder |
+| GET | `/regions/norden` | Norden med requiredCountries och en lista med land-id:n |
 | GET | `/countries` | Alla länder |
 | GET | `/countries/sweden` | Ett land |
 | GET | `/countries/sweden/questions` | Landets quizfrågor |
+| GET | `/questions` | Alla quizfrågor |
+| GET | `/questions/1` | En specifik quizfråga |
 
-Byt ut `nordics` eller `sweden` mot ett annat id i datan.
-Okända regioner och länder ger status 404 med ett JSON-meddelande.
+Byt ut `norden`, `sweden` eller `1` mot ett annat id i datan.
+Okända regioner, länder och frågor ger status 404 med ett JSON-meddelande.
 
 Exempel från appen:
 
@@ -51,7 +54,11 @@ På en fysisk mobil ersätter du `localhost` med datorns lokala IP-adress.
 ## Bygg vidare
 
 Lägg till objekt i listorna i `src/data.ts`. Varje land kopplas till en region
-med `regionId`, och varje fråga kopplas till ett land med `countryId`.
-Använd unika id:n. Frågans `correctAnswer` ska matcha ett värde i `options`.
+med `regionId` och läggs även till i regionens `countries`-lista.
+Regionens `requiredCountries` anger hur många länder spelaren behöver klara.
+Landet innehåller `flag`, `difficulty` (1–3) och en `questions`-lista.
+Varje fråga innehåller `id`, `question`, `answers` och `correctAnswer`.
+Använd numeriska fråge-id:n som är unika i hela API:t. `correctAnswer` är
+index i `answers`, räknat från 0. Alla frågor samlas automatiskt i `/questions`.
 Facit skickas med så att appen kan rätta svar lokalt. XP och progression
 hanteras också i appen.

@@ -1,0 +1,45 @@
+# Starta API:t med npm run dev i api-mappen.
+# Klicka på Send Request ovanför ett anrop i VS Code REST Client.
+@baseUrl = http://localhost:3000
+@regionId = norden
+@countryId = iceland
+@questionId = 5
+
+### Välkomstmeddelande — 200
+GET {{baseUrl}}/
+
+### Alla regioner — 200
+GET {{baseUrl}}/regions
+
+### En region med land-id:n — 200
+GET {{baseUrl}}/regions/{{regionId}}
+
+### Alla länder — 200
+GET {{baseUrl}}/countries
+
+### Ett land med frågor — 200
+GET {{baseUrl}}/countries/{{countryId}}
+
+### Ett lands frågor — 200
+GET {{baseUrl}}/countries/{{countryId}}/questions
+
+### Alla frågor — 200
+GET {{baseUrl}}/questions
+
+### En fråga — 200
+GET {{baseUrl}}/questions/{{questionId}}
+
+### Okänd region — 404
+GET {{baseUrl}}/regions/unknown
+
+### Okänt land — 404
+GET {{baseUrl}}/countries/unknown
+
+### Frågor för okänt land — 404
+GET {{baseUrl}}/countries/unknown/questions
+
+### Okänd fråga — 404
+GET {{baseUrl}}/questions/999
+
+### Ogiltigt fråge-id — 404
+GET {{baseUrl}}/questions/abc

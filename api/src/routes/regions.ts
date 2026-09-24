@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { regions as regionData, countries } from '../data.js'
+import { regions as regionData } from '../data.js'
 
 export const regions = new Hono()
 
@@ -12,8 +12,5 @@ regions.get('/:id', (c) => {
     return c.json({ message: 'Regionen finns inte' }, 404)
   }
 
-  return c.json({
-    ...region,
-    countries: countries.filter((country) => country.regionId === region.id),
-  })
+  return c.json(region)
 })
