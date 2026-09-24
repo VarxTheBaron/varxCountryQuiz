@@ -83,7 +83,7 @@ Just nu är projektets grundstruktur uppsatt och nästa steg är att bygga den f
 ## Krav för väl godkänt (VG)
 
 [] Alla punkter för godkänt är uppfyllda
-[] **Ytterligare en valfri extern modul** används i projektet från [reactnative.directory](https://reactnative.directory)
+[x] **Ytterligare en valfri extern modul** används i projektet från [reactnative.directory](https://reactnative.directory)
 [] Appen **hämtar data från ett Web-API**
 [] **Användningen av AI-verktyg dokumenteras i README** – vilka verktyg du använt, till vad, och hur du verifierat att koden gör det du tror. Ta även upp det i presentationens reflekterande del.
 
