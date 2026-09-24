@@ -70,25 +70,22 @@ Just nu är projektets grundstruktur uppsatt och nästa steg är att bygga den f
 
 **Region → Land → Quiz → Resultat**
 
-## Krav
+## Krav för godkänt (G)
 
-Projektet utvecklas för kursen **Applikationsutveckling (APP) SUVNET25** och kommer att uppfylla kursens krav för G och VG.
+[] Projektet använder minst **4 RN-komponenter** och minst **4 moduler från Expo SDK**
+[] De använda komponenterna och modulerna är **antecknade i README.md**, tillsammans med en lista över uppfyllda krav
+[] **Expo Router** används för navigering i appen, och minst en skärm tar emot en parameter
+[] **Git och GitHub** har använts, med commits spridda över arbetets gång
+[] Projektmappen innehåller en **README.md** enligt beskrivningen ovan
+[] Uppgiften är **inlämnad i tid**
+[] **Muntlig presentation** är genomförd
 
-### G
+## Krav för väl godkänt (VG)
 
-* [ ] Minst 4 React Native-komponenter
-* [ ] Minst 4 Expo SDK-moduler
-* [ ] Expo Router
-* [ ] Parameteriserad navigation
-* [ ] Git och GitHub
-* [ ] README
-* [ ] Presentation
-
-### VG
-
-* [ ] Extern modul från React Native Directory
-* [ ] Web API
-* [ ] AI-användning dokumenterad
+[] Alla punkter för godkänt är uppfyllda
+[] **Ytterligare en valfri extern modul** används i projektet från [reactnative.directory](https://reactnative.directory)
+[] Appen **hämtar data från ett Web-API**
+[] **Användningen av AI-verktyg dokumenteras i README** – vilka verktyg du använt, till vad, och hur du verifierat att koden gör det du tror. Ta även upp det i presentationens reflekterande del.
 
 ## AI-användning
 
