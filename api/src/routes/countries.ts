@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { countries as countryData } from '../data.js'
+import { countries as countryData } from '../data/countries.js'
 
 export const countries = new Hono()
 

@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { questions as questionData } from '../data.js'
+import { questions as questionData } from '../data/questions.js'
 
 export const questions = new Hono()
 

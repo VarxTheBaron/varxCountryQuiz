@@ -6,3 +6,6 @@ Lade till endpoints för alla frågor och en enskild fråga. Anpassade datan til
 
 Manuella API-tester - 2026-09-24 10:46
 Lade till api/test.http med anrop för alla endpoints och 404-fall för VS Code REST Client.
+
+Uppdelad API-data - 2026-09-24 10:54
+Delade upp data.ts i countries.ts, regions.ts och questions.ts under src/data. Uppdaterade importer och README samt verifierade bygge och oförändrade API-svar.

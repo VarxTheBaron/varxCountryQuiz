@@ -19,7 +19,10 @@ och `npm start` startar den byggda versionen.
 ```text
 src/
   index.ts             # Startar servern och kopplar in routes
-  data.ts              # Typer och hårdkodad exempeldata
+  data/
+    regions.ts         # Regiontyp och regiondata
+    countries.ts       # Landtyp och landdata
+    questions.ts       # Frågetyp och frågor grupperade per land
   routes/
     regions.ts         # Hämtar regioner
     countries.ts       # Hämtar länder och frågor
@@ -53,10 +56,12 @@ På en fysisk mobil ersätter du `localhost` med datorns lokala IP-adress.
 
 ## Bygg vidare
 
-Lägg till objekt i listorna i `src/data.ts`. Varje land kopplas till en region
+Lägg till data i respektive fil under `src/data/`. Varje land kopplas till en region
 med `regionId` och läggs även till i regionens `countries`-lista.
 Regionens `requiredCountries` anger hur många länder spelaren behöver klara.
 Landet innehåller `flag`, `difficulty` (1–3) och en `questions`-lista.
+Frågorna skrivs i `questionsByCountry` i `questions.ts` och kopplas till landet
+i `countries.ts`, exempelvis med `questions: questionsByCountry.sweden`.
 Varje fråga innehåller `id`, `question`, `answers` och `correctAnswer`.
 Använd numeriska fråge-id:n som är unika i hela API:t. `correctAnswer` är
 index i `answers`, räknat från 0. Alla frågor samlas automatiskt i `/questions`.
