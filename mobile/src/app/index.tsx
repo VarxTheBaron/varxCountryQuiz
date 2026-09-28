@@ -1,6 +1,6 @@
 import { fetchRegionsAsync } from "@/api/regions";
 import RegionCard from "@/components/regionCard";
-import { usePlayerProgress } from "@/data/usePlayerProgress";
+import { usePlayerProgress } from "@/hooks/usePlayerProgress";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "expo-router";
 import { useState } from "react";
@@ -15,7 +15,7 @@ const carouselStep = regionCardWidth + regionCardGap;
 export default function Index() {
   const [carouselWidth, setCarouselWidth] = useState(0);
   const [currentRegionIndex, setCurrentRegionIndex] = useState(0);
-  const { data } = usePlayerProgress();
+  const [progress] = usePlayerProgress();
   const query = useQuery({
     queryKey: ["regions"],
     queryFn: fetchRegionsAsync,
@@ -38,7 +38,9 @@ export default function Index() {
               (carouselWidth - regionCardWidth) / 2,
             ),
           }}
-          snapToOffsets={query.data.map((_: unknown, index: number) => index * carouselStep)}
+          snapToOffsets={query.data.map(
+            (_: unknown, index: number) => index * carouselStep,
+          )}
           contentInsetAdjustmentBehavior="never"
           decelerationRate="fast"
           disableIntervalMomentum
