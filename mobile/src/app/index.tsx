@@ -15,7 +15,7 @@ const carouselStep = regionCardWidth + regionCardGap;
 export default function Index() {
   const [carouselWidth, setCarouselWidth] = useState(0);
   const [currentRegionIndex, setCurrentRegionIndex] = useState(0);
-  const [progress] = usePlayerProgress();
+  const { progress } = usePlayerProgress();
   const query = useQuery({
     queryKey: ["regions"],
     queryFn: fetchRegionsAsync,
@@ -24,8 +24,8 @@ export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
       <Text>Country Challenge!</Text>
-      <Text>{data.xp}</Text>
-      <Text>{data.completedCountries}</Text>
+      <Text>{progress.xp}</Text>
+      <Text>{progress.completedCountries}</Text>
       {query.isPending && <Text>Laddar regioner...</Text>}
       {query.isError && <Text>Kunde inte hämta regioner.</Text>}
       {query.data && (
