@@ -2,12 +2,12 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import { Text, View } from "react-native";
 
 export default function GameScreen() {
-  const { countryid } = useLocalSearchParams();
+  const { id } = useLocalSearchParams();
 
   return (
     <View>
-      <Stack.Screen options={{ title: String(countryid) }} />
-      <Text>Game screen: {countryid}</Text>
+      <Stack.Screen options={{ title: String(id) }} />
+      <Text>Game screen: {id}</Text>
     </View>
   );
 }
