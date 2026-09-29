@@ -6,7 +6,9 @@ interface Props {
   region: Region;
 }
 
-const RegionCard = ({ region }: Props) => {
+export const regionCardWidth = 220;
+
+export default function RegionCard({ region }: Props) {
   return (
     <Link href={`/region/${region.id}`} asChild>
       <Pressable
@@ -19,14 +21,12 @@ const RegionCard = ({ region }: Props) => {
       </Pressable>
     </Link>
   );
-};
+}
 
 const styles = StyleSheet.create({
   card: {
-    width: 220,
+    width: regionCardWidth,
     minHeight: 180,
-    alignSelf: "flex-start",
-    marginHorizontal: 6,
     marginVertical: 12,
     padding: 20,
     borderRadius: 20,
@@ -60,5 +60,3 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
-
-export default RegionCard;
