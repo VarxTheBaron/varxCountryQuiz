@@ -14,8 +14,8 @@ export default function RootLayout() {
         />
         <Stack.Screen name="country/[id]" />
         <Stack.Screen name="region/[id]" />
-        <Stack.Screen name="game/[countryid]" />
-        <Stack.Screen name="result/[countryid]" />
+        <Stack.Screen name="game/[id]" />
+        <Stack.Screen name="result/[id]" />
       </Stack>
       <StatusBar style="dark" />
     </QueryClientProvider>
