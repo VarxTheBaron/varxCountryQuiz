@@ -16,12 +16,12 @@ export default function Index() {
     <SafeAreaView style={styles.container}>
       <Text>Country Challenge!</Text>
       <Text>{progress.xp}</Text>
-      <Text>{progress.completedCountries}</Text>
+      <Text>
+        {progress.completedCountries.map((country) => country.id).join(", ")}
+      </Text>
       {query.isPending && <Text>Laddar regioner...</Text>}
       {query.isError && <Text>Kunde inte hämta regioner.</Text>}
-      {query.data && (
-        <RegionCarousel regions={query.data} />
-      )}
+      {query.data && <RegionCarousel regions={query.data} />}
     </SafeAreaView>
   );
 }

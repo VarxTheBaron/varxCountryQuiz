@@ -1,3 +1,4 @@
+import { usePlayerProgress } from "@/hooks/usePlayerProgress";
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text } from "react-native";
 import { type Region } from "../../../api/src/data/regions";
@@ -9,15 +10,29 @@ interface Props {
 export const regionCardWidth = 220;
 
 export default function RegionCard({ region }: Props) {
+  const { progress } = usePlayerProgress();
+
+  const isUnlocked =
+    region.requiredCountries === null ||
+    progress.completedCountries.filter(
+      (c) => c.regionId === region.requiredCountries?.regionId,
+    ).length >= region.requiredCountries.count;
+
   return (
     <Link href={`/region/${region.id}`} asChild>
       <Pressable
-        accessibilityLabel={`Visa ${region.name}`}
+        disabled={!isUnlocked}
         style={({ pressed }) => [styles.card, pressed && styles.pressed]}
       >
-        <Text style={styles.label}>REGION</Text>
-        <Text style={styles.title}>{region.name}</Text>
-        <Text style={styles.link}>Utforska →</Text>
+        <Text style={[styles.label, !isUnlocked && styles.disabled]}>
+          REGION
+        </Text>
+        <Text style={[styles.title, !isUnlocked && styles.disabled]}>
+          {region.name}
+        </Text>
+        <Text style={[styles.link, !isUnlocked && styles.disabled]}>
+          Utforska →
+        </Text>
       </Pressable>
     </Link>
   );
@@ -58,5 +73,8 @@ const styles = StyleSheet.create({
     color: "#4338CA",
     fontSize: 14,
     fontWeight: "600",
+  },
+  disabled: {
+    opacity: 0.25,
   },
 });

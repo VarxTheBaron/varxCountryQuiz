@@ -1,9 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { usePlayerProgress } from "@/hooks/usePlayerProgress";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function ProfileScreen() {
+  const { resetProgress, hasRead, saveError } = usePlayerProgress();
   return (
     <View style={styles.container}>
       <Text>Profile Screen</Text>
+      <Button
+        title="Återställ progress"
+        onPress={resetProgress}
+        disabled={!hasRead}
+      />
+      {saveError && <Text>Kunde inte spara återställningen.</Text>}
     </View>
   );
 }

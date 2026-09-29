@@ -4,8 +4,10 @@ import { useCallback, useEffect } from "react";
 
 export type PlayerProgress = {
   xp: number;
-  completedCountries: string[];
+  completedCountries: CompletedCountry[];
 };
+
+export type CompletedCountry = { id: string; regionId: string };
 
 const defaultProgress: PlayerProgress = { xp: 0, completedCountries: [] };
 const key = "playerprogress";
@@ -58,15 +60,16 @@ export function usePlayerProgress() {
     loadProgressFromStorage();
   }, [hasRead, loadProgressFromStorage]);
 
-  const addCompletedCountry = (countryId: string) => {
-    if (!hasRead || !countryId) return;
+  const addCompletedCountry = (country: CompletedCountry) => {
+    if (!hasRead || !country) return;
 
     setProgress((current) => {
-      if (current.completedCountries.includes(countryId)) return current;
+      if (current.completedCountries.some((c) => c.id === country.id))
+        return current;
       else
         return {
           ...current,
-          completedCountries: [...current.completedCountries, countryId],
+          completedCountries: [...current.completedCountries, country],
         };
     });
   };
