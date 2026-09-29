@@ -8,8 +8,7 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={qc}>
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" options={{ title: "Country Challenge" }} />
-        <Stack.Screen name="profile" options={{ title: "Profile" }} />
+        <Stack.Screen name="(tabs)" options={{ title: "Country Challenge" }} />
         <Stack.Screen name="country/[id]" />
         <Stack.Screen name="region/[id]" />
         <Stack.Screen name="game/[countryid]" />
