@@ -59,3 +59,6 @@ AI lade till GET /questionpacks/:id och anpassade /countries/:id/questions till 
 
 Frågepaket som enda väg till frågor - 2026-09-29 15:58
 Tog bort /countries/:id/questions och dess oanvända import. Länder hämtas via /countries/:id och deras questionPackId används för att hämta frågor via /questionpacks/:id. Uppdaterade README och test.http och tog även bort kvarvarande hänvisningar till de tidigare /questions-endpointsen. API:ets TypeScript-kontroll passerar. Lokalt test verifierade 404 för den borttagna routen samt fungerande hämtning av land och tillhörande frågepaket. Ingen serverdeploy utförd.
+
+Emoji-flaggor i mobilappen - 2026-09-29 17:07
+Diskuterade alternativ för att visa landsflaggor i React Native: emoji, lokala PNG/WebP-filer, SVG, externa bildadresser och flaggpaket. Rekommendationen för den enklaste lösningen var att behålla flaggorna som emoji i country-datan och visa dem med Text. Användaren valde denna lösning. Ingen kod eller country-data ändrades.
