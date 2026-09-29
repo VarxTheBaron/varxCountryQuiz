@@ -71,3 +71,6 @@ Föreslog usePreventRemove för att skydda ett pågående spel, router.replace f
 
 Låst resultatsida - 2026-09-29 18:27
 Användaren väljer att implementera alternativ 1: blockera bakåtnavigering på resultatsidan med usePreventRemove och låta startknappen använda dismissTo("/"). AI ändrade ingen kod.
+
+TypeScript-fel åtgärdade - 2026-09-29 18:40
+Användaren rättade mobilens två TypeScript-fel samt bytte till den publika importvägen för usePreventRemove. TypeScript-kontrollen passerar nu för både mobil och API.

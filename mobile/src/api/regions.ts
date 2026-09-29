@@ -1,3 +1,5 @@
+import { Country } from "../../../api/src/data/countries";
+
 const baseUrl = "https://quiz-api.varxthebaron.se/regions";
 
 export async function fetchRegionsAsync() {
@@ -14,7 +16,9 @@ export async function fetchSingleRegionAsync(id: string) {
   return res.json();
 }
 
-export async function fetchCountriesByRegionAsync(regionId: string) {
+export async function fetchCountriesByRegionAsync(
+  regionId: string,
+): Promise<Country[]> {
   const res = await fetch(`${baseUrl}/${regionId}/countries`);
   if (!res.ok) throw new Error("Could not fetch region id: " + regionId);
 

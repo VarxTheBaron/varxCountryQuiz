@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
-import { usePreventRemove } from "expo-router/build/react-navigation";
+import { usePreventRemove } from "expo-router/react-navigation";
 import { useState } from "react";
 import { Alert, Button, Text, View } from "react-native";
 
@@ -21,7 +21,7 @@ export default function GameScreen() {
         title="(debug) Auto-win"
         onPress={() => {
           setGameFinished(true);
-          router.dismissTo({
+          router.replace({
             pathname: "/result/[id]",
             params: { id: countryId },
           });

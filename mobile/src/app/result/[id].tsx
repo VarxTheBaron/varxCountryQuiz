@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
-import { usePreventRemove } from "expo-router/build/react-navigation";
+import { usePreventRemove } from "expo-router/react-navigation";
 import { useState } from "react";
 import { Button, Text, View } from "react-native";
 
