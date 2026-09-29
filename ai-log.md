@@ -62,3 +62,6 @@ Tog bort /countries/:id/questions och dess oanvända import. Länder hämtas via
 
 Emoji-flaggor i mobilappen - 2026-09-29 17:07
 Diskuterade alternativ för att visa landsflaggor i React Native: emoji, lokala PNG/WebP-filer, SVG, externa bildadresser och flaggpaket. Rekommendationen för den enklaste lösningen var att behålla flaggorna som emoji i country-datan och visa dem med Text. Användaren valde denna lösning. Ingen kod eller country-data ändrades.
+
+Separat komponent för landsinnehåll - 2026-09-29 17:32
+Diskuterade hur country/[id].tsx kan byggas vidare utan att allt innehåll samlas direkt i villkoret för query.data. Förslaget var att låta CountryScreen ansvara för route-parametern, datahämtningen samt laddnings- och fellägen och att rendera en separat CountryContent-komponent när hämtningen lyckats. CountryContent kan ansvara för landets information, avklarad status och en framtida startknapp, medan själva quizlogiken senare kan ligga på en egen skärm. Användaren valde lösningen med en separat komponent. Ingen skärmkod eller komponent skapades av AI.
