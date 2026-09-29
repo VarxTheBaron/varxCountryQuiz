@@ -68,3 +68,6 @@ Diskuterade hur country/[id].tsx kan byggas vidare utan att allt innehåll samla
 
 Navigationsflöde för spel - 2026-09-29 18:04
 Föreslog usePreventRemove för att skydda ett pågående spel, router.replace från spel till resultat så att spelet försvinner ur historiken och router.dismissTo("/") från resultat till start. Användaren implementerar detta senare; ingen kod ändrades.
+
+Låst resultatsida - 2026-09-29 18:27
+Användaren väljer att implementera alternativ 1: blockera bakåtnavigering på resultatsidan med usePreventRemove och låta startknappen använda dismissTo("/"). AI ändrade ingen kod.
