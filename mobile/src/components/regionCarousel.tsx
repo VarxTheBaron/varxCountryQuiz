@@ -1,4 +1,5 @@
 import RegionCard from "@/components/regionCard";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { type Region } from "../../../api/src/data/regions";
@@ -35,7 +36,7 @@ export default function RegionCarousel({ regions }: Props) {
           disabled={isFirst}
           style={[styles.button, isFirst && styles.disabled]}
         >
-          <Text style={styles.arrow}>◀</Text>
+          <MaterialIcons name="arrow-circle-left" size={36} color="#4338CA" />
         </Pressable>
 
         <View style={styles.cardSlot}>
@@ -47,7 +48,7 @@ export default function RegionCarousel({ regions }: Props) {
           disabled={isLast}
           style={[styles.button, isLast && styles.disabled]}
         >
-          <Text style={styles.arrow}>▶</Text>
+          <MaterialIcons name="arrow-circle-right" size={36} color="#4338CA" />
         </Pressable>
       </View>
 
@@ -89,10 +90,6 @@ const styles = StyleSheet.create({
     height: 44,
     alignItems: "center",
     justifyContent: "center",
-  },
-  arrow: {
-    fontSize: 24,
-    color: "#4338CA",
   },
   disabled: {
     opacity: 0.25,
