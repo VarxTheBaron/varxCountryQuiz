@@ -7,8 +7,11 @@ const qc = new QueryClient();
 export default function RootLayout() {
   return (
     <QueryClientProvider client={qc}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" options={{ title: "Country Challenge" }} />
+      <Stack screenOptions={{ headerShown: true }}>
+        <Stack.Screen
+          name="(tabs)"
+          options={{ title: "Country Challenge", headerShown: false }}
+        />
         <Stack.Screen name="country/[id]" />
         <Stack.Screen name="region/[id]" />
         <Stack.Screen name="game/[countryid]" />
