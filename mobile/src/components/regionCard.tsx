@@ -19,7 +19,10 @@ export default function RegionCard({ region }: Props) {
     ).length >= region.requiredCountries.count;
 
   return (
-    <Link href={`/region/${region.id}`} asChild>
+    <Link
+      href={{ pathname: "/region/[id]", params: { id: region.id } }}
+      asChild
+    >
       <Pressable
         disabled={!isUnlocked}
         style={({ pressed }) => [styles.card, pressed && styles.pressed]}
