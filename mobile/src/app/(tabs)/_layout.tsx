@@ -9,7 +9,11 @@ export default function TabLayout() {
         options={{
           title: "Start",
           tabBarIcon: (props) => (
-            <MaterialIcons name="home-filled" size={24} color={props.color} />
+            <MaterialIcons
+              name="home-filled"
+              size={props.size}
+              color={props.color}
+            />
           ),
         }}
       />
@@ -20,7 +24,7 @@ export default function TabLayout() {
           tabBarIcon: (props) => (
             <MaterialIcons
               name="account-circle"
-              size={24}
+              size={props.size}
               color={props.color}
             />
           ),
