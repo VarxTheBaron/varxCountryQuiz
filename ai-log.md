@@ -65,3 +65,6 @@ Diskuterade alternativ för att visa landsflaggor i React Native: emoji, lokala 
 
 Separat komponent för landsinnehåll - 2026-09-29 17:32
 Diskuterade hur country/[id].tsx kan byggas vidare utan att allt innehåll samlas direkt i villkoret för query.data. Förslaget var att låta CountryScreen ansvara för route-parametern, datahämtningen samt laddnings- och fellägen och att rendera en separat CountryContent-komponent när hämtningen lyckats. CountryContent kan ansvara för landets information, avklarad status och en framtida startknapp, medan själva quizlogiken senare kan ligga på en egen skärm. Användaren valde lösningen med en separat komponent. Ingen skärmkod eller komponent skapades av AI.
+
+Navigationsflöde för spel - 2026-09-29 18:04
+Föreslog usePreventRemove för att skydda ett pågående spel, router.replace från spel till resultat så att spelet försvinner ur historiken och router.dismissTo("/") från resultat till start. Användaren implementerar detta senare; ingen kod ändrades.
