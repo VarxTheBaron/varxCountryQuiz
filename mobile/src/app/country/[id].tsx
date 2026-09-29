@@ -1,4 +1,5 @@
 import { fetchCountryAsync } from "@/api/countries";
+import CountryContent from "@/components/countryContent";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
 import { useQuery } from "@tanstack/react-query";
 import { Stack, useLocalSearchParams } from "expo-router";
@@ -20,10 +21,9 @@ export default function CountryScreen() {
   return (
     <SafeAreaView>
       <Stack.Screen options={{ title: String(countryId) }} />
-      <Text>Country screen: {countryId}</Text>
       {query.isPending && <Text>Laddar...</Text>}
       {query.isError && <Text>Kunde inte ladda landet.</Text>}
-      {query.data && <Text>Country name: {query.data.name}</Text>}
+      {query.data && <CountryContent country={query.data} />}
     </SafeAreaView>
   );
 }

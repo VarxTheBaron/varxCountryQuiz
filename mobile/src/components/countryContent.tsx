@@ -1,13 +1,24 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { type Country } from "../../../api/src/data/countries";
 
-const CountryContent = () => {
+interface Props {
+  country: Country;
+}
+
+export default function CountryContent({ country }: Props) {
   return (
     <View>
-      <Text>CountryContent</Text>
+      <Text>{country.name}</Text>
+      <Link
+        href={{ pathname: "/game/[id]", params: { id: country.id } }}
+        asChild
+      >
+        <Pressable>
+          <Text>Spela</Text>
+        </Pressable>
+      </Link>
     </View>
   );
-};
-
-export default CountryContent;
-
+}
 const styles = StyleSheet.create({});
