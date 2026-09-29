@@ -15,10 +15,7 @@ export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
       <Text>Country Challenge!</Text>
-      <Text>{progress.xp}</Text>
-      <Text>
-        {progress.completedCountries.map((country) => country.id).join(", ")}
-      </Text>
+      <Text>{progress.completedCountries.length} avklarade länder</Text>
       {query.isPending && <Text>Laddar regioner...</Text>}
       {query.isError && <Text>Kunde inte hämta regioner.</Text>}
       {query.data && <RegionCarousel regions={query.data} />}
