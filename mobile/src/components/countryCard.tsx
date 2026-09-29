@@ -1,9 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
+import { type Country } from "../../../api/src/data/countries";
 
-export default function CountryCard() {
+interface Props {
+  country: Country;
+}
+
+export default function CountryCard({ country }: Props) {
   return (
     <View>
-      <Text>CountryCard</Text>
+      <Text>{country.name}</Text>
     </View>
   );
 }

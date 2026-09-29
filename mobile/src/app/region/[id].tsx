@@ -1,9 +1,12 @@
-import { fetchCountriesByRegion, fetchSingleRegionAsync } from "@/api/regions";
+import {
+  fetchCountriesByRegionAsync,
+  fetchSingleRegionAsync,
+} from "@/api/regions";
 import CountryCard from "@/components/countryCard";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
 import { useQuery } from "@tanstack/react-query";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function RegionScreen() {
@@ -13,15 +16,15 @@ export default function RegionScreen() {
   const regionId = Array.isArray(id) ? id[0] : id;
 
   const query = useQuery({
-    queryKey: ["region", id],
+    queryKey: ["region", regionId],
     queryFn: () => fetchSingleRegionAsync(regionId),
     enabled: Boolean(regionId),
   });
 
   const countryQuery = useQuery({
-    queryKey: ["region", "countries", id],
-    queryFn: () => fetchCountriesByRegion(regionId),
-    enabled: Boolean(regionId),
+    queryKey: ["region", "countries", regionId],
+    queryFn: () => fetchCountriesByRegionAsync(regionId),
+    enabled: Boolean(regionId) && Boolean(query.data),
   });
 
   return (
@@ -37,14 +40,12 @@ export default function RegionScreen() {
       {query.isError && (
         <Text>Det gick inte att hämta information om regionen.</Text>
       )}
-      {query.data && (
-        <View>
-          <Text>{JSON.stringify(query.data)}</Text>
-          {query.data.countries.map((countryId) => (
-            <CountryCard key={countryId} />
-          ))}
-        </View>
-      )}
+      {countryQuery.isPending && <Text>Laddar länder...</Text>}
+      {countryQuery.isError && <Text>Kunde inte ladda länder.</Text>}
+      {countryQuery.data &&
+        countryQuery.data.map((country) => (
+          <CountryCard key={country.id} country={country} />
+        ))}
     </SafeAreaView>
   );
 }

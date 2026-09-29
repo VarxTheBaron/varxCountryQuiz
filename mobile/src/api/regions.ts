@@ -14,7 +14,7 @@ export async function fetchSingleRegionAsync(id: string) {
   return res.json();
 }
 
-export async function fetchCountriesByRegion(regionId: string) {
+export async function fetchCountriesByRegionAsync(regionId: string) {
   const res = await fetch(`${baseUrl}/${regionId}/countries`);
   if (!res.ok) throw new Error("Could not fetch region id: " + regionId);
 
