@@ -3,7 +3,6 @@
 @baseUrl = http://localhost:3000
 @regionId = norden
 @countryId = iceland
-@questionId = 5
 
 ### Välkomstmeddelande — 200
 GET {{baseUrl}}/
@@ -29,17 +28,11 @@ GET {{baseUrl}}/regions/north-america
 ### Alla länder — 200
 GET {{baseUrl}}/countries
 
-### Ett land med frågor — 200
+### Ett land med questionPackId — 200
 GET {{baseUrl}}/countries/{{countryId}}
 
-### Ett lands frågor — 200
-GET {{baseUrl}}/countries/{{countryId}}/questions
 
-### Alla frågor — 200
-GET {{baseUrl}}/questions
 
-### En fråga — 200
-GET {{baseUrl}}/questions/{{questionId}}
 
 ### Okänd region — 404
 GET {{baseUrl}}/regions/unknown
@@ -47,11 +40,11 @@ GET {{baseUrl}}/regions/unknown
 ### Okänt land — 404
 GET {{baseUrl}}/countries/unknown
 
-### Frågor för okänt land — 404
-GET {{baseUrl}}/countries/unknown/questions
 
-### Okänd fråga — 404
-GET {{baseUrl}}/questions/999
 
-### Ogiltigt fråge-id — 404
-GET {{baseUrl}}/questions/abc
+
+### Ett frågepaket — 200
+GET {{baseUrl}}/questionpacks/sweden
+
+### Okänt frågepaket — 404
+GET {{baseUrl}}/questionpacks/unknown

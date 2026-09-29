@@ -25,8 +25,8 @@ src/
     questions.ts       # Frågetyp och frågor grupperade per land
   routes/
     regions.ts         # Hämtar regioner
-    countries.ts       # Hämtar länder och frågor
-    questions.ts       # Hämtar alla frågor eller en specifik fråga
+    countries.ts       # Hämtar länder
+    questionpacks.ts   # Hämtar ett frågepaket via id
 ```
 
 ## Endpoints
@@ -38,18 +38,16 @@ src/
 | GET | `/regions/norden` | Norden med requiredCountries och en lista med land-id:n |
 | GET | `/countries` | Alla länder |
 | GET | `/countries/sweden` | Ett land |
-| GET | `/countries/sweden/questions` | Landets quizfrågor |
-| GET | `/questions` | Alla quizfrågor |
-| GET | `/questions/1` | En specifik quizfråga |
+| GET | `/questionpacks/sweden` | Ett frågepaket med id och questions |
 
 Byt ut `norden`, `sweden` eller `1` mot ett annat id i datan.
-Okända regioner, länder och frågor ger status 404 med ett JSON-meddelande.
+Okända regioner, länder och frågepaket ger status 404 med ett JSON-meddelande.
 
 Exempel från appen:
 
 ```ts
-const response = await fetch('http://localhost:3000/countries/sweden/questions')
-const questions = await response.json()
+const response = await fetch('http://localhost:3000/questionpacks/sweden')
+const questionPack = await response.json()
 ```
 
 På en fysisk mobil ersätter du `localhost` med datorns lokala IP-adress.
@@ -65,13 +63,14 @@ Det betyder fyra av Nordens fem länder. Därefter går ordningen Centraleuropa 
 Västeuropa → Östeuropa → Nordamerika, med krav på båda exempelländerna i föregående region.
 Appen räknar unika avklarade land-id:n som finns i den angivna regionens `countries`.
 Detta ersätter det tidigare numeriska fältet; appen behöver läsa `regionId` och `count`.
-Landet innehåller `flag`, `difficulty` (1–3) och en `questions`-lista.
-Frågorna skrivs i `questionsByCountry` i `questions.ts` och kopplas till landet
-i `countries.ts`, exempelvis med `questions: questionsByCountry.sweden`.
+Landet innehåller `flag`, `difficulty` (1–3) och `questionPackId`, men inga frågor.
+Frågorna ligger i `questionPacks` i `questions.ts`. Landets `questionPackId`
+refererar till paketets `id`, exempelvis `sweden`. Hämta paketet separat via
+`/questionpacks/sweden`. Använd landets questionPackId när quizet ska starta.
 Varje fråga innehåller `id`, `question`, `answers` och `correctAnswer`.
 Exempeldatan innehåller 13 länder med två frågor vardera.
 Använd numeriska fråge-id:n som är unika i hela API:t. `correctAnswer` är
-index i `answers`, räknat från 0. Alla frågor samlas automatiskt i `/questions`.
+index i `answers`, räknat från 0. Frågor hämtas via `/questionpacks/:id`.
 Facit skickas med så att appen kan rätta svar lokalt. XP och progression
 hanteras också i appen.
 
