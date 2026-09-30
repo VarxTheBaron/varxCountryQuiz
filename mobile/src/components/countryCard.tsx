@@ -24,9 +24,8 @@ export default function CountryCard({ country }: Props) {
               styles.completedCard,
           ]}
         >
-          <Text style={styles.title}>
-            {country.flag} {country.name + " "}
-          </Text>
+          <Text style={styles.title}>{country.flag}</Text>
+          <Text style={styles.title}>{country.name}</Text>
           <Text style={styles.title}>Difficulty {country.difficulty}</Text>
           <MaterialIcons name="arrow-right" size={24} color="black" />
         </View>
