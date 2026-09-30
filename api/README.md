@@ -38,7 +38,7 @@ src/
 | GET | `/regions/norden` | Norden med requiredCountries och en lista med land-id:n |
 | GET | `/countries` | Alla länder |
 | GET | `/countries/sweden` | Ett land |
-| GET | `/questionpacks/sweden` | Ett frågepaket med id och questions |
+| GET | `/questionpacks/sweden` | Ett frågepaket med id, requiredCorrectAnswers och questions |
 
 Byt ut `norden`, `sweden` eller `1` mot ett annat id i datan.
 Okända regioner, länder och frågepaket ger status 404 med ett JSON-meddelande.
@@ -69,6 +69,8 @@ refererar till paketets `id`, exempelvis `sweden`. Hämta paketet separat via
 `/questionpacks/sweden`. Använd landets questionPackId när quizet ska starta.
 Varje fråga innehåller `id`, `question`, `answers` och `correctAnswer`.
 Exempeldatan innehåller 13 länder med två frågor vardera.
+Varje frågepaket har `requiredCorrectAnswers`, antalet rätta svar som krävs
+för att klara landet. I exempeldatan är kravet 2 av 2 för alla länder.
 Använd numeriska fråge-id:n som är unika i hela API:t. `correctAnswer` är
 index i `answers`, räknat från 0. Frågor hämtas via `/questionpacks/:id`.
 Facit skickas med så att appen kan rätta svar lokalt. XP och progression

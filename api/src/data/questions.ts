@@ -7,6 +7,7 @@ export type Question = {
 
 export type QuestionPack = {
   id: string;
+  requiredCorrectAnswers: number;
   questions: Question[];
 };
 
@@ -14,6 +15,7 @@ export type QuestionPack = {
 export const questionPacks: QuestionPack[] = [
   {
     id: "germany",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 11,
@@ -36,6 +38,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "austria",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 13,
@@ -53,6 +56,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "france",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 15,
@@ -70,6 +74,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "belgium",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 17,
@@ -87,6 +92,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "romania",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 19,
@@ -104,6 +110,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "ukraine",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 21,
@@ -126,6 +133,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "canada",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 23,
@@ -143,6 +151,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "usa",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 25,
@@ -160,6 +169,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "sweden",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 1,
@@ -182,6 +192,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "norway",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 2,
@@ -199,6 +210,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "denmark",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 3,
@@ -216,6 +228,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "finland",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 4,
@@ -238,6 +251,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "iceland",
+    requiredCorrectAnswers: 2,
     questions: [
       {
         id: 5,
