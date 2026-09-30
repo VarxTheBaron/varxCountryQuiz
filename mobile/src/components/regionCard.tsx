@@ -36,6 +36,12 @@ export default function RegionCard({ region }: Props) {
         <Text style={[styles.link, !isUnlocked && styles.disabled]}>
           Utforska →
         </Text>
+        {!isUnlocked && (
+          <Text>
+            Du behöver klara {region.requiredCountries?.count} länder i
+            föregående region
+          </Text>
+        )}
       </Pressable>
     </Link>
   );
