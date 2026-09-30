@@ -1,6 +1,7 @@
 import { Country } from "../../../api/src/data/countries";
+import { apiBaseUrl } from "./baseUrl";
 
-const baseUrl = "https://quiz-api.varxthebaron.se/regions";
+const baseUrl = `${apiBaseUrl}/regions`;
 
 export async function fetchRegionsAsync() {
   const res = await fetch(baseUrl);

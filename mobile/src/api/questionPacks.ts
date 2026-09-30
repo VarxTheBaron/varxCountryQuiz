@@ -1,6 +1,7 @@
 import { QuestionPack } from "../../../api/src/data/questions";
+import { apiBaseUrl } from "./baseUrl";
 
-const baseUrl = "https://quiz-api.varxthebaron.se/questionpacks";
+const baseUrl = `${apiBaseUrl}/questionpacks`;
 
 export async function fetchQuestionPack(id: string): Promise<QuestionPack> {
   const res = await fetch(`${baseUrl}/${id}`);

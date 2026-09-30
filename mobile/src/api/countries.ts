@@ -1,4 +1,6 @@
-const baseUrl = "https://quiz-api.varxthebaron.se/countries";
+import { apiBaseUrl } from "./baseUrl";
+
+const baseUrl = `${apiBaseUrl}/countries`;
 
 export async function fetchCountriesAsync() {
   const res = await fetch(baseUrl);

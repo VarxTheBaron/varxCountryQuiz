@@ -74,3 +74,6 @@ Användaren väljer att implementera alternativ 1: blockera bakåtnavigering på
 
 TypeScript-fel åtgärdade - 2026-09-29 18:40
 Användaren rättade mobilens två TypeScript-fel samt bytte till den publika importvägen för usePreventRemove. TypeScript-kontrollen passerar nu för både mobil och API.
+
+Valbar API-adress i mobilen - 2026-09-30 13:46
+Samlade mobilens tre hårdkodade API-adresser för regioner, länder och frågepaket i src/api/baseUrl.ts. Utan miljövariabel används fortsatt live-API:t. EXPO_PUBLIC_API_URL kan ange en explicit basadress eller värdet auto, som använder Expo-utvecklingsserverns aktuella värd och API-port 3000. För Android-emulator översätts localhost till 10.0.2.2. Lade till .env.example och instruktioner i mobile/README.md för lokalt API, nätverksbyte, fysisk enhet och tunnel. TypeScript-kontroll och git diff --check passerade. Lint kunde inte köras eftersom ESLint-konfiguration saknas och hämtningen stoppades av nätverksbegränsningen; begäran om utökad åtkomst avvisades. Användaren bekräftade att lösningen verkar fungera. AI har inte själv körtestat appen på en enhet.
