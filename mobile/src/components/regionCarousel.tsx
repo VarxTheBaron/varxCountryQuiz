@@ -13,6 +13,9 @@ export default function RegionCarousel({ regions }: Props) {
   const currentRegion = regions[currentIndex];
   const isFirst = currentIndex === 0;
   const isLast = currentIndex === regions.length - 1;
+  const requiredRegionName = regions.find(
+    (region) => region.id === currentRegion?.requiredCountries?.regionId,
+  )?.name;
 
   const previousRegion = () => {
     if (isFirst) return;
@@ -24,7 +27,9 @@ export default function RegionCarousel({ regions }: Props) {
     setCurrentIndex((index) => index + 1);
   };
 
-  if (!currentRegion) return <Text>Inga regioner att visa.</Text>;
+  if (!currentRegion) {
+    return <Text style={styles.emptyText}>Inga regioner att visa.</Text>;
+  }
 
   return (
     <View style={styles.container}>
@@ -34,27 +39,48 @@ export default function RegionCarousel({ regions }: Props) {
         <Pressable
           onPress={previousRegion}
           disabled={isFirst}
-          style={[styles.button, isFirst && styles.disabled]}
+          style={({ pressed }) => [
+            styles.button,
+            isFirst && styles.disabledButton,
+            pressed && !isFirst && styles.pressedButton,
+          ]}
         >
-          <MaterialIcons name="arrow-circle-left" size={36} color="#4338CA" />
+          <MaterialIcons
+            name="chevron-left"
+            size={32}
+            color={isFirst ? "#94A3B8" : "#4338CA"}
+          />
         </Pressable>
 
         <View style={styles.cardSlot}>
-          <RegionCard region={currentRegion} />
+          <RegionCard
+            region={currentRegion}
+            requiredRegionName={requiredRegionName}
+          />
         </View>
 
         <Pressable
           onPress={nextRegion}
           disabled={isLast}
-          style={[styles.button, isLast && styles.disabled]}
+          style={({ pressed }) => [
+            styles.button,
+            isLast && styles.disabledButton,
+            pressed && !isLast && styles.pressedButton,
+          ]}
         >
-          <MaterialIcons name="arrow-circle-right" size={36} color="#4338CA" />
+          <MaterialIcons
+            name="chevron-right"
+            size={32}
+            color={isLast ? "#94A3B8" : "#4338CA"}
+          />
         </Pressable>
       </View>
 
-      <Text>
-        {currentIndex + 1} / {regions.length}
-      </Text>
+      <View style={styles.counter}>
+        <Text style={styles.counterText}>
+          {currentIndex + 1} av {regions.length}
+        </Text>
+      </View>
     </View>
   );
 }
@@ -62,36 +88,67 @@ export default function RegionCarousel({ regions }: Props) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    maxWidth: 400,
+    maxWidth: 440,
     alignItems: "center",
-    marginVertical: 16,
+    alignSelf: "center",
+    gap: 14,
   },
   heading: {
-    fontSize: 16,
-    fontWeight: "700",
-    color: "#1E1B4B",
+    color: "#312E81",
+    fontSize: 12,
+    fontWeight: "800",
+    letterSpacing: 1.5,
   },
   row: {
     width: "100%",
-    height: 260,
     flexDirection: "row",
     alignItems: "center",
-    gap: 4,
+    gap: 6,
   },
   cardSlot: {
     flex: 1,
     minWidth: 0,
     alignItems: "center",
-    overflow: "hidden",
   },
   button: {
     flexShrink: 0,
-    width: 44,
-    height: 44,
+    width: 46,
+    height: 46,
     alignItems: "center",
     justifyContent: "center",
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: "#818CF8",
+    backgroundColor: "#FFFFFF",
+    elevation: 3,
+    shadowColor: "#312E81",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
   },
-  disabled: {
-    opacity: 0.25,
+  disabledButton: {
+    borderColor: "#A5B4FC",
+    backgroundColor: "#E0E7FF",
+    elevation: 0,
+    shadowOpacity: 0,
+  },
+  pressedButton: {
+    backgroundColor: "#EEF2FF",
+  },
+  counter: {
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderRadius: 14,
+    backgroundColor: "#E0E7FF",
+  },
+  counterText: {
+    color: "#4338CA",
+    fontSize: 13,
+    fontWeight: "700",
+  },
+  emptyText: {
+    color: "#1E1B4B",
+    fontSize: 15,
+    textAlign: "center",
   },
 });
