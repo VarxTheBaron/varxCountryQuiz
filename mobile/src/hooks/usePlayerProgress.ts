@@ -5,11 +5,21 @@ import { useCallback, useEffect } from "react";
 export type PlayerProgress = {
   xp: number;
   completedCountries: CompletedCountry[];
+  attemptedCountries: AttemptedCountry[];
 };
 
+export type AttemptedCountry = {
+  id: string;
+  regionId: string;
+  bestAttempt: number;
+};
 export type CompletedCountry = { id: string; regionId: string };
 
-const defaultProgress: PlayerProgress = { xp: 0, completedCountries: [] };
+const defaultProgress: PlayerProgress = {
+  xp: 0,
+  completedCountries: [],
+  attemptedCountries: [],
+};
 const key = "playerprogress";
 
 const playerProgressAtom = atom<PlayerProgress>(defaultProgress);
@@ -28,7 +38,7 @@ export function usePlayerProgress() {
       const data = await AsyncStorage.getItem(key);
 
       if (data === null) setProgress(defaultProgress);
-      else setProgress(JSON.parse(data));
+      else setProgress({ ...defaultProgress, ...JSON.parse(data) });
 
       setHasRead(true);
       setLoadingError(false);
@@ -74,6 +84,27 @@ export function usePlayerProgress() {
     });
   };
 
+  const addAttemptedCountry = (country: AttemptedCountry) => {
+    if (!hasRead || !country) return;
+
+    setProgress((current) => {
+      const previous = current.attemptedCountries.find(
+        (c) => c.id === country.id,
+      );
+
+      if (previous && previous.bestAttempt >= country.bestAttempt) return current;
+
+      return {
+        ...current,
+        attemptedCountries: previous
+          ? current.attemptedCountries.map((c) =>
+              c.id === country.id ? country : c,
+            )
+          : [...current.attemptedCountries, country],
+      };
+    });
+  };
+
   const resetProgress = () => {
     if (!hasRead) return;
 
@@ -83,6 +114,7 @@ export function usePlayerProgress() {
   return {
     progress,
     addCompletedCountry,
+    addAttemptedCountry,
     resetProgress,
     loadProgressFromStorage,
     hasRead,
