@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { usePreventRemove } from "expo-router/react-navigation";
 import { useState } from "react";
-import { Alert, Button, Text, View } from "react-native";
+import { Alert, Button, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function GameScreen() {
   const { id } = useLocalSearchParams();
@@ -24,7 +25,7 @@ export default function GameScreen() {
   });
 
   return (
-    <View>
+    <SafeAreaView>
       <Stack.Screen options={{ title: String(countryId) }} />
       <Text>Game screen: {countryId}</Text>
       <Text>country (debug): {JSON.stringify(query.data)}</Text>
@@ -42,6 +43,6 @@ export default function GameScreen() {
           });
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 }
