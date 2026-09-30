@@ -1,9 +1,10 @@
-import { Country } from "../../../api/src/data/countries";
+import type { Country } from "../../../api/src/data/countries";
+import type { Region } from "../../../api/src/data/regions";
 import { apiBaseUrl } from "./baseUrl";
 
 const baseUrl = `${apiBaseUrl}/regions`;
 
-export async function fetchRegionsAsync() {
+export async function fetchRegionsAsync(): Promise<Region[]> {
   const res = await fetch(baseUrl);
   if (!res.ok) throw new Error("Could not fetch region data.");
 

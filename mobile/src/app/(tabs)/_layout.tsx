@@ -21,7 +21,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Profile",
+          title: "Profil",
           tabBarIcon: (props) => (
             <MaterialIcons
               name="account-circle"
