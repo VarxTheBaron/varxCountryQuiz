@@ -1,3 +1,4 @@
+import { usePlayerProgress } from "@/hooks/usePlayerProgress";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -8,13 +9,21 @@ interface Props {
 }
 
 export default function CountryCard({ country }: Props) {
+  const { progress } = usePlayerProgress();
+
   return (
     <Link
       href={{ pathname: "/country/[id]", params: { id: country.id } }}
       asChild
     >
       <Pressable>
-        <View style={styles.card}>
+        <View
+          style={[
+            styles.card,
+            progress.completedCountries.some((c) => c.id === country.id) &&
+              styles.completedCard,
+          ]}
+        >
           <Text style={styles.title}>
             {country.flag} {country.name + " "}
           </Text>
@@ -31,6 +40,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flexDirection: "row",
     gap: 12,
+  },
+  completedCard: {
+    borderColor: "#00ff00",
   },
   title: { fontSize: 18, fontWeight: "500" },
 });
