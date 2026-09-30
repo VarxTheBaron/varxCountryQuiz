@@ -4,10 +4,22 @@ import GameContent from "@/components/gameContent";
 import QuizExitDialog from "@/components/quizExitDialog";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
 import { useQuery } from "@tanstack/react-query";
-import { Stack, useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import {
+  Stack,
+  useLocalSearchParams,
+  useNavigation,
+  useRouter,
+} from "expo-router";
 import { usePreventRemove } from "expo-router/react-navigation";
-import { useRef, useState } from "react";
-import { Button, Platform, Text } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import {
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function GameScreen() {
@@ -17,13 +29,14 @@ export default function GameScreen() {
   const pendingExit = useRef<(() => void) | null>(null);
   const navigation = useNavigation();
   const router = useRouter();
-  const { addCompletedCountry } = usePlayerProgress();
+  const { addCompletedCountry, addAttemptedCountry } = usePlayerProgress();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
+  const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
 
   const registerAnswer = (choice: number) => {
-    setAnswers((current) => [...current, choice]);
-    setCurrentQuestion(currentQuestion + 1);
+    if (selectedChoice !== null) return;
+    setSelectedChoice(choice);
   };
 
   const countryQuery = useQuery({
@@ -36,10 +49,34 @@ export default function GameScreen() {
     isError,
     isPending,
   } = useQuery({
-    queryKey: ["questionpack"],
+    queryKey: ["questionpack", countryQuery.data?.questionPackId],
     queryFn: () => fetchQuestionPack(countryQuery.data.questionPackId),
     enabled: Boolean(countryQuery.data),
   });
+
+  const continueQuiz = () => {
+    if (!questionPack || selectedChoice === null) return;
+
+    const nextAnswers = [...answers, selectedChoice];
+    if (currentQuestion < questionPack.questions.length - 1) {
+      setAnswers(nextAnswers);
+      setCurrentQuestion((current) => current + 1);
+      setSelectedChoice(null);
+      return;
+    }
+
+    const correctAnswers = questionPack.questions.reduce(
+      (score, question, index) =>
+        score + Number(question.correctAnswer === nextAnswers[index]),
+      0,
+    );
+    const country = { id: countryId, regionId: countryQuery.data.regionId };
+    addAttemptedCountry({ ...country, bestAttempt: correctAnswers });
+    if (correctAnswers >= questionPack.requiredCorrectAnswers) {
+      addCompletedCountry(country);
+    }
+    setGameFinished(true);
+  };
 
   usePreventRemove(!gameFinished, ({ data }) => {
     if (Platform.OS === "web") {
@@ -69,45 +106,84 @@ export default function GameScreen() {
     exit?.();
   };
 
+  useEffect(() => {
+    if (!gameFinished) return;
+
+    // Låt usePreventRemove släppa skärmen innan resultatvyn öppnas.
+    const frame = requestAnimationFrame(() => {
+      router.replace({ pathname: "/result/[id]", params: { id: countryId } });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [countryId, gameFinished, router]);
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.screen} edges={["bottom", "left", "right"]}>
       <QuizExitDialog
         visible={showExitDialog}
         onStay={stayInQuiz}
         onLeave={leaveQuiz}
       />
 
-      {countryQuery.isError || isError ? (
-        <Text>Något gick fel. Kunde inte hämta spelinfo.</Text>
-      ) : countryQuery.isPending || isPending ? (
-        <Text>Laddar...</Text>
-      ) : (
-        <>
-          <Stack.Screen options={{ title: String(countryId) }} />
-          <Text>Game screen: {countryId}</Text>
-          {questionPack && (
-            <GameContent
-              questionPack={questionPack}
-              currentQuestion={currentQuestion}
-              registerChoice={registerAnswer}
-            />
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.inner}>
+          {countryQuery.isError || isError ? (
+            <Text style={styles.statusText}>
+              Något gick fel. Kunde inte hämta spelinfo.
+            </Text>
+          ) : countryQuery.isPending || isPending ? (
+            <Text style={styles.statusText}>Laddar frågor...</Text>
+          ) : (
+            <>
+              <Stack.Screen options={{ title: countryQuery.data.name }} />
+              {questionPack && (
+                <GameContent
+                  questionPack={questionPack}
+                  currentQuestion={currentQuestion}
+                  selectedChoice={selectedChoice}
+                  registerChoice={registerAnswer}
+                  continueQuiz={continueQuiz}
+                />
+              )}
+              <Pressable
+                accessibilityRole="button"
+                onPress={() => {
+                  addCompletedCountry({
+                    id: countryId,
+                    regionId: countryQuery.data.regionId,
+                  });
+                  setGameFinished(true);
+                }}
+                style={styles.debugButton}
+              >
+                <Text style={styles.debugText}>Debug: klara landet direkt</Text>
+              </Pressable>
+            </>
           )}
-          <Button
-            title="(debug) Auto-win"
-            onPress={() => {
-              setGameFinished(true);
-              addCompletedCountry({
-                id: countryId,
-                regionId: countryQuery.data.regionId,
-              });
-              router.replace({
-                pathname: "/result/[id]",
-                params: { id: countryId },
-              });
-            }}
-          />
-        </>
-      )}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: { flex: 1, backgroundColor: "#C7D2FE" },
+  scrollContent: {
+    flexGrow: 1,
+    paddingHorizontal: 20,
+    paddingTop: 24,
+    paddingBottom: 32,
+  },
+  inner: { width: "100%", maxWidth: 560, alignSelf: "center", gap: 22 },
+  statusText: { color: "#1E1B4B", fontSize: 16, textAlign: "center" },
+  debugButton: {
+    alignSelf: "center",
+    minHeight: 44,
+    justifyContent: "center",
+    paddingHorizontal: 12,
+  },
+  debugText: {
+    color: "#4338CA",
+    fontSize: 13,
+    textDecorationLine: "underline",
+  },
+});
