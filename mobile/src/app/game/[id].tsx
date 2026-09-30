@@ -22,9 +22,13 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+type RoundResult =
+  | { kind: "quiz"; correct: number; total: number; required: number }
+  | { kind: "debug" };
+
 export default function GameScreen() {
   const { id: countryId } = useLocalSearchParams<{ id: string }>();
-  const [gameFinished, setGameFinished] = useState(false);
+  const [result, setResult] = useState<RoundResult | null>(null);
   const [showExitDialog, setShowExitDialog] = useState(false);
   const pendingExit = useRef<(() => void) | null>(null);
   const navigation = useNavigation();
@@ -75,10 +79,15 @@ export default function GameScreen() {
     if (correctAnswers >= questionPack.requiredCorrectAnswers) {
       addCompletedCountry(country);
     }
-    setGameFinished(true);
+    setResult({
+      kind: "quiz",
+      correct: correctAnswers,
+      total: questionPack.questions.length,
+      required: questionPack.requiredCorrectAnswers,
+    });
   };
 
-  usePreventRemove(!gameFinished, ({ data }) => {
+  usePreventRemove(result === null, ({ data }) => {
     if (Platform.OS === "web") {
       if (
         window.confirm(
@@ -107,14 +116,26 @@ export default function GameScreen() {
   };
 
   useEffect(() => {
-    if (!gameFinished) return;
+    if (!result) return;
 
     // Låt usePreventRemove släppa skärmen innan resultatvyn öppnas.
     const frame = requestAnimationFrame(() => {
-      router.replace({ pathname: "/result/[id]", params: { id: countryId } });
+      router.replace({
+        pathname: "/result/[id]",
+        params:
+          result.kind === "debug"
+            ? { id: countryId, mode: "debug" }
+            : {
+                id: countryId,
+                mode: "quiz",
+                correct: String(result.correct),
+                total: String(result.total),
+                required: String(result.required),
+              },
+      });
     });
     return () => cancelAnimationFrame(frame);
-  }, [countryId, gameFinished, router]);
+  }, [countryId, result, router]);
 
   return (
     <SafeAreaView style={styles.screen} edges={["bottom", "left", "right"]}>
@@ -151,7 +172,7 @@ export default function GameScreen() {
                     id: countryId,
                     regionId: countryQuery.data.regionId,
                   });
-                  setGameFinished(true);
+                  setResult({ kind: "debug" });
                 }}
                 style={styles.debugButton}
               >
