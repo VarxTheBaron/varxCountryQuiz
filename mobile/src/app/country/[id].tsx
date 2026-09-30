@@ -3,11 +3,11 @@ import CountryContent from "@/components/countryContent";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
 import { useQuery } from "@tanstack/react-query";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Text } from "react-native";
+import { ScrollView, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function CountryScreen() {
-  const { progress } = usePlayerProgress();
+  const { progress, hasRead, loadingError } = usePlayerProgress();
 
   const { id } = useLocalSearchParams();
   const countryId = Array.isArray(id) ? id[0] : id;
@@ -19,11 +19,43 @@ export default function CountryScreen() {
   });
 
   return (
-    <SafeAreaView>
-      <Stack.Screen options={{ title: String(countryId) }} />
-      {query.isPending && <Text>Laddar...</Text>}
-      {query.isError && <Text>Kunde inte ladda landet.</Text>}
-      {query.data && <CountryContent country={query.data} />}
+    <SafeAreaView style={styles.container} edges={["bottom", "left", "right"]}>
+      <Stack.Screen options={{ title: query.data?.name ?? "Land" }} />
+      <ScrollView contentContainerStyle={styles.content}>
+        {!countryId && <Text>Inget land valt.</Text>}
+        {countryId && query.isPending && <Text>Laddar landet...</Text>}
+        {query.isError && <Text>Kunde inte ladda landet.</Text>}
+        {query.data && (
+          <CountryContent
+            country={query.data}
+            completed={progress.completedCountries.some(
+              (c) => c.id === countryId,
+            )}
+            bestAttempt={
+              progress.attemptedCountries.find((c) => c.id === countryId)
+                ?.bestAttempt
+            }
+            progressLoaded={hasRead}
+            progressError={loadingError}
+          />
+        )}
+      </ScrollView>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#C7D2FE",
+  },
+  content: {
+    width: "100%",
+    maxWidth: 560,
+    flexGrow: 1,
+    alignSelf: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 24,
+  },
+});
