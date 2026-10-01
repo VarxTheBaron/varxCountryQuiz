@@ -4,6 +4,7 @@ import GameContent from "@/components/gameContent";
 import QuizExitDialog from "@/components/quizExitDialog";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
 import { useQuery } from "@tanstack/react-query";
+import * as Haptics from "expo-haptics";
 import {
   Stack,
   useLocalSearchParams,
@@ -38,11 +39,6 @@ export default function GameScreen() {
   const [answers, setAnswers] = useState<number[]>([]);
   const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
 
-  const registerAnswer = (choice: number) => {
-    if (selectedChoice !== null) return;
-    setSelectedChoice(choice);
-  };
-
   const countryQuery = useQuery({
     queryKey: ["country", countryId],
     queryFn: () => fetchCountryAsync(countryId),
@@ -57,6 +53,18 @@ export default function GameScreen() {
     queryFn: () => fetchQuestionPack(countryQuery.data.questionPackId),
     enabled: Boolean(countryQuery.data),
   });
+
+  const registerAnswer = (choice: number) => {
+    const question = questionPack?.questions[currentQuestion];
+    if (selectedChoice !== null || !question) return;
+
+    setSelectedChoice(choice);
+    const feedback =
+      choice === question.correctAnswer
+        ? Haptics.NotificationFeedbackType.Success
+        : Haptics.NotificationFeedbackType.Error;
+    void Haptics.notificationAsync(feedback).catch(() => undefined);
+  };
 
   const continueQuiz = () => {
     if (!questionPack || selectedChoice === null) return;
