@@ -9,8 +9,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function CountryScreen() {
   const { progress, hasRead, loadingError } = usePlayerProgress();
 
-  const { id } = useLocalSearchParams();
-  const countryId = Array.isArray(id) ? id[0] : id;
+  const { id: countryId } = useLocalSearchParams<{ id: string }>();
 
   const query = useQuery({
     queryKey: ["country", countryId],
