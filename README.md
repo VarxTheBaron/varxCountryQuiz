@@ -6,7 +6,7 @@ Spelaren väljer en region, exempelvis Norden, och sedan ett land. Varje land ha
 
 Den huvudsakliga spel-loopen är:
 
-**Start → Region → Land → Quiz → Resultat → Ny region**
+**Start → Region → Land → Quiz → Resultat → Start → Ny region**
 
 Projektet är inspirerat av äldre geografispel och edutainment-spel, med fokus på att göra ett enkelt spel som går snabbt att starta och spela.
 
@@ -110,7 +110,7 @@ API:t ansvarar för spelets statiska innehåll, medan spelarens progression hant
 
 ## Status
 
-Projektet är under utveckling. Flödet **Start → Region → Land → Quiz → Resultat** finns i appen. Spelresultat och bästa försök sparas lokalt, och profilen visar progressionen. XP-funktionen återstår.
+Projektet är under utveckling. Flödet **Start → Region → Land → Quiz → Resultat** finns i appen. Bästa försöket per land och vilka länder som klarats sparas lokalt, och profilen visar progressionen. XP-funktionen återstår.
 
 ## AI-användning
 

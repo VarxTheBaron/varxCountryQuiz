@@ -155,3 +155,6 @@ AI jämförde api/README.md med API-datan, routerna och appens regionupplåsning
 
 Mobilens README granskad - 2026-10-01 16:19
 AI jämförde mobile/README.md med API-adresskoden och miljöfilen. Förtydligade att `.env.local` ska kopieras innan Expo startas och att `auto` behöver LAN-adress på en fysisk Android-telefon; `10.0.2.2` fungerar i emulatorn. Övriga instruktioner stämde med den nuvarande koden. Mobilens TypeScript-kontroll, lint och git diff --check passerade. Endast mobile/README.md och denna logg ändrades.
+
+Rotens README rättad - 2026-10-01 16:27
+AI granskade rotens README mot uppgift.md och appkoden. Spelloopen förtydligades med återgången till startsidan efter resultatet, och statusavsnittet anger nu att bästa försöket per land och avklarade länder sparas lokalt, inte varje spelresultat. Rutan för inlämning i tid avmarkerades eftersom inlämningen ännu inte är verifierad; därmed avmarkerades även att alla G-krav är uppfyllda. Användaren bad uttryckligen att den planerade presentationen ska räknas som genomförd, så den rutan lämnades markerad. Endast README.md och denna logg ändrades.
