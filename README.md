@@ -67,14 +67,17 @@ För att köra mot det lokala API:t i stället, öppna en andra terminal i proje
 | `ScrollView` | Låter längre listor och skärmar rullas på små enheter. |
 | `Modal` | Visar bekräftelse innan quizet lämnas eller progress återställs. |
 
-### Använda Expo SDK-moduler
+### Expo SDK-moduler för kurskravet
 
-| Modul | Användning |
-| --- | --- |
-| `expo-router` | Sköter navigering mellan start, region, land, quiz, resultat och profil. |
-| `expo-constants` | Läser Expo-serverns adress när appen ska nå ett lokalt API. |
-| `expo-status-bar` | Ställer in statusfältets utseende. |
-| `expo-splash-screen` | Konfigurerar appens startbild via plugin i `mobile/app.json`. |
+| Modul | Användning eller plan | Status |
+| --- | --- | --- |
+| `expo-status-bar` | Ställer in statusfältets utseende. | Fanns som beroende från start men lades senare till i appens kod och konfiguration. |
+| `expo-haptics` | Ska ge vibration som återkoppling på svar i quizet. | Installerad, ännu inte använd. |
+| `expo-speech` | Ska kunna läsa upp frågor och svarsalternativ. | Installerad, ännu inte använd. |
+| `expo-clipboard` | Ska låta spelaren kopiera sitt resultat. | Installerad, ännu inte använd. |
+| `expo-font` | Ska ladda en egen font för spelets text. | Fanns som beroende från start och har nu lagts till som plugin, men ingen font används ännu. |
+
+`expo-constants` och `expo-splash-screen` fanns i startprojektet. Constants används för att hitta det lokala API:t och SplashScreen konfigurerar startbilden. De räknas inte med bland modulerna i tabellen ovan, som fokuserar på kurskravet. `expo-router` sköter navigeringen mellan appens skärmar och är enligt uppgiftsbeskrivningen ett separat krav. Git-historiken visar att endast Haptics, Speech och Clipboard är nya paket; StatusBar och Font fanns som beroenden från start. Om läraren kräver fyra separat installerade paket behövs alltså ytterligare ett. Kravet på fyra använda moduler är fortfarande öppet tills de planerade funktionerna har byggts.
 
 ## API
 
