@@ -68,9 +68,11 @@ Frågorna ligger i `questionPacks` i `questions.ts`. Landets `questionPackId`
 refererar till paketets `id`, exempelvis `sweden`. Hämta paketet separat via
 `/questionpacks/sweden`. Använd landets questionPackId när quizet ska starta.
 Varje fråga innehåller `id`, `question`, `answers` och `correctAnswer`.
-Exempeldatan innehåller 13 länder med två frågor vardera.
+Exempeldatan innehåller 13 länder. De fem nordiska länderna har tio frågor
+vardera; övriga frågepaket har två frågor vardera.
 Varje frågepaket har `requiredCorrectAnswers`, antalet rätta svar som krävs
-för att klara landet. I exempeldatan är kravet 2 av 2 för alla länder.
+för att klara landet. I Norden kräver svårighetsgrad 1, 2 respektive 3
+6, 8 respektive 10 rätt av 10. De övriga paketen kräver 2 av 2.
 Använd numeriska fråge-id:n som är unika i hela API:t. `correctAnswer` är
 index i `answers`, räknat från 0. Frågor hämtas via `/questionpacks/:id`.
 Facit skickas med så att appen kan rätta svar lokalt. XP och progression

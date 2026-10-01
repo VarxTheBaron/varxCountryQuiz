@@ -169,7 +169,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "sweden",
-    requiredCorrectAnswers: 2,
+    requiredCorrectAnswers: 6,
     questions: [
       {
         id: 1,
@@ -188,11 +188,59 @@ export const questionPacks: QuestionPack[] = [
         ],
         correctAnswer: 1,
       },
+      {
+        id: 43,
+        question: "Vilken är Sveriges största sjö?",
+        answers: ["Vättern", "Vänern", "Mälaren", "Hjälmaren"],
+        correctAnswer: 1,
+      },
+      {
+        id: 44,
+        question: "Vilken är Sveriges största ö?",
+        answers: ["Öland", "Orust", "Gotland", "Fårö"],
+        correctAnswer: 2,
+      },
+      {
+        id: 45,
+        question: "Vad heter Sveriges högsta berg?",
+        answers: ["Kebnekaise", "Åreskutan", "Sarektjåkkå", "Helags"],
+        correctAnswer: 0,
+      },
+      {
+        id: 46,
+        question: "Vilken är Sveriges näst största stad?",
+        answers: ["Malmö", "Uppsala", "Västerås", "Göteborg"],
+        correctAnswer: 3,
+      },
+      {
+        id: 47,
+        question: "Vilken stad på Gotland är känd för sin medeltida ringmur?",
+        answers: ["Kalmar", "Visby", "Karlskrona", "Norrköping"],
+        correctAnswer: 1,
+      },
+      {
+        id: 48,
+        question: "Vilken valuta använder Sverige?",
+        answers: ["Euro", "Danska kronor", "Svenska kronor", "Norska kronor"],
+        correctAnswer: 2,
+      },
+      {
+        id: 49,
+        question: "Vilket landskap ligger längst söderut i Sverige?",
+        answers: ["Halland", "Blekinge", "Småland", "Skåne"],
+        correctAnswer: 3,
+      },
+      {
+        id: 50,
+        question: "Vilken bro förbinder Malmö med Köpenhamn?",
+        answers: ["Öresundsbron", "Ölandsbron", "Stora Bältbron", "Höga Kusten-bron"],
+        correctAnswer: 0,
+      },
     ],
   },
   {
     id: "norway",
-    requiredCorrectAnswers: 2,
+    requiredCorrectAnswers: 8,
     questions: [
       {
         id: 2,
@@ -206,11 +254,68 @@ export const questionPacks: QuestionPack[] = [
         answers: ["Island", "Danmark", "Sverige", "Tyskland"],
         correctAnswer: 2,
       },
+      {
+        id: 35,
+        question:
+          "Vad heter de smala havsvikar där havet smugit in mellan bergen?",
+        answers: ["Deltan", "Fjordar", "Laguner", "Kanaler"],
+        correctAnswer: 1,
+      },
+      {
+        id: 36,
+        question: "Vad heter Norges högsta berg?",
+        answers: ["Glittertind", "Preikestolen", "Trolltunga", "Galdhøpiggen"],
+        correctAnswer: 3,
+      },
+      {
+        id: 37,
+        question: "Vilken valuta använder Norge?",
+        answers: ["Norska kronor", "Euro", "Svenska kronor", "Danska kronor"],
+        correctAnswer: 0,
+      },
+      {
+        id: 38,
+        question:
+          "Vilken norsk ögrupp ligger så långt norrut att isbjörnar kan dyka upp?",
+        answers: ["Lofoten", "Färöarna", "Svalbard", "Åland"],
+        correctAnswer: 2,
+      },
+      {
+        id: 39,
+        question: "Vilka två länder gränsar Norge till, förutom Sverige?",
+        answers: [
+          "Danmark och Finland",
+          "Finland och Ryssland",
+          "Ryssland och Island",
+          "Finland och Estland",
+        ],
+        correctAnswer: 1,
+      },
+      {
+        id: 40,
+        question:
+          "Vilken norsk ögrupp är känd för dramatiska berg och fiskebyar?",
+        answers: ["Svalbard", "Åland", "Färöarna", "Lofoten"],
+        correctAnswer: 3,
+      },
+      {
+        id: 41,
+        question:
+          "Vilken norsk stad är så känd för regn att regnjackan får jobba övertid?",
+        answers: ["Bergen", "Tromsø", "Oslo", "Kristiansand"],
+        correctAnswer: 0,
+      },
+      {
+        id: 42,
+        question: "Vilket hav ligger utanför Lofoten?",
+        answers: ["Nordsjön", "Barents hav", "Norska havet", "Östersjön"],
+        correctAnswer: 2,
+      },
     ],
   },
   {
     id: "denmark",
-    requiredCorrectAnswers: 2,
+    requiredCorrectAnswers: 6,
     questions: [
       {
         id: 3,
@@ -291,7 +396,7 @@ export const questionPacks: QuestionPack[] = [
   },
   {
     id: "finland",
-    requiredCorrectAnswers: 2,
+    requiredCorrectAnswers: 8,
     questions: [
       {
         id: 4,
@@ -310,11 +415,59 @@ export const questionPacks: QuestionPack[] = [
         ],
         correctAnswer: 0,
       },
+      {
+        id: 51,
+        question: "Vilken valuta använder Finland?",
+        answers: ["Finska mark", "Svenska kronor", "Euro", "Norska kronor"],
+        correctAnswer: 2,
+      },
+      {
+        id: 52,
+        question: "Vad heter Finlands största sjö?",
+        answers: ["Saimen", "Päijänne", "Enare träsk", "Ule träsk"],
+        correctAnswer: 0,
+      },
+      {
+        id: 53,
+        question: "Vad heter Finlands nordligaste landskap?",
+        answers: ["Nyland", "Satakunta", "Egentliga Finland", "Lappland"],
+        correctAnswer: 3,
+      },
+      {
+        id: 54,
+        question: "Vilken finsk stad marknadsförs som jultomtens hemstad?",
+        answers: ["Åbo", "Rovaniemi", "Tammerfors", "Uleåborg"],
+        correctAnswer: 1,
+      },
+      {
+        id: 55,
+        question: "Vilken vik ligger Helsingfors vid?",
+        answers: ["Bottenviken", "Finska viken", "Rigabukten", "Bengaliska viken"],
+        correctAnswer: 1,
+      },
+      {
+        id: 56,
+        question: "Vilken självstyrande ögrupp tillhör Finland?",
+        answers: ["Färöarna", "Svalbard", "Lofoten", "Åland"],
+        correctAnswer: 3,
+      },
+      {
+        id: 57,
+        question: "Vilket land gränsar Finland till i öster?",
+        answers: ["Ryssland", "Estland", "Danmark", "Polen"],
+        correctAnswer: 0,
+      },
+      {
+        id: 58,
+        question: "Vilket språk är officiellt i Finland, förutom finska?",
+        answers: ["Norska", "Danska", "Svenska", "Isländska"],
+        correctAnswer: 2,
+      },
     ],
   },
   {
     id: "iceland",
-    requiredCorrectAnswers: 2,
+    requiredCorrectAnswers: 10,
     questions: [
       {
         id: 5,
@@ -328,6 +481,59 @@ export const questionPacks: QuestionPack[] = [
         answers: ["Stilla havet", "Atlanten", "Indiska oceanen", "Medelhavet"],
         correctAnswer: 1,
       },
+      {
+        id: 59,
+        question: "Vilka kontinentalplattor möts vid Þingvellir?",
+        answers: [
+          "Den afrikanska och den eurasiska",
+          "Den nordamerikanska och den eurasiska",
+          "Den nordamerikanska och den sydamerikanska",
+          "Den antarktiska och den eurasiska",
+        ],
+        correctAnswer: 1,
+      },
+      {
+        id: 60,
+        question: "Vad heter Islands största glaciär?",
+        answers: ["Langjökull", "Mýrdalsjökull", "Vatnajökull", "Eyjafjallajökull"],
+        correctAnswer: 2,
+      },
+      {
+        id: 61,
+        question: "Vilken gejser på Island får regelbundna utbrott?",
+        answers: ["Strokkur", "Geysir", "Hekla", "Gullfoss"],
+        correctAnswer: 0,
+      },
+      {
+        id: 62,
+        question: "Vilket vattenfall ingår i Gyllene cirkeln?",
+        answers: ["Dettifoss", "Skógafoss", "Seljalandsfoss", "Gullfoss"],
+        correctAnswer: 3,
+      },
+      {
+        id: 63,
+        question: "Vad heter Islands högsta bergstopp?",
+        answers: ["Hekla", "Esja", "Hvannadalshnúkur", "Galdhøpiggen"],
+        correctAnswer: 2,
+      },
+      {
+        id: 64,
+        question: "Vilken isländsk vulkan fick Europas flygtrafik att ta en oplanerad paus 2010?",
+        answers: ["Katla", "Eyjafjallajökull", "Hekla", "Fagradalsfjall"],
+        correctAnswer: 1,
+      },
+      {
+        id: 65,
+        question: "På vilken halvö ligger Islands internationella flygplats Keflavík?",
+        answers: ["Snæfellsnes", "Tröllaskagi", "Vatnsnes", "Reykjanes"],
+        correctAnswer: 3,
+      },
+      {
+        id: 66,
+        question: "Vilken valuta använder Island?",
+        answers: ["Isländska kronor", "Euro", "Danska kronor", "Norska kronor"],
+        correctAnswer: 0,
+      },
     ],
   },
 ];
@@ -335,3 +541,8 @@ export const questionPacks: QuestionPack[] = [
 export const questions: Question[] = questionPacks.flatMap(
   (pack) => pack.questions,
 );
+
+// 10 questions per pack
+// difficulty 1 -> 6/10
+// difficulty 2 -> 8/10
+// difficulty 3 -> 10/10
