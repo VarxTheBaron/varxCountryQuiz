@@ -114,9 +114,11 @@ Projektet är under utveckling. Flödet **Start → Region → Land → Quiz →
 
 ## AI-användning
 
-OpenAI Codex har använts som stöd för idéer, kodgranskning, förklaringar, felsökning och kodändringar i mobilappen och API:t. Arbetet och vem som gjorde ändringarna finns beskrivet steg för steg i [ai-log.md](ai-log.md).
+Jag har använt **OpenAI Codex** för att diskutera lösningar, få kod förklarad och granskad, felsöka samt skriva delar av mobilappen, API:t och dokumentationen. Exempel är quizets frågor och resultatvy, spelarprogress, lokala API-adresser och användningen av Expo-moduler. Jag har granskat förslagen, valt vilka lösningar som ska användas och ibland skrivit om dem för att hålla koden begriplig. I [ai-log.md](ai-log.md) framgår vad AI respektive jag gjorde i varje steg.
 
-Koden har kontrollerats mot projektets datatyper och flöden. TypeScript-kontroll, ESLint och API-bygge har körts vid relevanta ändringar; resultaten och eventuella begränsningar står i ai-loggen. Användaren har även granskat skärmarnas utseende och beteende under arbetet. En fullständig körtestning på en fysisk enhet är inte dokumenterad.
+För att verifiera ändringarna har jag granskat koden och skärmarnas utseende och beteende. TypeScript-kontroll och ESLint har körts för mobilappen, och API:t har byggts och dess endpoints testats, även med felaktiga ID:n. Uppläsningen har testats i Android-emulator och på en fysisk Android-mobil; den haptiska återkopplingen har testats på en Samsung Galaxy A56. Ai-loggen anger vilka kontroller som gjordes för varje ändring och när en funktion inte har körtestats. Kodkontrollerna ersätter inte testning av hela appflödet på en enhet.
+
+I presentationens reflekterande del tar jag upp hur AI-stödet påverkade arbetet, varför jag ändrade vissa förslag och hur jag kontrollerade resultatet.
 
 ## Krav för godkänt (G)
 
@@ -133,4 +135,4 @@ Koden har kontrollerats mot projektets datatyper och flöden. TypeScript-kontrol
 [x] Alla punkter för godkänt är uppfyllda
 [x] **Ytterligare en valfri extern modul** används i projektet från [reactnative.directory](https://reactnative.directory)
 [x] Appen **hämtar data från ett Web-API**
-[] **Användningen av AI-verktyg dokumenteras i README** – vilka verktyg du använt, till vad, och hur du verifierat att koden gör det du tror. Ta även upp det i presentationens reflekterande del.
+[x] **Användningen av AI-verktyg dokumenteras i README** – vilka verktyg du använt, till vad, och hur du verifierat att koden gör det du tror. Ta även upp det i presentationens reflekterande del.
