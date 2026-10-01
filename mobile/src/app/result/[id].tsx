@@ -1,6 +1,7 @@
 import { fetchCountryAsync } from "@/api/countries";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useQuery } from "@tanstack/react-query";
+import * as Clipboard from "expo-clipboard";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { usePreventRemove } from "expo-router/react-navigation";
 import { useEffect, useState } from "react";
@@ -29,6 +30,9 @@ export default function ResultScreen() {
   }>();
   const router = useRouter();
   const [goToStart, setGoToStart] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "error">(
+    "idle",
+  );
   const countryQuery = useQuery({
     queryKey: ["country", countryId],
     queryFn: () => fetchCountryAsync(countryId),
@@ -50,6 +54,19 @@ export default function ResultScreen() {
   const passed = hasQuizResult && correctCount >= requiredCount;
   const isDebugResult = mode === "debug";
   const countryName = countryQuery.data?.name ?? "landet";
+
+  const copyResult = async () => {
+    if (!hasQuizResult) return;
+
+    try {
+      const copied = await Clipboard.setStringAsync(
+        `Jag fick ${correctCount} av ${totalCount} rätt i quizet om ${countryName} i Country Challenge.`,
+      );
+      setCopyStatus(copied ? "copied" : "error");
+    } catch {
+      setCopyStatus("error");
+    }
+  };
 
   usePreventRemove(!goToStart, () => {});
 
@@ -140,6 +157,33 @@ export default function ResultScreen() {
             )}
           </View>
 
+          {hasQuizResult && (
+            <>
+              <Pressable
+                accessibilityRole="button"
+                onPress={() => void copyResult()}
+                style={({ pressed }) => [
+                  styles.copyButton,
+                  pressed && styles.copyPressed,
+                ]}
+              >
+                <MaterialIcons
+                  name={copyStatus === "copied" ? "check" : "content-copy"}
+                  size={21}
+                  color="#312E81"
+                />
+                <Text style={styles.copyText}>
+                  {copyStatus === "copied" ? "Resultatet kopierat" : "Kopiera resultat"}
+                </Text>
+              </Pressable>
+              {copyStatus === "error" && (
+                <Text style={styles.copyError} accessibilityLiveRegion="polite">
+                  Kunde inte kopiera resultatet. Försök igen.
+                </Text>
+              )}
+            </>
+          )}
+
           <Pressable
             accessibilityRole="button"
             onPress={() => setGoToStart(true)}
@@ -226,6 +270,20 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
   },
+  copyButton: {
+    minHeight: 56,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    borderRadius: 16,
+    borderWidth: 2,
+    borderColor: "#818CF8",
+    backgroundColor: "#FFFFFF",
+  },
+  copyPressed: { backgroundColor: "#EEF2FF" },
+  copyText: { color: "#312E81", fontSize: 16, fontWeight: "700" },
+  copyError: { color: "#9A3412", fontSize: 14, textAlign: "center" },
   startButton: {
     minHeight: 56,
     flexDirection: "row",

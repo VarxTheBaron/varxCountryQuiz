@@ -74,7 +74,7 @@ För att köra mot det lokala API:t i stället, öppna en andra terminal i proje
 | `expo-status-bar` | Ställer in statusfältets utseende. | Fanns som beroende från start men lades senare till i appens kod och konfiguration. |
 | `expo-haptics` | Ska ge vibration som återkoppling på svar i quizet. | Installerad, ännu inte använd. |
 | `expo-speech` | Ska kunna läsa upp frågor och svarsalternativ. | Installerad, ännu inte använd. |
-| `expo-clipboard` | Ska låta spelaren kopiera sitt resultat. | Installerad, ännu inte använd. |
+| `expo-clipboard` | Kopierar antal rätt, land och spelets namn från resultatsidan. | Används i appen för avslutade quiz. |
 | `expo-font` | Ska ladda en egen font för spelets text. | Fanns som beroende från start och har nu lagts till som plugin, men ingen font används ännu. |
 
 `expo-constants` och `expo-splash-screen` fanns i startprojektet. Constants används för att hitta det lokala API:t och SplashScreen konfigurerar startbilden. De räknas inte med bland modulerna i tabellen ovan, som fokuserar på kurskravet. `expo-router` sköter navigeringen mellan appens skärmar och är enligt uppgiftsbeskrivningen ett separat krav. Git-historiken visar att endast Haptics, Speech och Clipboard är nya paket; StatusBar och Font fanns som beroenden från start. Om läraren kräver fyra separat installerade paket behövs alltså ytterligare ett. Kravet på fyra använda moduler är fortfarande öppet tills de planerade funktionerna har byggts.
