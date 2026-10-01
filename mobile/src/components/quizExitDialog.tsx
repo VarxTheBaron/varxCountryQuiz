@@ -52,13 +52,14 @@ const styles = StyleSheet.create({
   title: {
     color: "#1E1B4B",
     fontSize: 20,
-    fontWeight: "700",
+    fontFamily: "SourceSans3_700Bold",
   },
   message: {
     marginTop: 10,
     color: "#475569",
     fontSize: 15,
     lineHeight: 22,
+    fontFamily: "SourceSans3_400Regular",
   },
   actions: {
     flexDirection: "row",
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
   stayText: {
     color: "#4338CA",
     fontSize: 14,
-    fontWeight: "700",
+    fontFamily: "SourceSans3_700Bold",
   },
   leaveButton: {
     minHeight: 44,
@@ -88,6 +89,6 @@ const styles = StyleSheet.create({
   leaveText: {
     color: "#FFFFFF",
     fontSize: 14,
-    fontWeight: "700",
+    fontFamily: "SourceSans3_700Bold",
   },
 });

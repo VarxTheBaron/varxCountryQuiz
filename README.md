@@ -75,7 +75,7 @@ För att köra mot det lokala API:t i stället, öppna en andra terminal i proje
 | `expo-haptics` | Ger olika haptisk återkoppling för rätt och fel svar i quizet. | Används i appen. |
 | `expo-speech` | Läser upp quizets frågor och svarsalternativ på svenska; uppläsningen kan stoppas och avbryts när ett svar väljs. | Används i appen. |
 | `expo-clipboard` | Kopierar antal rätt, land och spelets namn från resultatsidan. | Används i appen för avslutade quiz. |
-| `expo-font` | Ska ladda en egen font för spelets text. | Installerad och konfigurerad som plugin, men ingen egen font används ännu. |
+| `expo-font` | Laddar Source Sans 3 i appens grundlayout för frågor, svar och knappar i quizet. | Används i appen. |
 
 ## API
 

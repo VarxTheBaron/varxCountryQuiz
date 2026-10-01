@@ -203,7 +203,12 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
   },
   inner: { width: "100%", maxWidth: 560, alignSelf: "center", gap: 22 },
-  statusText: { color: "#1E1B4B", fontSize: 16, textAlign: "center" },
+  statusText: {
+    color: "#1E1B4B",
+    fontSize: 16,
+    fontFamily: "SourceSans3_400Regular",
+    textAlign: "center",
+  },
   debugButton: {
     alignSelf: "center",
     minHeight: 44,
@@ -213,6 +218,7 @@ const styles = StyleSheet.create({
   debugText: {
     color: "#4338CA",
     fontSize: 13,
+    fontFamily: "SourceSans3_400Regular",
     textDecorationLine: "underline",
   },
 });

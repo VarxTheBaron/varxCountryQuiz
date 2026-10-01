@@ -114,6 +114,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#EEF2FF",
   },
   pressed: { backgroundColor: "#E0E7FF" },
-  buttonText: { color: "#4338CA", fontSize: 14, fontWeight: "700" },
-  error: { color: "#9A3412", fontSize: 13, marginTop: 8 },
+  buttonText: {
+    color: "#4338CA",
+    fontSize: 14,
+    fontFamily: "SourceSans3_700Bold",
+  },
+  error: {
+    color: "#9A3412",
+    fontSize: 13,
+    fontFamily: "SourceSans3_400Regular",
+    marginTop: 8,
+  },
 });
