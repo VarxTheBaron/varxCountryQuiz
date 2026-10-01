@@ -11,7 +11,7 @@ export async function fetchRegionsAsync(): Promise<Region[]> {
   return res.json();
 }
 
-export async function fetchSingleRegionAsync(id: string) {
+export async function fetchSingleRegionAsync(id: string): Promise<Region> {
   const res = await fetch(`${baseUrl}/${id}`);
   if (!res.ok) throw new Error("Could not fetch region id: " + id);
 

@@ -42,7 +42,7 @@ export function usePlayerProgress() {
 
       setHasRead(true);
       setLoadingError(false);
-    } catch (error) {
+    } catch {
       setLoadingError(true);
     }
   }, [setProgress, setHasRead, setLoadingError]);
@@ -51,7 +51,7 @@ export function usePlayerProgress() {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(progress));
       setSaveError(false);
-    } catch (error) {
+    } catch {
       setSaveError(true);
     }
   }, [progress, setSaveError]);
@@ -71,21 +71,20 @@ export function usePlayerProgress() {
   }, [hasRead, loadProgressFromStorage]);
 
   const addCompletedCountry = (country: CompletedCountry) => {
-    if (!hasRead || !country) return;
+    if (!hasRead) return;
 
     setProgress((current) => {
       if (current.completedCountries.some((c) => c.id === country.id))
         return current;
-      else
-        return {
-          ...current,
-          completedCountries: [...current.completedCountries, country],
-        };
+      return {
+        ...current,
+        completedCountries: [...current.completedCountries, country],
+      };
     });
   };
 
   const addAttemptedCountry = (country: AttemptedCountry) => {
-    if (!hasRead || !country) return;
+    if (!hasRead) return;
 
     setProgress((current) => {
       const previous = current.attemptedCountries.find(

@@ -34,7 +34,7 @@ export default function RegionScreen() {
     <SafeAreaView style={styles.container} edges={["bottom", "left", "right"]}>
       <Stack.Screen
         options={{
-          title: query.data ? String(query.data.name) : "Region",
+          title: query.data?.name ?? "Region",
         }}
       />
       <ScrollView contentContainerStyle={styles.content}>
