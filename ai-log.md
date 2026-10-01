@@ -152,3 +152,6 @@ AI lade till åtta frågor per land för Tyskland, Österrike, Frankrike, Belgie
 
 API-README uppdaterad efter nya frågor - 2026-10-01 16:17
 AI jämförde api/README.md med API-datan, routerna och appens regionupplåsning. README anger nu tio frågor per land och godkäntgränserna 6/10, 8/10 och 10/10 efter svårighetsgrad i alla regioner. Lade till den befintliga endpointen för en regions länder, tog bort ett gammalt exempel-ID och rättade beskrivningen av hur appen räknar avklarade länder. Endast dokumentation ändrades i detta steg.
+
+Mobilens README granskad - 2026-10-01 16:19
+AI jämförde mobile/README.md med API-adresskoden och miljöfilen. Förtydligade att `.env.local` ska kopieras innan Expo startas och att `auto` behöver LAN-adress på en fysisk Android-telefon; `10.0.2.2` fungerar i emulatorn. Övriga instruktioner stämde med den nuvarande koden. Mobilens TypeScript-kontroll, lint och git diff --check passerade. Endast mobile/README.md och denna logg ändrades.
