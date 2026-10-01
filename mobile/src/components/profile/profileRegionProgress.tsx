@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { StyleSheet, Text, View } from "react-native";
 import type { Region } from "../../../../api/src/data/regions";
@@ -43,7 +44,7 @@ export default function ProfileRegionProgress({
                 <MaterialIcons
                   name="check-circle"
                   size={22}
-                  color="#15803D"
+                  color={theme.colors.success}
                 />
               )}
             </View>
@@ -64,29 +65,29 @@ export default function ProfileRegionProgress({
 
 const styles = StyleSheet.create({
   section: { gap: 10, marginTop: 10 },
-  sectionTitle: { color: "#1E1B4B", fontSize: 20, fontWeight: "700" },
-  sectionStatus: { color: "#475569", fontSize: 14 },
+  sectionTitle: { color: theme.colors.heading, fontSize: 20, fontWeight: theme.fontWeights.bold },
+  sectionStatus: { color: theme.colors.secondary, fontSize: 14 },
   regionCard: {
     gap: 7,
-    padding: 16,
-    borderRadius: 16,
+    padding: theme.spacing.lg,
+    borderRadius: theme.radii.lg,
     borderWidth: 1,
-    borderColor: "#C7D2FE",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorderLight,
+    backgroundColor: theme.colors.white,
   },
   regionHeader: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  regionName: { color: "#1E1B4B", fontSize: 16, fontWeight: "700" },
-  regionCount: { color: "#64748B", fontSize: 13 },
+  regionName: { color: theme.colors.heading, fontSize: 16, fontWeight: theme.fontWeights.bold },
+  regionCount: { color: theme.colors.muted, fontSize: 13 },
   regionTrack: {
     height: 6,
     overflow: "hidden",
     marginTop: 3,
     borderRadius: 6,
-    backgroundColor: "#E0E7FF",
+    backgroundColor: theme.colors.primarySurfaceStrong,
   },
-  regionFill: { height: "100%", borderRadius: 6, backgroundColor: "#4338CA" },
+  regionFill: { height: "100%", borderRadius: 6, backgroundColor: theme.colors.primary },
 });

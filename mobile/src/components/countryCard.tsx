@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -39,11 +40,11 @@ export default function CountryCard({ country, completed }: Props) {
             <View style={styles.end}>
               {completed ? (
                 <>
-                  <MaterialIcons name="check-circle" size={25} color="#15803D" />
+                  <MaterialIcons name="check-circle" size={25} color={theme.colors.success} />
                   <Text style={styles.completedLabel}>Klar</Text>
                 </>
               ) : (
-                <MaterialIcons name="chevron-right" size={30} color="#4338CA" />
+                <MaterialIcons name="chevron-right" size={30} color={theme.colors.primary} />
               )}
             </View>
           </View>
@@ -58,22 +59,22 @@ const styles = StyleSheet.create({
     minHeight: 70,
     flexDirection: "row",
     alignItems: "center",
-    gap: 12,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    gap: theme.spacing.md,
+    paddingHorizontal: theme.spacing.md,
+    paddingVertical: theme.spacing.sm,
     borderWidth: 2,
-    borderColor: "#818CF8",
-    borderRadius: 16,
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorder,
+    borderRadius: theme.radii.lg,
+    backgroundColor: theme.colors.white,
     elevation: 5,
-    shadowColor: "#312E81",
+    shadowColor: theme.colors.primaryDark,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.22,
     shadowRadius: 7,
   },
   completedCard: {
-    borderColor: "#22C55E",
-    backgroundColor: "#DCFCE7",
+    borderColor: theme.colors.successBright,
+    backgroundColor: theme.colors.successSurface,
   },
   pressed: {
     opacity: 0.75,
@@ -93,12 +94,12 @@ const styles = StyleSheet.create({
     gap: 3,
   },
   name: {
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 18,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
   },
   difficulty: {
-    color: "#64748B",
+    color: theme.colors.muted,
     fontSize: 14,
   },
   end: {
@@ -107,8 +108,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   completedLabel: {
-    color: "#15803D",
+    color: theme.colors.success,
     fontSize: 11,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
   },
 });

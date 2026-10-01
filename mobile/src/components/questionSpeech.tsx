@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import * as Speech from "expo-speech";
 import {
@@ -83,7 +84,7 @@ const QuestionSpeech = forwardRef<QuestionSpeechHandle, { question: Question }>(
           <MaterialIcons
             name={isSpeaking ? "stop" : "volume-up"}
             size={20}
-            color="#4338CA"
+            color={theme.colors.primary}
           />
           <Text style={styles.buttonText}>
             {isSpeaking ? "Stoppa uppläsning" : "Läs upp fråga och svar"}
@@ -107,22 +108,22 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: theme.spacing.sm,
     marginTop: 14,
-    paddingHorizontal: 12,
-    borderRadius: 12,
-    backgroundColor: "#EEF2FF",
+    paddingHorizontal: theme.spacing.md,
+    borderRadius: theme.radii.md,
+    backgroundColor: theme.colors.primarySurface,
   },
-  pressed: { backgroundColor: "#E0E7FF" },
+  pressed: { backgroundColor: theme.colors.primarySurfaceStrong },
   buttonText: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 14,
-    fontFamily: "SourceSans3_700Bold",
+    fontFamily: theme.fonts.bold,
   },
   error: {
-    color: "#9A3412",
+    color: theme.colors.warning,
     fontSize: 13,
-    fontFamily: "SourceSans3_400Regular",
-    marginTop: 8,
+    fontFamily: theme.fonts.regular,
+    marginTop: theme.spacing.sm,
   },
 });

@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import RegionCard from "@/components/regionCard";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useState } from "react";
@@ -48,7 +49,7 @@ export default function RegionCarousel({ regions }: Props) {
           <MaterialIcons
             name="chevron-left"
             size={32}
-            color={isFirst ? "#94A3B8" : "#4338CA"}
+            color={isFirst ? theme.colors.disabled : theme.colors.primary}
           />
         </Pressable>
 
@@ -71,7 +72,7 @@ export default function RegionCarousel({ regions }: Props) {
           <MaterialIcons
             name="chevron-right"
             size={32}
-            color={isLast ? "#94A3B8" : "#4338CA"}
+            color={isLast ? theme.colors.disabled : theme.colors.primary}
           />
         </Pressable>
       </View>
@@ -94,9 +95,9 @@ const styles = StyleSheet.create({
     gap: 14,
   },
   heading: {
-    color: "#312E81",
+    color: theme.colors.primaryDark,
     fontSize: 12,
-    fontWeight: "800",
+    fontWeight: theme.fontWeights.extraBold,
     letterSpacing: 1.5,
   },
   row: {
@@ -118,36 +119,36 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 15,
     borderWidth: 2,
-    borderColor: "#818CF8",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorder,
+    backgroundColor: theme.colors.white,
     elevation: 3,
-    shadowColor: "#312E81",
+    shadowColor: theme.colors.primaryDark,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
     shadowRadius: 4,
   },
   disabledButton: {
-    borderColor: "#A5B4FC",
-    backgroundColor: "#E0E7FF",
+    borderColor: theme.colors.primaryBorderSoft,
+    backgroundColor: theme.colors.primarySurfaceStrong,
     elevation: 0,
     shadowOpacity: 0,
   },
   pressedButton: {
-    backgroundColor: "#EEF2FF",
+    backgroundColor: theme.colors.primarySurface,
   },
   counter: {
     paddingHorizontal: 14,
     paddingVertical: 7,
     borderRadius: 14,
-    backgroundColor: "#E0E7FF",
+    backgroundColor: theme.colors.primarySurfaceStrong,
   },
   counterText: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 13,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
   },
   emptyText: {
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 15,
     textAlign: "center",
   },

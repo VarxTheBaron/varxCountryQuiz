@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import { fetchCountryAsync } from "@/api/countries";
 import { fetchQuestionPack } from "@/api/questionPacks";
 import GameContent from "@/components/gameContent";
@@ -195,30 +196,30 @@ export default function GameScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#C7D2FE" },
+  screen: { flex: 1, backgroundColor: theme.colors.screen },
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 20,
-    paddingTop: 24,
+    paddingHorizontal: theme.spacing.xl,
+    paddingTop: theme.spacing.xxl,
     paddingBottom: 32,
   },
   inner: { width: "100%", maxWidth: 560, alignSelf: "center", gap: 22 },
   statusText: {
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 16,
-    fontFamily: "SourceSans3_400Regular",
+    fontFamily: theme.fonts.regular,
     textAlign: "center",
   },
   debugButton: {
     alignSelf: "center",
     minHeight: 44,
     justifyContent: "center",
-    paddingHorizontal: 12,
+    paddingHorizontal: theme.spacing.md,
   },
   debugText: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 13,
-    fontFamily: "SourceSans3_400Regular",
+    fontFamily: theme.fonts.regular,
     textDecorationLine: "underline",
   },
 });

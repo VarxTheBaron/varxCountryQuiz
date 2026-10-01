@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import { fetchCountryAsync } from "@/api/countries";
 import CountryContent from "@/components/countryContent";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
@@ -46,7 +47,7 @@ export default function CountryScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#C7D2FE",
+    backgroundColor: theme.colors.screen,
   },
   content: {
     width: "100%",
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignSelf: "center",
     justifyContent: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 24,
+    paddingHorizontal: theme.spacing.xl,
+    paddingVertical: theme.spacing.xxl,
   },
 });

@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import { fetchRegionsAsync } from "@/api/regions";
 import RegionCarousel from "@/components/regionCarousel";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
@@ -19,7 +20,7 @@ export default function Index() {
         <View style={styles.content}>
           <View style={styles.hero}>
             <View style={styles.iconCircle}>
-              <MaterialIcons name="public" size={37} color="#4338CA" />
+              <MaterialIcons name="public" size={37} color={theme.colors.primary} />
             </View>
             <Text style={styles.eyebrow}>UTFORSKA VÄRLDEN</Text>
             <Text style={styles.title}>Country Challenge</Text>
@@ -27,7 +28,7 @@ export default function Index() {
               Välj en region och testa dina kunskaper om länderna.
             </Text>
             <View style={styles.progressBadge}>
-              <MaterialIcons name="emoji-events" size={19} color="#4338CA" />
+              <MaterialIcons name="emoji-events" size={19} color={theme.colors.primary} />
               <Text style={styles.progressText}>
                 {!hasRead
                   ? loadingError
@@ -54,50 +55,50 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#C7D2FE",
+    backgroundColor: theme.colors.screen,
   },
   scrollContent: {
     flexGrow: 1,
     justifyContent: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: theme.spacing.xl,
     paddingVertical: 28,
   },
   content: {
     width: "100%",
     maxWidth: 600,
     alignSelf: "center",
-    gap: 24,
+    gap: theme.spacing.xxl,
   },
   hero: {
     alignItems: "center",
-    gap: 8,
+    gap: theme.spacing.sm,
   },
   iconCircle: {
     width: 68,
     height: 68,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 8,
+    marginBottom: theme.spacing.sm,
     borderRadius: 22,
     borderWidth: 2,
-    borderColor: "#818CF8",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorder,
+    backgroundColor: theme.colors.white,
   },
   eyebrow: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 12,
-    fontWeight: "800",
+    fontWeight: theme.fontWeights.extraBold,
     letterSpacing: 1.5,
   },
   title: {
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 31,
-    fontWeight: "800",
+    fontWeight: theme.fontWeights.extraBold,
     textAlign: "center",
   },
   subtitle: {
     maxWidth: 320,
-    color: "#475569",
+    color: theme.colors.secondary,
     fontSize: 15,
     lineHeight: 22,
     textAlign: "center",
@@ -105,22 +106,22 @@ const styles = StyleSheet.create({
   progressBadge: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: theme.spacing.sm,
     marginTop: 10,
     paddingHorizontal: 15,
     paddingVertical: 9,
-    borderRadius: 20,
+    borderRadius: theme.radii.xl,
     borderWidth: 1,
-    borderColor: "#A5B4FC",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorderSoft,
+    backgroundColor: theme.colors.white,
   },
   progressText: {
-    color: "#312E81",
+    color: theme.colors.primaryDark,
     fontSize: 14,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
   },
   status: {
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 15,
     textAlign: "center",
   },

@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import { fetchCountryAsync } from "@/api/countries";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useQuery } from "@tanstack/react-query";
@@ -93,7 +94,7 @@ export default function ResultScreen() {
             {countryQuery.data?.flag ? (
               <Text style={styles.flag}>{countryQuery.data.flag}</Text>
             ) : (
-              <MaterialIcons name="emoji-events" size={56} color="#4338CA" />
+              <MaterialIcons name="emoji-events" size={56} color={theme.colors.primary} />
             )}
             <Text style={styles.eyebrow}>
               RESULTAT · {countryName.toUpperCase()}
@@ -124,7 +125,7 @@ export default function ResultScreen() {
                   <MaterialIcons
                     name={passed ? "check-circle" : "info-outline"}
                     size={23}
-                    color={passed ? "#15803D" : "#9A3412"}
+                    color={passed ? theme.colors.success : theme.colors.warning}
                   />
                   <Text
                     style={[
@@ -142,7 +143,7 @@ export default function ResultScreen() {
 
             {isDebugResult && (
               <View style={[styles.messageBox, styles.passedBox]}>
-                <MaterialIcons name="check-circle" size={23} color="#15803D" />
+                <MaterialIcons name="check-circle" size={23} color={theme.colors.success} />
                 <Text style={[styles.messageText, styles.passedText]}>
                   Landet klarades via debug-knappen. Inget poängresultat finns
                   för den här omgången.
@@ -170,7 +171,7 @@ export default function ResultScreen() {
                 <MaterialIcons
                   name={copyStatus === "copied" ? "check" : "content-copy"}
                   size={21}
-                  color="#312E81"
+                  color={theme.colors.primaryDark}
                 />
                 <Text style={styles.copyText}>
                   {copyStatus === "copied" ? "Resultatet kopierat" : "Kopiera resultat"}
@@ -193,7 +194,7 @@ export default function ResultScreen() {
             ]}
           >
             <Text style={styles.startText}>Till startsidan</Text>
-            <MaterialIcons name="arrow-forward" size={22} color="#FFFFFF" />
+            <MaterialIcons name="arrow-forward" size={22} color={theme.colors.white} />
           </Pressable>
         </View>
       </ScrollView>
@@ -202,51 +203,51 @@ export default function ResultScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#C7D2FE" },
+  screen: { flex: 1, backgroundColor: theme.colors.screen },
   scrollContent: {
     flexGrow: 1,
     justifyContent: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 24,
+    paddingHorizontal: theme.spacing.xl,
+    paddingVertical: theme.spacing.xxl,
   },
-  content: { width: "100%", maxWidth: 560, alignSelf: "center", gap: 16 },
+  content: { width: "100%", maxWidth: 560, alignSelf: "center", gap: theme.spacing.lg },
   card: {
     alignItems: "center",
-    paddingHorizontal: 24,
+    paddingHorizontal: theme.spacing.xxl,
     paddingTop: 30,
     paddingBottom: 26,
-    borderRadius: 24,
+    borderRadius: theme.radii.xxl,
     borderWidth: 2,
-    borderColor: "#818CF8",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorder,
+    backgroundColor: theme.colors.white,
     elevation: 5,
-    shadowColor: "#312E81",
+    shadowColor: theme.colors.primaryDark,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.22,
     shadowRadius: 7,
   },
   flag: { fontSize: 62, marginBottom: 10 },
   eyebrow: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 12,
-    fontWeight: "800",
+    fontWeight: theme.fontWeights.extraBold,
     letterSpacing: 1.4,
     textAlign: "center",
   },
   title: {
-    marginTop: 8,
-    color: "#1E1B4B",
+    marginTop: theme.spacing.sm,
+    color: theme.colors.heading,
     fontSize: 29,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
     textAlign: "center",
   },
   scoreRow: { flexDirection: "row", alignItems: "baseline", marginTop: 22 },
-  score: { color: "#312E81", fontSize: 66, fontWeight: "800" },
-  scoreTotal: { color: "#64748B", fontSize: 28, fontWeight: "700" },
+  score: { color: theme.colors.primaryDark, fontSize: 66, fontWeight: theme.fontWeights.extraBold },
+  scoreTotal: { color: theme.colors.muted, fontSize: 28, fontWeight: theme.fontWeights.bold },
   scoreLabel: {
-    color: "#64748B",
+    color: theme.colors.muted,
     fontSize: 12,
-    fontWeight: "800",
+    fontWeight: theme.fontWeights.extraBold,
     letterSpacing: 1.5,
   },
   messageBox: {
@@ -254,19 +255,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
-    marginTop: 24,
-    padding: 16,
-    borderRadius: 16,
+    marginTop: theme.spacing.xxl,
+    padding: theme.spacing.lg,
+    borderRadius: theme.radii.lg,
     borderWidth: 1,
   },
-  passedBox: { backgroundColor: "#DCFCE7", borderColor: "#86EFAC" },
-  tryAgainBox: { backgroundColor: "#FFEDD5", borderColor: "#FDBA74" },
-  messageText: { flex: 1, fontSize: 14, fontWeight: "600", lineHeight: 21 },
-  passedText: { color: "#166534" },
-  tryAgainText: { color: "#9A3412" },
+  passedBox: { backgroundColor: theme.colors.successSurface, borderColor: theme.colors.successBorder },
+  tryAgainBox: { backgroundColor: theme.colors.warningSurface, borderColor: theme.colors.warningBorder },
+  messageText: { flex: 1, fontSize: 14, fontWeight: theme.fontWeights.semiBold, lineHeight: 21 },
+  passedText: { color: theme.colors.successDark },
+  tryAgainText: { color: theme.colors.warning },
   fallbackText: {
-    marginTop: 20,
-    color: "#475569",
+    marginTop: theme.spacing.xl,
+    color: theme.colors.secondary,
     fontSize: 15,
     textAlign: "center",
   },
@@ -276,23 +277,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 10,
-    borderRadius: 16,
+    borderRadius: theme.radii.lg,
     borderWidth: 2,
-    borderColor: "#818CF8",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorder,
+    backgroundColor: theme.colors.white,
   },
-  copyPressed: { backgroundColor: "#EEF2FF" },
-  copyText: { color: "#312E81", fontSize: 16, fontWeight: "700" },
-  copyError: { color: "#9A3412", fontSize: 14, textAlign: "center" },
+  copyPressed: { backgroundColor: theme.colors.primarySurface },
+  copyText: { color: theme.colors.primaryDark, fontSize: 16, fontWeight: theme.fontWeights.bold },
+  copyError: { color: theme.colors.warning, fontSize: 14, textAlign: "center" },
   startButton: {
     minHeight: 56,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: 10,
-    borderRadius: 16,
-    backgroundColor: "#4338CA",
+    borderRadius: theme.radii.lg,
+    backgroundColor: theme.colors.primary,
   },
-  startPressed: { backgroundColor: "#312E81" },
-  startText: { color: "#FFFFFF", fontSize: 17, fontWeight: "700" },
+  startPressed: { backgroundColor: theme.colors.primaryDark },
+  startText: { color: theme.colors.white, fontSize: 17, fontWeight: theme.fontWeights.bold },
 });

@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 
 interface Props {
@@ -38,57 +39,57 @@ const styles = StyleSheet.create({
   backdrop: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 24,
-    backgroundColor: "#00000099",
+    paddingHorizontal: theme.spacing.xxl,
+    backgroundColor: theme.colors.scrim,
   },
   dialog: {
     width: "100%",
     maxWidth: 380,
     alignSelf: "center",
-    padding: 20,
+    padding: theme.spacing.xl,
     borderRadius: 18,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: theme.colors.white,
   },
   title: {
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 20,
-    fontFamily: "SourceSans3_700Bold",
+    fontFamily: theme.fonts.bold,
   },
   message: {
     marginTop: 10,
-    color: "#475569",
+    color: theme.colors.secondary,
     fontSize: 15,
     lineHeight: 22,
-    fontFamily: "SourceSans3_400Regular",
+    fontFamily: theme.fonts.regular,
   },
   actions: {
     flexDirection: "row",
     justifyContent: "space-between",
-    gap: 12,
-    marginTop: 24,
+    gap: theme.spacing.md,
+    marginTop: theme.spacing.xxl,
   },
   stayButton: {
     minHeight: 44,
     flexShrink: 1,
     justifyContent: "center",
-    paddingHorizontal: 8,
+    paddingHorizontal: theme.spacing.sm,
   },
   stayText: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 14,
-    fontFamily: "SourceSans3_700Bold",
+    fontFamily: theme.fonts.bold,
   },
   leaveButton: {
     minHeight: 44,
     flexShrink: 1,
     justifyContent: "center",
-    paddingHorizontal: 12,
+    paddingHorizontal: theme.spacing.md,
     borderRadius: 10,
-    backgroundColor: "#B91C1C",
+    backgroundColor: theme.colors.danger,
   },
   leaveText: {
-    color: "#FFFFFF",
+    color: theme.colors.white,
     fontSize: 14,
-    fontFamily: "SourceSans3_700Bold",
+    fontFamily: theme.fonts.bold,
   },
 });

@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import type { AttemptedCountry } from "@/hooks/usePlayerProgress";
 import { StyleSheet, Text, View } from "react-native";
 import type { Country } from "../../../../api/src/data/countries";
@@ -49,34 +50,34 @@ export default function ProfileBestResults({
 
 const styles = StyleSheet.create({
   section: { gap: 10, marginTop: 10 },
-  sectionTitle: { color: "#1E1B4B", fontSize: 20, fontWeight: "700" },
-  sectionStatus: { color: "#475569", fontSize: 14 },
+  sectionTitle: { color: theme.colors.heading, fontSize: 20, fontWeight: theme.fontWeights.bold },
+  sectionStatus: { color: theme.colors.secondary, fontSize: 14 },
   emptyCard: {
     padding: 18,
-    borderRadius: 16,
+    borderRadius: theme.radii.lg,
     borderWidth: 1,
-    borderColor: "#C7D2FE",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorderLight,
+    backgroundColor: theme.colors.white,
   },
-  emptyText: { color: "#475569", fontSize: 14, lineHeight: 21 },
+  emptyText: { color: theme.colors.secondary, fontSize: 14, lineHeight: 21 },
   attemptRow: {
     minHeight: 58,
     flexDirection: "row",
     alignItems: "center",
     gap: 11,
     paddingHorizontal: 14,
-    borderRadius: 16,
+    borderRadius: theme.radii.lg,
     borderWidth: 1,
-    borderColor: "#C7D2FE",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorderLight,
+    backgroundColor: theme.colors.white,
   },
   attemptFlag: { fontSize: 25 },
   attemptName: {
     flex: 1,
     minWidth: 0,
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 15,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
   },
-  attemptScore: { color: "#4338CA", fontSize: 14, fontWeight: "700" },
+  attemptScore: { color: theme.colors.primary, fontSize: 14, fontWeight: theme.fontWeights.bold },
 });

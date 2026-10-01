@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Link } from "expo-router";
@@ -43,7 +44,7 @@ export default function RegionCard({ region, requiredRegionName }: Props) {
                 <MaterialIcons
                   name={isUnlocked ? "public" : "lock-outline"}
                   size={27}
-                  color={isUnlocked ? "#4338CA" : "#64748B"}
+                  color={isUnlocked ? theme.colors.primary : theme.colors.muted}
                 />
               </View>
               <Text style={[styles.label, !isUnlocked && styles.lockedLabel]}>
@@ -55,7 +56,7 @@ export default function RegionCard({ region, requiredRegionName }: Props) {
             {isUnlocked ? (
               <View style={styles.action}>
                 <Text style={styles.actionText}>Utforska</Text>
-                <MaterialIcons name="arrow-forward" size={20} color="#FFFFFF" />
+                <MaterialIcons name="arrow-forward" size={20} color={theme.colors.white} />
               </View>
             ) : (
               <View style={styles.lockedInfo}>
@@ -81,25 +82,25 @@ const styles = StyleSheet.create({
     width: "100%",
     minHeight: 250,
     justifyContent: "space-between",
-    gap: 16,
+    gap: theme.spacing.lg,
     padding: 18,
     borderRadius: 22,
     borderWidth: 2,
-    borderColor: "#818CF8",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorder,
+    backgroundColor: theme.colors.white,
     elevation: 5,
-    shadowColor: "#312E81",
+    shadowColor: theme.colors.primaryDark,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.22,
     shadowRadius: 7,
   },
   lockedCard: {
-    borderColor: "#CBD5E1",
-    backgroundColor: "#F8FAFC",
+    borderColor: theme.colors.neutralBorder,
+    backgroundColor: theme.colors.neutralSurface,
     elevation: 1,
     shadowOpacity: 0.08,
   },
-  pressedCard: { backgroundColor: "#EEF2FF" },
+  pressedCard: { backgroundColor: theme.colors.primarySurface },
   cardTop: { alignItems: "center", gap: 7 },
   iconBadge: {
     width: 50,
@@ -107,21 +108,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 3,
-    borderRadius: 16,
-    backgroundColor: "#EEF2FF",
+    borderRadius: theme.radii.lg,
+    backgroundColor: theme.colors.primarySurface,
   },
-  lockedIconBadge: { backgroundColor: "#E2E8F0" },
+  lockedIconBadge: { backgroundColor: theme.colors.neutralFill },
   label: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 11,
-    fontWeight: "800",
+    fontWeight: theme.fontWeights.extraBold,
     letterSpacing: 1.4,
   },
-  lockedLabel: { color: "#64748B" },
+  lockedLabel: { color: theme.colors.muted },
   title: {
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 23,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
     textAlign: "center",
   },
   action: {
@@ -131,23 +132,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 9,
     borderRadius: 13,
-    backgroundColor: "#4338CA",
+    backgroundColor: theme.colors.primary,
   },
-  actionText: { color: "#FFFFFF", fontSize: 15, fontWeight: "700" },
+  actionText: { color: theme.colors.white, fontSize: 15, fontWeight: theme.fontWeights.bold },
   lockedInfo: {
     alignItems: "center",
     gap: 5,
     paddingHorizontal: 9,
     paddingVertical: 10,
     borderRadius: 13,
-    backgroundColor: "#E2E8F0",
+    backgroundColor: theme.colors.neutralFill,
   },
   requirementText: {
-    color: "#334155",
+    color: theme.colors.body,
     fontSize: 12,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
     lineHeight: 17,
     textAlign: "center",
   },
-  completedText: { color: "#64748B", fontSize: 11, fontWeight: "600" },
+  completedText: { color: theme.colors.muted, fontSize: 11, fontWeight: theme.fontWeights.semiBold },
 });

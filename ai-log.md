@@ -158,3 +158,6 @@ AI jämförde mobile/README.md med API-adresskoden och miljöfilen. Förtydligad
 
 Rotens README rättad - 2026-10-01 16:27
 AI granskade rotens README mot uppgift.md och appkoden. Spelloopen förtydligades med återgången till startsidan efter resultatet, och statusavsnittet anger nu att bästa försöket per land och avklarade länder sparas lokalt, inte varje spelresultat. Rutan för inlämning i tid avmarkerades eftersom inlämningen ännu inte är verifierad; därmed avmarkerades även att alla G-krav är uppfyllda. Användaren bad uttryckligen att den planerade presentationen ska räknas som genomförd, så den rutan lämnades markerad. Endast README.md och denna logg ändrades.
+
+Gemensam temafil i mobilappen - 2026-10-01 17:01
+AI gick igenom mobilappens skärmar och komponenter och samlade återkommande färger, typsnitt, teckenvikter, avstånd och hörnradier i mobile/src/theme.ts. De berörda filerna använder nu temavärden i stället för utspridda färgkoder och andra återkommande stilvärden; utseendet är avsett att vara oförändrat. Färgerna för appikon och startskärm ligger kvar i app.json eftersom den statiska Expo-konfigurationen inte läser temafilen. Mobilens TypeScript-kontroll, lint och git diff --check passerade. Användaren granskade resultatet och tyckte att det såg bra ut. AI har inte själv körtestat appen på en enhet.

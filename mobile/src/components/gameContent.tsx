@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useRef } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -118,11 +119,11 @@ export default function GameContent({
                   <MaterialIcons
                     name="check-circle"
                     size={23}
-                    color="#15803D"
+                    color={theme.colors.success}
                   />
                 )}
                 {isWrongChoice && (
-                  <MaterialIcons name="cancel" size={23} color="#B91C1C" />
+                  <MaterialIcons name="cancel" size={23} color={theme.colors.danger} />
                 )}
               </View>
             </Pressable>
@@ -142,7 +143,7 @@ export default function GameContent({
             <MaterialIcons
               name={answeredCorrectly ? "celebration" : "info-outline"}
               size={23}
-              color={answeredCorrectly ? "#15803D" : "#9A3412"}
+              color={answeredCorrectly ? theme.colors.success : theme.colors.warning}
             />
             <View style={styles.feedbackCopy}>
               <Text
@@ -176,7 +177,7 @@ export default function GameContent({
                 ? "Visa resultat"
                 : "Nästa fråga"}
             </Text>
-            <MaterialIcons name="arrow-forward" size={22} color="#FFFFFF" />
+            <MaterialIcons name="arrow-forward" size={22} color={theme.colors.white} />
           </Pressable>
         </>
       )}
@@ -185,50 +186,50 @@ export default function GameContent({
 }
 
 const styles = StyleSheet.create({
-  content: { width: "100%", gap: 16 },
+  content: { width: "100%", gap: theme.spacing.lg },
   progressHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
   progressLabel: {
-    color: "#312E81",
+    color: theme.colors.primaryDark,
     fontSize: 12,
-    fontFamily: "SourceSans3_800ExtraBold",
+    fontFamily: theme.fonts.extraBold,
     letterSpacing: 1.2,
   },
   progressCount: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 14,
-    fontFamily: "SourceSans3_700Bold",
+    fontFamily: theme.fonts.bold,
   },
   progressTrack: { flexDirection: "row", gap: 6, height: 7 },
-  progressStep: { flex: 1, borderRadius: 8, backgroundColor: "#A5B4FC" },
-  progressStepActive: { backgroundColor: "#4338CA" },
+  progressStep: { flex: 1, borderRadius: theme.radii.sm, backgroundColor: theme.colors.primaryBorderSoft },
+  progressStepActive: { backgroundColor: theme.colors.primary },
   questionCard: {
-    marginTop: 8,
+    marginTop: theme.spacing.sm,
     padding: 22,
     borderRadius: 22,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: theme.colors.white,
     borderWidth: 2,
-    borderColor: "#818CF8",
+    borderColor: theme.colors.primaryBorder,
     elevation: 4,
-    shadowColor: "#312E81",
+    shadowColor: theme.colors.primaryDark,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.16,
     shadowRadius: 6,
   },
   questionEyebrow: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 11,
-    fontFamily: "SourceSans3_800ExtraBold",
+    fontFamily: theme.fonts.extraBold,
     letterSpacing: 1.4,
   },
   questionText: {
     marginTop: 10,
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 23,
-    fontFamily: "SourceSans3_700Bold",
+    fontFamily: theme.fonts.bold,
     lineHeight: 31,
   },
   answers: { gap: 11 },
@@ -236,63 +237,63 @@ const styles = StyleSheet.create({
     minHeight: 64,
     justifyContent: "center",
     paddingHorizontal: 15,
-    paddingVertical: 12,
+    paddingVertical: theme.spacing.md,
     borderRadius: 17,
     borderWidth: 2,
-    borderColor: "#E0E7FF",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primarySurfaceStrong,
+    backgroundColor: theme.colors.white,
     elevation: 2,
-    shadowColor: "#312E81",
+    shadowColor: theme.colors.primaryDark,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.12,
     shadowRadius: 4,
   },
-  answerPressed: { borderColor: "#6366F1", backgroundColor: "#EEF2FF" },
-  answerCorrect: { borderColor: "#22C55E", backgroundColor: "#F0FDF4" },
-  answerWrong: { borderColor: "#EF4444", backgroundColor: "#FEF2F2" },
-  answerRow: { flexDirection: "row", alignItems: "center", gap: 12 },
+  answerPressed: { borderColor: theme.colors.primaryBright, backgroundColor: theme.colors.primarySurface },
+  answerCorrect: { borderColor: theme.colors.successBright, backgroundColor: theme.colors.successSurfaceLight },
+  answerWrong: { borderColor: theme.colors.dangerBright, backgroundColor: theme.colors.dangerSurface },
+  answerRow: { flexDirection: "row", alignItems: "center", gap: theme.spacing.md },
   answerLetter: {
     width: 34,
     height: 34,
     borderRadius: 11,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#EEF2FF",
+    backgroundColor: theme.colors.primarySurface,
   },
-  letterCorrect: { backgroundColor: "#DCFCE7" },
-  letterWrong: { backgroundColor: "#FEE2E2" },
+  letterCorrect: { backgroundColor: theme.colors.successSurface },
+  letterWrong: { backgroundColor: theme.colors.dangerSurfaceStrong },
   answerLetterText: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 14,
-    fontFamily: "SourceSans3_800ExtraBold",
+    fontFamily: theme.fonts.extraBold,
   },
-  letterCorrectText: { color: "#15803D" },
-  letterWrongText: { color: "#B91C1C" },
+  letterCorrectText: { color: theme.colors.success },
+  letterWrongText: { color: theme.colors.danger },
   answerText: {
     flex: 1,
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 16,
-    fontFamily: "SourceSans3_600SemiBold",
+    fontFamily: theme.fonts.semiBold,
     lineHeight: 23,
   },
   feedback: {
     flexDirection: "row",
     gap: 11,
-    padding: 16,
-    borderRadius: 16,
+    padding: theme.spacing.lg,
+    borderRadius: theme.radii.lg,
     borderWidth: 1,
   },
-  feedbackCorrect: { backgroundColor: "#DCFCE7", borderColor: "#86EFAC" },
-  feedbackWrong: { backgroundColor: "#FFEDD5", borderColor: "#FDBA74" },
+  feedbackCorrect: { backgroundColor: theme.colors.successSurface, borderColor: theme.colors.successBorder },
+  feedbackWrong: { backgroundColor: theme.colors.warningSurface, borderColor: theme.colors.warningBorder },
   feedbackCopy: { flex: 1, gap: 3 },
-  feedbackTitle: { fontSize: 16, fontFamily: "SourceSans3_800ExtraBold" },
-  feedbackCorrectText: { color: "#166534" },
-  feedbackWrongText: { color: "#9A3412" },
+  feedbackTitle: { fontSize: 16, fontFamily: theme.fonts.extraBold },
+  feedbackCorrectText: { color: theme.colors.successDark },
+  feedbackWrongText: { color: theme.colors.warning },
   feedbackDetail: {
-    color: "#334155",
+    color: theme.colors.body,
     fontSize: 14,
     lineHeight: 20,
-    fontFamily: "SourceSans3_400Regular",
+    fontFamily: theme.fonts.regular,
   },
   continueButton: {
     minHeight: 56,
@@ -300,19 +301,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 10,
-    borderRadius: 16,
-    backgroundColor: "#4338CA",
+    borderRadius: theme.radii.lg,
+    backgroundColor: theme.colors.primary,
   },
-  continuePressed: { backgroundColor: "#312E81" },
+  continuePressed: { backgroundColor: theme.colors.primaryDark },
   continueText: {
-    color: "#FFFFFF",
+    color: theme.colors.white,
     fontSize: 17,
-    fontFamily: "SourceSans3_700Bold",
+    fontFamily: theme.fonts.bold,
   },
   emptyText: {
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 16,
-    fontFamily: "SourceSans3_400Regular",
+    fontFamily: theme.fonts.regular,
     textAlign: "center",
   },
 });

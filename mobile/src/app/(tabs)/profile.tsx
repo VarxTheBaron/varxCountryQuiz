@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import { fetchCountriesAsync } from "@/api/countries";
 import { fetchRegionsAsync } from "@/api/regions";
 import ProfileBestResults from "@/components/profile/profileBestResults";
@@ -40,7 +41,7 @@ export default function ProfileScreen() {
         <View style={styles.content}>
           <View style={styles.heading}>
             <View style={styles.profileIcon}>
-              <MaterialIcons name="person-outline" size={34} color="#4338CA" />
+              <MaterialIcons name="person-outline" size={34} color={theme.colors.primary} />
             </View>
             <Text style={styles.eyebrow}>DIN PROFIL</Text>
             <Text style={styles.title}>Din progress</Text>
@@ -94,9 +95,9 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#C7D2FE" },
-  scrollContent: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 36 },
-  content: { width: "100%", maxWidth: 600, alignSelf: "center", gap: 16 },
+  screen: { flex: 1, backgroundColor: theme.colors.screen },
+  scrollContent: { paddingHorizontal: theme.spacing.xl, paddingTop: theme.spacing.xxl, paddingBottom: 36 },
+  content: { width: "100%", maxWidth: 600, alignSelf: "center", gap: theme.spacing.lg },
   heading: { alignItems: "center", gap: 7, marginBottom: 6 },
   profileIcon: {
     width: 62,
@@ -104,33 +105,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 6,
-    borderRadius: 20,
+    borderRadius: theme.radii.xl,
     borderWidth: 2,
-    borderColor: "#818CF8",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorder,
+    backgroundColor: theme.colors.white,
   },
   eyebrow: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 12,
-    fontWeight: "800",
+    fontWeight: theme.fontWeights.extraBold,
     letterSpacing: 1.5,
   },
-  title: { color: "#1E1B4B", fontSize: 30, fontWeight: "800" },
+  title: { color: theme.colors.heading, fontSize: 30, fontWeight: theme.fontWeights.extraBold },
   subtitle: {
     maxWidth: 330,
-    color: "#475569",
+    color: theme.colors.secondary,
     fontSize: 15,
     lineHeight: 22,
     textAlign: "center",
   },
   emptyCard: {
     padding: 18,
-    borderRadius: 16,
+    borderRadius: theme.radii.lg,
     borderWidth: 1,
-    borderColor: "#C7D2FE",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorderLight,
+    backgroundColor: theme.colors.white,
   },
-  emptyText: { color: "#475569", fontSize: 14, lineHeight: 21 },
-  retryButton: { alignSelf: "flex-start", marginTop: 14, paddingVertical: 8 },
-  retryText: { color: "#4338CA", fontSize: 14, fontWeight: "700" },
+  emptyText: { color: theme.colors.secondary, fontSize: 14, lineHeight: 21 },
+  retryButton: { alignSelf: "flex-start", marginTop: 14, paddingVertical: theme.spacing.sm },
+  retryText: { color: theme.colors.primary, fontSize: 14, fontWeight: theme.fontWeights.bold },
 });

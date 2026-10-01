@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import {
   fetchCountriesByRegionAsync,
   fetchSingleRegionAsync,
@@ -79,33 +80,33 @@ export default function RegionScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#C7D2FE",
+    backgroundColor: theme.colors.screen,
   },
   content: {
     width: "100%",
     maxWidth: 600,
     alignSelf: "center",
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 20,
+    paddingHorizontal: theme.spacing.xl,
+    paddingTop: theme.spacing.xl,
+    paddingBottom: theme.spacing.xl,
   },
   heading: {
-    marginBottom: 20,
-    gap: 4,
+    marginBottom: theme.spacing.xl,
+    gap: theme.spacing.xs,
   },
   eyebrow: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 12,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
     letterSpacing: 1.5,
   },
   title: {
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 30,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
   },
   subtitle: {
-    color: "#64748B",
+    color: theme.colors.muted,
     fontSize: 15,
   },
   list: {

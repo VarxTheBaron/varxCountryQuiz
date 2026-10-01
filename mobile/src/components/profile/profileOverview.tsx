@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -42,12 +43,12 @@ export default function ProfileOverview({
 
       <View style={styles.statsRow}>
         <View style={styles.statCard}>
-          <MaterialIcons name="quiz" size={23} color="#4338CA" />
+          <MaterialIcons name="quiz" size={23} color={theme.colors.primary} />
           <Text style={styles.statNumber}>{attemptedCount}</Text>
           <Text style={styles.statLabel}>Länder testade</Text>
         </View>
         <View style={styles.statCard}>
-          <MaterialIcons name="public" size={23} color="#4338CA" />
+          <MaterialIcons name="public" size={23} color={theme.colors.primary} />
           <Text style={styles.statNumber}>{completedRegions ?? "–"}</Text>
           <Text style={styles.statLabel}>Regioner klara</Text>
         </View>
@@ -61,54 +62,54 @@ const styles = StyleSheet.create({
     padding: 22,
     borderRadius: 22,
     borderWidth: 2,
-    borderColor: "#818CF8",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorder,
+    backgroundColor: theme.colors.white,
     elevation: 5,
-    shadowColor: "#312E81",
+    shadowColor: theme.colors.primaryDark,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.18,
     shadowRadius: 7,
   },
   cardLabel: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 11,
-    fontWeight: "800",
+    fontWeight: theme.fontWeights.extraBold,
     letterSpacing: 1.4,
   },
-  overviewCount: { flexDirection: "row", alignItems: "baseline", marginTop: 4 },
-  bigNumber: { color: "#1E1B4B", fontSize: 51, fontWeight: "800" },
-  totalNumber: { color: "#64748B", fontSize: 23, fontWeight: "700" },
+  overviewCount: { flexDirection: "row", alignItems: "baseline", marginTop: theme.spacing.xs },
+  bigNumber: { color: theme.colors.heading, fontSize: 51, fontWeight: theme.fontWeights.extraBold },
+  totalNumber: { color: theme.colors.muted, fontSize: 23, fontWeight: theme.fontWeights.bold },
   progressTrack: {
     height: 10,
     overflow: "hidden",
     marginTop: 10,
-    borderRadius: 8,
-    backgroundColor: "#E0E7FF",
+    borderRadius: theme.radii.sm,
+    backgroundColor: theme.colors.primarySurfaceStrong,
   },
-  progressFill: { height: "100%", borderRadius: 8, backgroundColor: "#4338CA" },
+  progressFill: { height: "100%", borderRadius: theme.radii.sm, backgroundColor: theme.colors.primary },
   overviewHint: {
-    marginTop: 12,
-    color: "#475569",
+    marginTop: theme.spacing.md,
+    color: theme.colors.secondary,
     fontSize: 14,
     lineHeight: 20,
   },
-  statsRow: { flexDirection: "row", gap: 12 },
+  statsRow: { flexDirection: "row", gap: theme.spacing.md },
   statCard: {
     flex: 1,
     minWidth: 0,
     alignItems: "center",
     gap: 5,
-    padding: 16,
+    padding: theme.spacing.lg,
     borderRadius: 18,
     borderWidth: 1,
-    borderColor: "#A5B4FC",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorderSoft,
+    backgroundColor: theme.colors.white,
   },
-  statNumber: { color: "#1E1B4B", fontSize: 26, fontWeight: "800" },
+  statNumber: { color: theme.colors.heading, fontSize: 26, fontWeight: theme.fontWeights.extraBold },
   statLabel: {
-    color: "#475569",
+    color: theme.colors.secondary,
     fontSize: 12,
-    fontWeight: "600",
+    fontWeight: theme.fontWeights.semiBold,
     textAlign: "center",
   },
 });

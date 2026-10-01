@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -31,7 +32,7 @@ export default function CountryContent({
 
         {progressLoaded && completed && (
           <View style={styles.completedBadge}>
-            <MaterialIcons name="check-circle" size={18} color="#15803D" />
+            <MaterialIcons name="check-circle" size={18} color={theme.colors.success} />
             <Text style={styles.completedText}>Landet är avklarat</Text>
           </View>
         )}
@@ -67,7 +68,7 @@ export default function CountryContent({
               <Text style={styles.startText}>
                 {completed ? "Spela igen" : "Starta quiz"}
               </Text>
-              <MaterialIcons name="arrow-forward" size={22} color="#FFFFFF" />
+              <MaterialIcons name="arrow-forward" size={22} color={theme.colors.white} />
             </View>
           )}
         </Pressable>
@@ -80,43 +81,43 @@ export default function CountryContent({
 const styles = StyleSheet.create({
   content: {
     width: "100%",
-    gap: 16,
+    gap: theme.spacing.lg,
   },
   card: {
     alignItems: "center",
-    paddingHorizontal: 24,
+    paddingHorizontal: theme.spacing.xxl,
     paddingTop: 28,
-    paddingBottom: 24,
+    paddingBottom: theme.spacing.xxl,
     borderWidth: 2,
-    borderColor: "#818CF8",
-    borderRadius: 24,
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.primaryBorder,
+    borderRadius: theme.radii.xxl,
+    backgroundColor: theme.colors.white,
     elevation: 5,
-    shadowColor: "#312E81",
+    shadowColor: theme.colors.primaryDark,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.22,
     shadowRadius: 7,
   },
   flag: {
     fontSize: 64,
-    marginBottom: 12,
+    marginBottom: theme.spacing.md,
   },
   eyebrow: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 12,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
     letterSpacing: 2,
   },
   title: {
-    marginTop: 4,
-    color: "#1E1B4B",
+    marginTop: theme.spacing.xs,
+    color: theme.colors.heading,
     fontSize: 32,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
     textAlign: "center",
   },
   description: {
     marginTop: 10,
-    color: "#475569",
+    color: theme.colors.secondary,
     fontSize: 15,
     lineHeight: 22,
     textAlign: "center",
@@ -125,25 +126,25 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
-    marginTop: 16,
-    paddingHorizontal: 12,
+    marginTop: theme.spacing.lg,
+    paddingHorizontal: theme.spacing.md,
     paddingVertical: 6,
-    borderRadius: 20,
-    backgroundColor: "#DCFCE7",
+    borderRadius: theme.radii.xl,
+    backgroundColor: theme.colors.successSurface,
   },
   completedText: {
-    color: "#166534",
+    color: theme.colors.successDark,
     fontSize: 13,
-    fontWeight: "600",
+    fontWeight: theme.fontWeights.semiBold,
   },
   stats: {
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 24,
-    paddingTop: 20,
+    marginTop: theme.spacing.xxl,
+    paddingTop: theme.spacing.xl,
     borderTopWidth: 1,
-    borderTopColor: "#E2E8F0",
+    borderTopColor: theme.colors.neutralFill,
   },
   stat: {
     flex: 1,
@@ -153,19 +154,19 @@ const styles = StyleSheet.create({
   statDivider: {
     width: 1,
     height: 36,
-    backgroundColor: "#E2E8F0",
+    backgroundColor: theme.colors.neutralFill,
   },
   statLabel: {
-    color: "#64748B",
+    color: theme.colors.muted,
     fontSize: 10,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
     letterSpacing: 0.7,
     textAlign: "center",
   },
   statValue: {
-    color: "#1E1B4B",
+    color: theme.colors.heading,
     fontSize: 17,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
     textAlign: "center",
   },
   startButton: {
@@ -174,19 +175,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 10,
-    borderRadius: 16,
-    backgroundColor: "#4338CA",
+    borderRadius: theme.radii.lg,
+    backgroundColor: theme.colors.primary,
   },
   pressedButton: {
-    backgroundColor: "#312E81",
+    backgroundColor: theme.colors.primaryDark,
   },
   startText: {
-    color: "#FFFFFF",
+    color: theme.colors.white,
     fontSize: 17,
-    fontWeight: "700",
+    fontWeight: theme.fontWeights.bold,
   },
   hint: {
-    color: "#4338CA",
+    color: theme.colors.primary,
     fontSize: 13,
     textAlign: "center",
   },

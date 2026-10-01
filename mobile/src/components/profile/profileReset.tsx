@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
@@ -58,7 +59,7 @@ export default function ProfileReset({ onReset, saveError }: Props) {
             pressed && styles.resetPressed,
           ]}
         >
-          <MaterialIcons name="restart-alt" size={20} color="#B91C1C" />
+          <MaterialIcons name="restart-alt" size={20} color={theme.colors.danger} />
           <Text style={styles.resetText}>Återställ progress</Text>
         </Pressable>
         {saveError && (
@@ -72,62 +73,62 @@ export default function ProfileReset({ onReset, saveError }: Props) {
 }
 
 const styles = StyleSheet.create({
-  resetSection: { gap: 10, marginTop: 16 },
-  sectionTitle: { color: "#1E1B4B", fontSize: 20, fontWeight: "700" },
-  resetHint: { color: "#475569", fontSize: 14, lineHeight: 20 },
+  resetSection: { gap: 10, marginTop: theme.spacing.lg },
+  sectionTitle: { color: theme.colors.heading, fontSize: 20, fontWeight: theme.fontWeights.bold },
+  resetHint: { color: theme.colors.secondary, fontSize: 14, lineHeight: 20 },
   resetButton: {
     minHeight: 50,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 8,
+    gap: theme.spacing.sm,
     borderRadius: 14,
     borderWidth: 2,
-    borderColor: "#FCA5A5",
-    backgroundColor: "#FFFFFF",
+    borderColor: theme.colors.dangerBorder,
+    backgroundColor: theme.colors.white,
   },
-  resetPressed: { backgroundColor: "#FEF2F2" },
-  resetText: { color: "#B91C1C", fontSize: 15, fontWeight: "700" },
-  saveError: { color: "#B91C1C", fontSize: 13 },
+  resetPressed: { backgroundColor: theme.colors.dangerSurface },
+  resetText: { color: theme.colors.danger, fontSize: 15, fontWeight: theme.fontWeights.bold },
+  saveError: { color: theme.colors.danger, fontSize: 13 },
   backdrop: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 24,
-    backgroundColor: "#00000099",
+    paddingHorizontal: theme.spacing.xxl,
+    backgroundColor: theme.colors.scrim,
   },
   dialog: {
     width: "100%",
     maxWidth: 380,
     alignSelf: "center",
-    padding: 20,
+    padding: theme.spacing.xl,
     borderRadius: 18,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: theme.colors.white,
   },
-  dialogTitle: { color: "#1E1B4B", fontSize: 20, fontWeight: "700" },
+  dialogTitle: { color: theme.colors.heading, fontSize: 20, fontWeight: theme.fontWeights.bold },
   dialogMessage: {
     marginTop: 10,
-    color: "#475569",
+    color: theme.colors.secondary,
     fontSize: 15,
     lineHeight: 22,
   },
   dialogActions: {
     flexDirection: "row",
     justifyContent: "space-between",
-    gap: 12,
-    marginTop: 24,
+    gap: theme.spacing.md,
+    marginTop: theme.spacing.xxl,
   },
   cancelButton: {
     minHeight: 44,
     justifyContent: "center",
-    paddingHorizontal: 8,
+    paddingHorizontal: theme.spacing.sm,
   },
-  cancelText: { color: "#4338CA", fontSize: 14, fontWeight: "700" },
+  cancelText: { color: theme.colors.primary, fontSize: 14, fontWeight: theme.fontWeights.bold },
   confirmButton: {
     minHeight: 44,
     justifyContent: "center",
     paddingHorizontal: 14,
     borderRadius: 10,
-    backgroundColor: "#B91C1C",
+    backgroundColor: theme.colors.danger,
   },
-  confirmText: { color: "#FFFFFF", fontSize: 14, fontWeight: "700" },
+  confirmText: { color: theme.colors.white, fontSize: 14, fontWeight: theme.fontWeights.bold },
 });
