@@ -36,11 +36,12 @@ src/
 | GET | `/` | Ett välkomstmeddelande |
 | GET | `/regions` | Alla regioner |
 | GET | `/regions/norden` | Norden med requiredCountries och en lista med land-id:n |
+| GET | `/regions/norden/countries` | Alla länder i Norden |
 | GET | `/countries` | Alla länder |
 | GET | `/countries/sweden` | Ett land |
 | GET | `/questionpacks/sweden` | Ett frågepaket med id, requiredCorrectAnswers och questions |
 
-Byt ut `norden`, `sweden` eller `1` mot ett annat id i datan.
+Byt ut `norden` eller `sweden` mot ett annat id i datan.
 Okända regioner, länder och frågepaket ger status 404 med ett JSON-meddelande.
 
 Exempel från appen:
@@ -61,18 +62,16 @@ spelaren behöver klara. `null` betyder upplåst från början (Norden).
 Exempel för Centraleuropa: `requiredCountries: { regionId: 'norden', count: 4 }`.
 Det betyder fyra av Nordens fem länder. Därefter går ordningen Centraleuropa →
 Västeuropa → Östeuropa → Nordamerika, med krav på båda exempelländerna i föregående region.
-Appen räknar unika avklarade land-id:n som finns i den angivna regionens `countries`.
-Detta ersätter det tidigare numeriska fältet; appen behöver läsa `regionId` och `count`.
+Appen räknar avklarade länder vars `regionId` matchar kravet.
 Landet innehåller `flag`, `difficulty` (1–3) och `questionPackId`, men inga frågor.
 Frågorna ligger i `questionPacks` i `questions.ts`. Landets `questionPackId`
 refererar till paketets `id`, exempelvis `sweden`. Hämta paketet separat via
 `/questionpacks/sweden`. Använd landets questionPackId när quizet ska starta.
 Varje fråga innehåller `id`, `question`, `answers` och `correctAnswer`.
-Exempeldatan innehåller 13 länder. De fem nordiska länderna har tio frågor
-vardera; övriga frågepaket har två frågor vardera.
+Exempeldatan innehåller 13 länder med tio frågor per frågepaket.
 Varje frågepaket har `requiredCorrectAnswers`, antalet rätta svar som krävs
-för att klara landet. I Norden kräver svårighetsgrad 1, 2 respektive 3
-6, 8 respektive 10 rätt av 10. De övriga paketen kräver 2 av 2.
+för att klara landet. Svårighetsgrad 1, 2 respektive 3 kräver
+6, 8 respektive 10 rätt av 10 i alla regioner.
 Använd numeriska fråge-id:n som är unika i hela API:t. `correctAnswer` är
 index i `answers`, räknat från 0. Frågor hämtas via `/questionpacks/:id`.
 Facit skickas med så att appen kan rätta svar lokalt. XP och progression

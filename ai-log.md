@@ -149,3 +149,6 @@ AI lade till åtta frågor per land i Sverige, Finland och Island i api/src/data
 
 Övriga länder får tio frågor - 2026-10-01 15:45
 AI lade till åtta frågor per land för Tyskland, Österrike, Frankrike, Belgien, Rumänien, Ukraina, Kanada och USA i api/src/data/questions.ts. Varje frågepaket har nu tio frågor och godkäntgränserna följer ländernas svårighetsgrad: 6/10 eller 8/10. Frågorna blandar geografi, kultur och lättsam humor. API:ets TypeScript-kontroll och git diff --check passerade; en datakontroll verifierade 13 paket, 130 unika fråge-id:n, fyra olika svar per fråga och giltiga facitindex. Användaren granskade och godkände frågorna. Ingen egen körtestning i appen utförd.
+
+API-README uppdaterad efter nya frågor - 2026-10-01 16:17
+AI jämförde api/README.md med API-datan, routerna och appens regionupplåsning. README anger nu tio frågor per land och godkäntgränserna 6/10, 8/10 och 10/10 efter svårighetsgrad i alla regioner. Lade till den befintliga endpointen för en regions länder, tog bort ett gammalt exempel-ID och rättade beskrivningen av hur appen räknar avklarade länder. Endast dokumentation ändrades i detta steg.
