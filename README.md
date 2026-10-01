@@ -73,7 +73,7 @@ För att köra mot det lokala API:t i stället, öppna en andra terminal i proje
 | --- | --- | --- |
 | `expo-status-bar` | Ställer in statusfältets utseende. | Fanns som beroende från start men lades senare till i appens kod och konfiguration. |
 | `expo-haptics` | Ger olika haptisk återkoppling för rätt och fel svar i quizet. | Används i appen. |
-| `expo-speech` | Ska kunna läsa upp frågor och svarsalternativ. | Installerad, ännu inte använd. |
+| `expo-speech` | Läser upp quizets frågor och svarsalternativ på svenska; uppläsningen kan stoppas och avbryts när ett svar väljs. | Används i appen. |
 | `expo-clipboard` | Kopierar antal rätt, land och spelets namn från resultatsidan. | Används i appen för avslutade quiz. |
 | `expo-font` | Ska ladda en egen font för spelets text. | Fanns som beroende från start och har nu lagts till som plugin, men ingen font används ännu. |
 

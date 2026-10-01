@@ -1,4 +1,6 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import * as Speech from "expo-speech";
+import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import type { QuestionPack } from "../../../api/src/data/questions";
 
@@ -19,6 +21,61 @@ export default function GameContent({
 }: Props) {
   const question = questionPack.questions[currentQuestion];
   const totalQuestions = questionPack.questions.length;
+  const speechRun = useRef(0);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [speechError, setSpeechError] = useState(false);
+
+  const stopReading = () => {
+    speechRun.current += 1;
+    setIsSpeaking(false);
+    void Speech.stop().catch(() => undefined);
+  };
+
+  const startReading = async () => {
+    if (!question) return;
+
+    const run = ++speechRun.current;
+    setSpeechError(false);
+    setIsSpeaking(true);
+
+    try {
+      await Speech.stop();
+      if (speechRun.current !== run) return;
+
+      const text = [
+        question.question,
+        ...question.answers.map(
+          (answer, index) =>
+            `Svar ${String.fromCharCode(65 + index)}: ${answer}.`,
+        ),
+      ].join(" ");
+      const finish = () => {
+        if (speechRun.current === run) setIsSpeaking(false);
+      };
+
+      Speech.speak(text, {
+        language: "sv-SE",
+        onDone: finish,
+        onStopped: finish,
+        onError: () => {
+          finish();
+          if (speechRun.current === run) setSpeechError(true);
+        },
+      });
+    } catch {
+      if (speechRun.current === run) {
+        setIsSpeaking(false);
+        setSpeechError(true);
+      }
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      speechRun.current += 1;
+      void Speech.stop().catch(() => undefined);
+    };
+  }, [question?.id]);
 
   if (!question) {
     return (
@@ -57,6 +114,33 @@ export default function GameContent({
       <View style={styles.questionCard}>
         <Text style={styles.questionEyebrow}>VÄLJ ETT SVAR</Text>
         <Text style={styles.questionText}>{question.question}</Text>
+        {!hasAnswered && (
+          <Pressable
+            accessibilityRole="button"
+            onPress={() => {
+              if (isSpeaking) stopReading();
+              else void startReading();
+            }}
+            style={({ pressed }) => [
+              styles.speechButton,
+              pressed && styles.speechPressed,
+            ]}
+          >
+            <MaterialIcons
+              name={isSpeaking ? "stop" : "volume-up"}
+              size={20}
+              color="#4338CA"
+            />
+            <Text style={styles.speechText}>
+              {isSpeaking ? "Stoppa uppläsning" : "Läs upp fråga och svar"}
+            </Text>
+          </Pressable>
+        )}
+        {speechError && !hasAnswered && (
+          <Text style={styles.speechError} accessibilityLiveRegion="polite">
+            Uppläsningen kunde inte starta på den här enheten.
+          </Text>
+        )}
       </View>
 
       <View style={styles.answers}>
@@ -74,7 +158,10 @@ export default function GameContent({
                 selected: index === selectedChoice,
               }}
               disabled={hasAnswered}
-              onPress={() => registerChoice(index)}
+              onPress={() => {
+                stopReading();
+                registerChoice(index);
+              }}
               style={({ pressed }) => [
                 styles.answerButton,
                 pressed && styles.answerPressed,
@@ -214,6 +301,20 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     lineHeight: 31,
   },
+  speechButton: {
+    minHeight: 44,
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginTop: 14,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    backgroundColor: "#EEF2FF",
+  },
+  speechPressed: { backgroundColor: "#E0E7FF" },
+  speechText: { color: "#4338CA", fontSize: 14, fontWeight: "700" },
+  speechError: { color: "#9A3412", fontSize: 13, marginTop: 8 },
   answers: { gap: 11 },
   answerButton: {
     minHeight: 64,
