@@ -72,10 +72,10 @@ Just nu är projektets grundstruktur uppsatt och nästa steg är att bygga den f
 
 ## Krav för godkänt (G)
 
-[] Projektet använder minst **4 RN-komponenter** och minst **4 moduler från Expo SDK**
+[x] Projektet använder minst **4 RN-komponenter** och minst **4 moduler från Expo SDK**
 [] De använda komponenterna och modulerna är **antecknade i README.md**, tillsammans med en lista över uppfyllda krav
-[] **Expo Router** används för navigering i appen, och minst en skärm tar emot en parameter
-[] **Git och GitHub** har använts, med commits spridda över arbetets gång
+[x] **Expo Router** används för navigering i appen, och minst en skärm tar emot en parameter
+[x] **Git och GitHub** har använts, med commits spridda över arbetets gång
 [] Projektmappen innehåller en **README.md** enligt beskrivningen ovan
 [] Uppgiften är **inlämnad i tid**
 [] **Muntlig presentation** är genomförd
@@ -84,7 +84,7 @@ Just nu är projektets grundstruktur uppsatt och nästa steg är att bygga den f
 
 [] Alla punkter för godkänt är uppfyllda
 [x] **Ytterligare en valfri extern modul** används i projektet från [reactnative.directory](https://reactnative.directory)
-[] Appen **hämtar data från ett Web-API**
+[x] Appen **hämtar data från ett Web-API**
 [] **Användningen av AI-verktyg dokumenteras i README** – vilka verktyg du använt, till vad, och hur du verifierat att koden gör det du tror. Ta även upp det i presentationens reflekterande del.
 
 ## AI-användning
