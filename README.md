@@ -122,17 +122,17 @@ I presentationens reflekterande del tar jag upp hur AI-stödet påverkade arbete
 
 ## Krav för godkänt (G)
 
-[x] Projektet använder minst **4 RN-komponenter** och minst **4 moduler från Expo SDK**
-[x] De använda komponenterna och modulerna är **antecknade i README.md**, tillsammans med en lista över uppfyllda krav
-[x] **Expo Router** används för navigering i appen, och minst en skärm tar emot en parameter
-[x] **Git och GitHub** har använts, med commits spridda över arbetets gång
-[x] Projektmappen innehåller en **README.md** enligt beskrivningen ovan
-[x] Uppgiften är **inlämnad i tid**
-[x] **Muntlig presentation** är genomförd
+- [x] Projektet använder minst **4 RN-komponenter** och minst **4 moduler från Expo SDK**
+- [x] De använda komponenterna och modulerna är **antecknade i README.md**, tillsammans med en lista över uppfyllda krav
+- [x] **Expo Router** används för navigering i appen, och minst en skärm tar emot en parameter
+- [x] **Git och GitHub** har använts, med commits spridda över arbetets gång
+- [x] Projektmappen innehåller en **README.md** enligt beskrivningen ovan
+- [x] Uppgiften är **inlämnad i tid**
+- [x] **Muntlig presentation** är genomförd
 
 ## Krav för väl godkänt (VG)
 
-[x] Alla punkter för godkänt är uppfyllda
-[x] **Ytterligare en valfri extern modul** används i projektet från [reactnative.directory](https://reactnative.directory)
-[x] Appen **hämtar data från ett Web-API**
-[x] **Användningen av AI-verktyg dokumenteras i README** – vilka verktyg du använt, till vad, och hur du verifierat att koden gör det du tror. Ta även upp det i presentationens reflekterande del.
+- [x] Alla punkter för godkänt är uppfyllda
+- [x] **Ytterligare en valfri extern modul** används i projektet från [reactnative.directory](https://reactnative.directory)
+- [x] Appen **hämtar data från ett Web-API**
+- [x] **Användningen av AI-verktyg dokumenteras i README** – vilka verktyg du använt, till vad, och hur du verifierat att koden gör det du tror. Ta även upp det i presentationens reflekterande del.
