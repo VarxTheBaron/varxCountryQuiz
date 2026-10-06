@@ -1,9 +1,8 @@
 import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { useRef } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import type { QuestionPack } from "../../../api/src/data/questions";
-import QuestionSpeech, { type QuestionSpeechHandle } from "./questionSpeech";
+import QuestionSpeech from "./questionSpeech";
 
 interface Props {
   questionPack: QuestionPack;
@@ -22,7 +21,6 @@ export default function GameContent({
 }: Props) {
   const question = questionPack.questions[currentQuestion];
   const totalQuestions = questionPack.questions.length;
-  const speechRef = useRef<QuestionSpeechHandle>(null);
 
   if (!question) {
     return (
@@ -62,11 +60,7 @@ export default function GameContent({
         <Text style={styles.questionEyebrow}>VÄLJ ETT SVAR</Text>
         <Text style={styles.questionText}>{question.question}</Text>
         {!hasAnswered && (
-          <QuestionSpeech
-            key={question.id}
-            ref={speechRef}
-            question={question}
-          />
+          <QuestionSpeech key={question.id} question={question} />
         )}
       </View>
 
@@ -85,10 +79,7 @@ export default function GameContent({
                 selected: index === selectedChoice,
               }}
               disabled={hasAnswered}
-              onPress={() => {
-                speechRef.current?.stop();
-                registerChoice(index);
-              }}
+              onPress={() => registerChoice(index)}
               style={({ pressed }) => [
                 styles.answerButton,
                 pressed && styles.answerPressed,

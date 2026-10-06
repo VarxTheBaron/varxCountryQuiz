@@ -1,106 +1,93 @@
 import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import * as Speech from "expo-speech";
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import type { Question } from "../../../api/src/data/questions";
 
-export type QuestionSpeechHandle = { stop: () => void };
+interface Props {
+  question: Question;
+}
 
-const QuestionSpeech = forwardRef<QuestionSpeechHandle, { question: Question }>(
-  function QuestionSpeech({ question }, ref) {
-    const speechRun = useRef(0);
-    const [isSpeaking, setIsSpeaking] = useState(false);
-    const [speechError, setSpeechError] = useState(false);
+export default function QuestionSpeech({ question }: Props) {
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [speechError, setSpeechError] = useState(false);
+  const speechRun = useRef(0);
 
-    const stopReading = () => {
-      speechRun.current += 1;
+  const text = [
+    question.question,
+    ...question.answers.map(
+      (answer, index) => `Svar ${String.fromCharCode(65 + index)}: ${answer}.`,
+    ),
+  ].join(" ");
+
+  const stopReading = () => {
+    speechRun.current += 1;
+    setIsSpeaking(false);
+    Speech.stop().catch(() => undefined);
+  };
+
+  const startReading = async () => {
+    const run = ++speechRun.current;
+    setSpeechError(false);
+    setIsSpeaking(true);
+
+    const finishReading = () => {
+      if (speechRun.current === run) setIsSpeaking(false);
+    };
+
+    const handleError = () => {
+      if (speechRun.current !== run) return;
       setIsSpeaking(false);
-      void Speech.stop().catch(() => undefined);
+      setSpeechError(true);
     };
 
-    useImperativeHandle(ref, () => ({ stop: stopReading }));
+    try {
+      await Speech.stop();
+      if (speechRun.current !== run) return;
 
-    const startReading = async () => {
-      const run = ++speechRun.current;
-      setSpeechError(false);
-      setIsSpeaking(true);
+      Speech.speak(text, {
+        language: "sv-SE",
+        onDone: finishReading,
+        onStopped: finishReading,
+        onError: handleError,
+      });
+    } catch {
+      handleError();
+    }
+  };
 
-      try {
-        await Speech.stop();
-        if (speechRun.current !== run) return;
-
-        const text = [
-          question.question,
-          ...question.answers.map(
-            (answer, index) =>
-              `Svar ${String.fromCharCode(65 + index)}: ${answer}.`,
-          ),
-        ].join(" ");
-        const finish = () => {
-          if (speechRun.current === run) setIsSpeaking(false);
-        };
-
-        Speech.speak(text, {
-          language: "sv-SE",
-          onDone: finish,
-          onStopped: finish,
-          onError: () => {
-            finish();
-            if (speechRun.current === run) setSpeechError(true);
-          },
-        });
-      } catch {
-        if (speechRun.current === run) {
-          setIsSpeaking(false);
-          setSpeechError(true);
-        }
-      }
+  useEffect(() => {
+    return () => {
+      speechRun.current += 1;
+      Speech.stop().catch(() => undefined);
     };
+  }, []);
 
-    useEffect(() => {
-      return () => {
-        speechRun.current += 1;
-        void Speech.stop().catch(() => undefined);
-      };
-    }, []);
-
-    return (
-      <View>
-        <Pressable
-          accessibilityRole="button"
-          onPress={() => {
-            if (isSpeaking) stopReading();
-            else void startReading();
-          }}
-          style={({ pressed }) => [styles.button, pressed && styles.pressed]}
-        >
-          <MaterialIcons
-            name={isSpeaking ? "stop" : "volume-up"}
-            size={20}
-            color={theme.colors.primary}
-          />
-          <Text style={styles.buttonText}>
-            {isSpeaking ? "Stoppa uppläsning" : "Läs upp fråga och svar"}
-          </Text>
-        </Pressable>
-        {speechError && (
-          <Text style={styles.error} accessibilityLiveRegion="polite">
-            Uppläsningen kunde inte starta på den här enheten.
-          </Text>
-        )}
-      </View>
-    );
-  },
-);
-
-export default QuestionSpeech;
+  return (
+    <View>
+      <Pressable
+        accessibilityRole="button"
+        onPress={isSpeaking ? stopReading : startReading}
+        style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+      >
+        <MaterialIcons
+          name={isSpeaking ? "stop" : "volume-up"}
+          size={20}
+          color={theme.colors.primary}
+        />
+        <Text style={styles.buttonText}>
+          {isSpeaking ? "Stoppa uppläsning" : "Läs upp fråga och svar"}
+        </Text>
+      </Pressable>
+      {speechError && (
+        <Text style={styles.error} accessibilityLiveRegion="polite">
+          Uppläsningen kunde inte starta på den här enheten.
+        </Text>
+      )}
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   button: {
