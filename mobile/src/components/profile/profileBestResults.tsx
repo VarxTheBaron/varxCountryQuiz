@@ -1,5 +1,5 @@
-import { theme } from "@/theme";
 import type { AttemptedCountry } from "@/hooks/usePlayerProgress";
+import { theme } from "@/theme";
 import { StyleSheet, Text, View } from "react-native";
 import type { Country } from "../../../../api/src/data/countries";
 
@@ -50,7 +50,11 @@ export default function ProfileBestResults({
 
 const styles = StyleSheet.create({
   section: { gap: 10, marginTop: 10 },
-  sectionTitle: { color: theme.colors.heading, fontSize: 20, fontWeight: theme.fontWeights.bold },
+  sectionTitle: {
+    color: theme.colors.heading,
+    fontSize: 20,
+    fontWeight: theme.fontWeights.bold,
+  },
   sectionStatus: { color: theme.colors.secondary, fontSize: 14 },
   emptyCard: {
     padding: 18,
@@ -79,5 +83,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: theme.fontWeights.bold,
   },
-  attemptScore: { color: theme.colors.primary, fontSize: 14, fontWeight: theme.fontWeights.bold },
+  attemptScore: {
+    color: theme.colors.primary,
+    fontSize: 14,
+    fontWeight: theme.fontWeights.bold,
+  },
 });

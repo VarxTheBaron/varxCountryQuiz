@@ -31,7 +31,9 @@ export default function ProfileOverview({
         </View>
         {totalCountries !== undefined && (
           <View style={styles.progressTrack}>
-            <View style={[styles.progressFill, { width: `${totalPercent}%` }]} />
+            <View
+              style={[styles.progressFill, { width: `${totalPercent}%` }]}
+            />
           </View>
         )}
         <Text style={styles.overviewHint}>
@@ -76,9 +78,21 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.extraBold,
     letterSpacing: 1.4,
   },
-  overviewCount: { flexDirection: "row", alignItems: "baseline", marginTop: theme.spacing.xs },
-  bigNumber: { color: theme.colors.heading, fontSize: 51, fontWeight: theme.fontWeights.extraBold },
-  totalNumber: { color: theme.colors.muted, fontSize: 23, fontWeight: theme.fontWeights.bold },
+  overviewCount: {
+    flexDirection: "row",
+    alignItems: "baseline",
+    marginTop: theme.spacing.xs,
+  },
+  bigNumber: {
+    color: theme.colors.heading,
+    fontSize: 51,
+    fontWeight: theme.fontWeights.extraBold,
+  },
+  totalNumber: {
+    color: theme.colors.muted,
+    fontSize: 23,
+    fontWeight: theme.fontWeights.bold,
+  },
   progressTrack: {
     height: 10,
     overflow: "hidden",
@@ -86,7 +100,11 @@ const styles = StyleSheet.create({
     borderRadius: theme.radii.sm,
     backgroundColor: theme.colors.primarySurfaceStrong,
   },
-  progressFill: { height: "100%", borderRadius: theme.radii.sm, backgroundColor: theme.colors.primary },
+  progressFill: {
+    height: "100%",
+    borderRadius: theme.radii.sm,
+    backgroundColor: theme.colors.primary,
+  },
   overviewHint: {
     marginTop: theme.spacing.md,
     color: theme.colors.secondary,
@@ -105,7 +123,11 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.primaryBorderSoft,
     backgroundColor: theme.colors.white,
   },
-  statNumber: { color: theme.colors.heading, fontSize: 26, fontWeight: theme.fontWeights.extraBold },
+  statNumber: {
+    color: theme.colors.heading,
+    fontSize: 26,
+    fontWeight: theme.fontWeights.extraBold,
+  },
   statLabel: {
     color: theme.colors.secondary,
     fontSize: 12,

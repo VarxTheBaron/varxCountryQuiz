@@ -1,8 +1,8 @@
+import type { CompletedCountry } from "@/hooks/usePlayerProgress";
 import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { StyleSheet, Text, View } from "react-native";
 import type { Region } from "../../../../api/src/data/regions";
-import type { CompletedCountry } from "@/hooks/usePlayerProgress";
 
 interface Props {
   regions?: Region[];
@@ -20,7 +20,9 @@ export default function ProfileRegionProgress({
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Regioner</Text>
-      {isPending && <Text style={styles.sectionStatus}>Laddar regioner...</Text>}
+      {isPending && (
+        <Text style={styles.sectionStatus}>Laddar regioner...</Text>
+      )}
       {isError && (
         <Text style={styles.sectionStatus}>
           Kunde inte visa regionernas framsteg.
@@ -65,7 +67,11 @@ export default function ProfileRegionProgress({
 
 const styles = StyleSheet.create({
   section: { gap: 10, marginTop: 10 },
-  sectionTitle: { color: theme.colors.heading, fontSize: 20, fontWeight: theme.fontWeights.bold },
+  sectionTitle: {
+    color: theme.colors.heading,
+    fontSize: 20,
+    fontWeight: theme.fontWeights.bold,
+  },
   sectionStatus: { color: theme.colors.secondary, fontSize: 14 },
   regionCard: {
     gap: 7,
@@ -80,7 +86,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  regionName: { color: theme.colors.heading, fontSize: 16, fontWeight: theme.fontWeights.bold },
+  regionName: {
+    color: theme.colors.heading,
+    fontSize: 16,
+    fontWeight: theme.fontWeights.bold,
+  },
   regionCount: { color: theme.colors.muted, fontSize: 13 },
   regionTrack: {
     height: 6,
@@ -89,5 +99,9 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: theme.colors.primarySurfaceStrong,
   },
-  regionFill: { height: "100%", borderRadius: 6, backgroundColor: theme.colors.primary },
+  regionFill: {
+    height: "100%",
+    borderRadius: 6,
+    backgroundColor: theme.colors.primary,
+  },
 });

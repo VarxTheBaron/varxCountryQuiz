@@ -59,7 +59,11 @@ export default function ProfileReset({ onReset, saveError }: Props) {
             pressed && styles.resetPressed,
           ]}
         >
-          <MaterialIcons name="restart-alt" size={20} color={theme.colors.danger} />
+          <MaterialIcons
+            name="restart-alt"
+            size={20}
+            color={theme.colors.danger}
+          />
           <Text style={styles.resetText}>Återställ progress</Text>
         </Pressable>
         {saveError && (
@@ -74,7 +78,11 @@ export default function ProfileReset({ onReset, saveError }: Props) {
 
 const styles = StyleSheet.create({
   resetSection: { gap: 10, marginTop: theme.spacing.lg },
-  sectionTitle: { color: theme.colors.heading, fontSize: 20, fontWeight: theme.fontWeights.bold },
+  sectionTitle: {
+    color: theme.colors.heading,
+    fontSize: 20,
+    fontWeight: theme.fontWeights.bold,
+  },
   resetHint: { color: theme.colors.secondary, fontSize: 14, lineHeight: 20 },
   resetButton: {
     minHeight: 50,
@@ -88,7 +96,11 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
   },
   resetPressed: { backgroundColor: theme.colors.dangerSurface },
-  resetText: { color: theme.colors.danger, fontSize: 15, fontWeight: theme.fontWeights.bold },
+  resetText: {
+    color: theme.colors.danger,
+    fontSize: 15,
+    fontWeight: theme.fontWeights.bold,
+  },
   saveError: { color: theme.colors.danger, fontSize: 13 },
   backdrop: {
     flex: 1,
@@ -104,7 +116,11 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     backgroundColor: theme.colors.white,
   },
-  dialogTitle: { color: theme.colors.heading, fontSize: 20, fontWeight: theme.fontWeights.bold },
+  dialogTitle: {
+    color: theme.colors.heading,
+    fontSize: 20,
+    fontWeight: theme.fontWeights.bold,
+  },
   dialogMessage: {
     marginTop: 10,
     color: theme.colors.secondary,
@@ -122,7 +138,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: theme.spacing.sm,
   },
-  cancelText: { color: theme.colors.primary, fontSize: 14, fontWeight: theme.fontWeights.bold },
+  cancelText: {
+    color: theme.colors.primary,
+    fontSize: 14,
+    fontWeight: theme.fontWeights.bold,
+  },
   confirmButton: {
     minHeight: 44,
     justifyContent: "center",
@@ -130,5 +150,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: theme.colors.danger,
   },
-  confirmText: { color: theme.colors.white, fontSize: 14, fontWeight: theme.fontWeights.bold },
+  confirmText: {
+    color: theme.colors.white,
+    fontSize: 14,
+    fontWeight: theme.fontWeights.bold,
+  },
 });
