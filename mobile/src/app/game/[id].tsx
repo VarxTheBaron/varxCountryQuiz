@@ -14,14 +14,7 @@ import {
 } from "expo-router";
 import { usePreventRemove } from "expo-router/react-navigation";
 import { useEffect, useRef, useState } from "react";
-import {
-  Platform,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type RoundResult =
@@ -181,7 +174,7 @@ export default function GameScreen() {
                   continueQuiz={continueQuiz}
                 />
               )}
-              <Pressable
+              {/* <Pressable
                 accessibilityRole="button"
                 onPress={() => {
                   addCompletedCountry({
@@ -193,7 +186,7 @@ export default function GameScreen() {
                 style={styles.debugButton}
               >
                 <Text style={styles.debugText}>Debug: klara landet direkt</Text>
-              </Pressable>
+              </Pressable> */}
             </>
           )}
         </View>
