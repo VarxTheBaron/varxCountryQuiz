@@ -30,15 +30,18 @@ type RoundResult =
 
 export default function GameScreen() {
   const { id: countryId } = useLocalSearchParams<{ id: string }>();
-  const [result, setResult] = useState<RoundResult | null>(null);
+
+  const [result, setResult] = useState<RoundResult>();
   const [showExitDialog, setShowExitDialog] = useState(false);
-  const pendingExit = useRef<(() => void) | null>(null);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<number[]>([]);
+  const [selectedChoice, setSelectedChoice] = useState<number>();
+
+  const pendingExit = useRef<() => void>(() => {});
+
   const navigation = useNavigation();
   const router = useRouter();
   const { addCompletedCountry, addAttemptedCountry } = usePlayerProgress();
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<number[]>([]);
-  const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
 
   const countryQuery = useQuery({
     queryKey: ["country", countryId],
@@ -51,30 +54,32 @@ export default function GameScreen() {
     isPending,
   } = useQuery({
     queryKey: ["questionpack", countryQuery.data?.questionPackId],
-    queryFn: () => fetchQuestionPack(countryQuery.data.questionPackId),
+    queryFn: () => fetchQuestionPack(countryQuery.data?.questionPackId!),
     enabled: Boolean(countryQuery.data),
   });
 
   const registerAnswer = (choice: number) => {
     const question = questionPack?.questions[currentQuestion];
-    if (selectedChoice !== null || !question) return;
+    if (selectedChoice !== undefined || !question) return;
 
     setSelectedChoice(choice);
+
     const feedback =
       choice === question.correctAnswer
         ? Haptics.NotificationFeedbackType.Success
         : Haptics.NotificationFeedbackType.Error;
-    void Haptics.notificationAsync(feedback).catch(() => undefined);
+
+    Haptics.notificationAsync(feedback);
   };
 
   const continueQuiz = () => {
-    if (!questionPack || selectedChoice === null) return;
+    if (!questionPack || selectedChoice === undefined) return;
 
     const nextAnswers = [...answers, selectedChoice];
     if (currentQuestion < questionPack.questions.length - 1) {
       setAnswers(nextAnswers);
       setCurrentQuestion((current) => current + 1);
-      setSelectedChoice(null);
+      setSelectedChoice(undefined);
       return;
     }
 
@@ -83,11 +88,14 @@ export default function GameScreen() {
         score + Number(question.correctAnswer === nextAnswers[index]),
       0,
     );
-    const country = { id: countryId, regionId: countryQuery.data.regionId };
+
+    const country = { id: countryId, regionId: countryQuery.data!.regionId };
     addAttemptedCountry({ ...country, bestAttempt: correctAnswers });
+
     if (correctAnswers >= questionPack.requiredCorrectAnswers) {
       addCompletedCountry(country);
     }
+
     setResult({
       kind: "quiz",
       correct: correctAnswers,
@@ -96,7 +104,7 @@ export default function GameScreen() {
     });
   };
 
-  usePreventRemove(result === null, ({ data }) => {
+  usePreventRemove(!result, ({ data }) => {
     if (Platform.OS === "web") {
       if (
         window.confirm(
@@ -113,21 +121,20 @@ export default function GameScreen() {
   });
 
   const stayInQuiz = () => {
-    pendingExit.current = null;
+    pendingExit.current = () => {};
     setShowExitDialog(false);
   };
 
   const leaveQuiz = () => {
     const exit = pendingExit.current;
-    pendingExit.current = null;
+    pendingExit.current = () => {};
     setShowExitDialog(false);
-    exit?.();
+    exit();
   };
 
   useEffect(() => {
     if (!result) return;
 
-    // Låt usePreventRemove släppa skärmen innan resultatvyn öppnas.
     const frame = requestAnimationFrame(() => {
       router.replace({
         pathname: "/result/[id]",

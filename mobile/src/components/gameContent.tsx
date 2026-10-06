@@ -8,7 +8,7 @@ import QuestionSpeech, { type QuestionSpeechHandle } from "./questionSpeech";
 interface Props {
   questionPack: QuestionPack;
   currentQuestion: number;
-  selectedChoice: number | null;
+  selectedChoice?: number;
   registerChoice: (choice: number) => void;
   continueQuiz: () => void;
 }
@@ -30,7 +30,7 @@ export default function GameContent({
     );
   }
 
-  const hasAnswered = selectedChoice !== null;
+  const hasAnswered = selectedChoice !== undefined;
   const answeredCorrectly = selectedChoice === question.correctAnswer;
 
   return (

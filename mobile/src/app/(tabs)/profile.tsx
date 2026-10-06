@@ -20,10 +20,12 @@ export default function ProfileScreen() {
     loadProgressFromStorage,
     resetProgress,
   } = usePlayerProgress();
+
   const countriesQuery = useQuery({
     queryKey: ["countries"],
     queryFn: fetchCountriesAsync,
   });
+
   const regionsQuery = useQuery({
     queryKey: ["regions"],
     queryFn: fetchRegionsAsync,

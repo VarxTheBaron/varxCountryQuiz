@@ -10,7 +10,7 @@ export async function fetchCountriesAsync(): Promise<Country[]> {
   return res.json();
 }
 
-export async function fetchCountryAsync(id: string) {
+export async function fetchCountryAsync(id: string): Promise<Country> {
   const res = await fetch(`${baseUrl}/${id}`);
   if (!res.ok) throw new Error("Could not fetch country id: " + id);
 
