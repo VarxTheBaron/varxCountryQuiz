@@ -9,10 +9,9 @@ import { useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-function readCount(value: string | undefined) {
-  if (!value || !/^\d+$/.test(value)) return null;
-  const count = Number(value);
-  return Number.isSafeInteger(count) ? count : null;
+function readCount(value?: string) {
+  if (value === undefined) return;
+  return Number(value);
 }
 
 export default function ResultScreen() {
@@ -30,13 +29,12 @@ export default function ResultScreen() {
     required?: string;
   }>();
 
-  const router = useRouter();
   const [goToStart, setGoToStart] = useState(false);
-  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "error">(
-    "idle",
-  );
+  const [copyStatus, setCopyStatus] = useState<"copied" | "error">();
 
-  const countryQuery = useQuery({
+  const router = useRouter();
+
+  const { data: country } = useQuery({
     queryKey: ["country", countryId],
     queryFn: () => fetchCountryAsync(countryId),
     enabled: Boolean(countryId),
@@ -45,18 +43,26 @@ export default function ResultScreen() {
   const correctCount = readCount(correct);
   const totalCount = readCount(total);
   const requiredCount = readCount(required);
-  const hasQuizResult =
-    mode === "quiz" &&
-    correctCount !== null &&
-    totalCount !== null &&
-    requiredCount !== null &&
-    totalCount > 0 &&
+
+  const hasCounts =
+    correctCount !== undefined &&
+    totalCount !== undefined &&
+    requiredCount !== undefined;
+
+  const hasValidCounts =
+    hasCounts &&
     correctCount <= totalCount &&
     requiredCount > 0 &&
     requiredCount <= totalCount;
+
+  const hasQuizResult = mode === "quiz" && hasValidCounts;
   const passed = hasQuizResult && correctCount >= requiredCount;
   const isDebugResult = mode === "debug";
-  const countryName = countryQuery.data?.name ?? "landet";
+  const countryName = country?.name ?? "landet";
+
+  let title = "Inget resultat att visa";
+  if (hasQuizResult) title = passed ? "Landet avklarat!" : "Bra försök!";
+  if (isDebugResult) title = "Landet avklarat!";
 
   const copyResult = async () => {
     if (!hasQuizResult) return;
@@ -84,7 +90,7 @@ export default function ResultScreen() {
     <SafeAreaView style={styles.screen} edges={["bottom", "left", "right"]}>
       <Stack.Screen
         options={{
-          title: countryQuery.data?.name ?? "Resultat",
+          title: country?.name ?? "Resultat",
           headerBackVisible: false,
           gestureEnabled: false,
           headerBackButtonMenuEnabled: false,
@@ -93,8 +99,8 @@ export default function ResultScreen() {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.content}>
           <View style={styles.card}>
-            {countryQuery.data?.flag ? (
-              <Text style={styles.flag}>{countryQuery.data.flag}</Text>
+            {country?.flag ? (
+              <Text style={styles.flag}>{country.flag}</Text>
             ) : (
               <MaterialIcons
                 name="emoji-events"
@@ -105,15 +111,7 @@ export default function ResultScreen() {
             <Text style={styles.eyebrow}>
               RESULTAT · {countryName.toUpperCase()}
             </Text>
-            <Text style={styles.title}>
-              {hasQuizResult
-                ? passed
-                  ? "Landet avklarat!"
-                  : "Bra försök!"
-                : isDebugResult
-                  ? "Landet avklarat!"
-                  : "Inget resultat att visa"}
-            </Text>
+            <Text style={styles.title}>{title}</Text>
 
             {hasQuizResult && (
               <>
@@ -172,7 +170,7 @@ export default function ResultScreen() {
             <>
               <Pressable
                 accessibilityRole="button"
-                onPress={() => void copyResult()}
+                onPress={copyResult}
                 style={({ pressed }) => [
                   styles.copyButton,
                   pressed && styles.copyPressed,
