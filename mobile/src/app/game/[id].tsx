@@ -1,9 +1,9 @@
-import { theme } from "@/theme";
 import { fetchCountryAsync } from "@/api/countries";
 import { fetchQuestionPack } from "@/api/questionPacks";
 import GameContent from "@/components/gameContent";
 import QuizExitDialog from "@/components/quizExitDialog";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
+import { theme } from "@/theme";
 import { useQuery } from "@tanstack/react-query";
 import * as Haptics from "expo-haptics";
 import {

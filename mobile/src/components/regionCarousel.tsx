@@ -1,5 +1,5 @@
-import { theme } from "@/theme";
 import RegionCard from "@/components/regionCard";
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";

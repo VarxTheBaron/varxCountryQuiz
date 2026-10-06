@@ -123,7 +123,11 @@ export default function GameContent({
                   />
                 )}
                 {isWrongChoice && (
-                  <MaterialIcons name="cancel" size={23} color={theme.colors.danger} />
+                  <MaterialIcons
+                    name="cancel"
+                    size={23}
+                    color={theme.colors.danger}
+                  />
                 )}
               </View>
             </Pressable>
@@ -143,7 +147,9 @@ export default function GameContent({
             <MaterialIcons
               name={answeredCorrectly ? "celebration" : "info-outline"}
               size={23}
-              color={answeredCorrectly ? theme.colors.success : theme.colors.warning}
+              color={
+                answeredCorrectly ? theme.colors.success : theme.colors.warning
+              }
             />
             <View style={styles.feedbackCopy}>
               <Text
@@ -177,7 +183,11 @@ export default function GameContent({
                 ? "Visa resultat"
                 : "Nästa fråga"}
             </Text>
-            <MaterialIcons name="arrow-forward" size={22} color={theme.colors.white} />
+            <MaterialIcons
+              name="arrow-forward"
+              size={22}
+              color={theme.colors.white}
+            />
           </Pressable>
         </>
       )}
@@ -204,7 +214,11 @@ const styles = StyleSheet.create({
     fontFamily: theme.fonts.bold,
   },
   progressTrack: { flexDirection: "row", gap: 6, height: 7 },
-  progressStep: { flex: 1, borderRadius: theme.radii.sm, backgroundColor: theme.colors.primaryBorderSoft },
+  progressStep: {
+    flex: 1,
+    borderRadius: theme.radii.sm,
+    backgroundColor: theme.colors.primaryBorderSoft,
+  },
   progressStepActive: { backgroundColor: theme.colors.primary },
   questionCard: {
     marginTop: theme.spacing.sm,
@@ -248,10 +262,23 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.12,
     shadowRadius: 4,
   },
-  answerPressed: { borderColor: theme.colors.primaryBright, backgroundColor: theme.colors.primarySurface },
-  answerCorrect: { borderColor: theme.colors.successBright, backgroundColor: theme.colors.successSurfaceLight },
-  answerWrong: { borderColor: theme.colors.dangerBright, backgroundColor: theme.colors.dangerSurface },
-  answerRow: { flexDirection: "row", alignItems: "center", gap: theme.spacing.md },
+  answerPressed: {
+    borderColor: theme.colors.primaryBright,
+    backgroundColor: theme.colors.primarySurface,
+  },
+  answerCorrect: {
+    borderColor: theme.colors.successBright,
+    backgroundColor: theme.colors.successSurfaceLight,
+  },
+  answerWrong: {
+    borderColor: theme.colors.dangerBright,
+    backgroundColor: theme.colors.dangerSurface,
+  },
+  answerRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: theme.spacing.md,
+  },
   answerLetter: {
     width: 34,
     height: 34,
@@ -283,8 +310,14 @@ const styles = StyleSheet.create({
     borderRadius: theme.radii.lg,
     borderWidth: 1,
   },
-  feedbackCorrect: { backgroundColor: theme.colors.successSurface, borderColor: theme.colors.successBorder },
-  feedbackWrong: { backgroundColor: theme.colors.warningSurface, borderColor: theme.colors.warningBorder },
+  feedbackCorrect: {
+    backgroundColor: theme.colors.successSurface,
+    borderColor: theme.colors.successBorder,
+  },
+  feedbackWrong: {
+    backgroundColor: theme.colors.warningSurface,
+    borderColor: theme.colors.warningBorder,
+  },
   feedbackCopy: { flex: 1, gap: 3 },
   feedbackTitle: { fontSize: 16, fontFamily: theme.fonts.extraBold },
   feedbackCorrectText: { color: theme.colors.successDark },

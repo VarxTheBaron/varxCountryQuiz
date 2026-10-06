@@ -40,11 +40,19 @@ export default function CountryCard({ country, completed }: Props) {
             <View style={styles.end}>
               {completed ? (
                 <>
-                  <MaterialIcons name="check-circle" size={25} color={theme.colors.success} />
+                  <MaterialIcons
+                    name="check-circle"
+                    size={25}
+                    color={theme.colors.success}
+                  />
                   <Text style={styles.completedLabel}>Klar</Text>
                 </>
               ) : (
-                <MaterialIcons name="chevron-right" size={30} color={theme.colors.primary} />
+                <MaterialIcons
+                  name="chevron-right"
+                  size={30}
+                  color={theme.colors.primary}
+                />
               )}
             </View>
           </View>

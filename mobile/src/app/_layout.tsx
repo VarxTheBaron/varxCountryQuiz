@@ -1,8 +1,8 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SourceSans3_400Regular } from "@expo-google-fonts/source-sans-3/400Regular";
 import { SourceSans3_600SemiBold } from "@expo-google-fonts/source-sans-3/600SemiBold";
 import { SourceSans3_700Bold } from "@expo-google-fonts/source-sans-3/700Bold";
 import { SourceSans3_800ExtraBold } from "@expo-google-fonts/source-sans-3/800ExtraBold";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";

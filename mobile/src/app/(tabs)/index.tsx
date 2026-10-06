@@ -1,7 +1,7 @@
-import { theme } from "@/theme";
 import { fetchRegionsAsync } from "@/api/regions";
 import RegionCarousel from "@/components/regionCarousel";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useQuery } from "@tanstack/react-query";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
@@ -20,7 +20,11 @@ export default function Index() {
         <View style={styles.content}>
           <View style={styles.hero}>
             <View style={styles.iconCircle}>
-              <MaterialIcons name="public" size={37} color={theme.colors.primary} />
+              <MaterialIcons
+                name="public"
+                size={37}
+                color={theme.colors.primary}
+              />
             </View>
             <Text style={styles.eyebrow}>UTFORSKA VÄRLDEN</Text>
             <Text style={styles.title}>Country Challenge</Text>
@@ -28,7 +32,11 @@ export default function Index() {
               Välj en region och testa dina kunskaper om länderna.
             </Text>
             <View style={styles.progressBadge}>
-              <MaterialIcons name="emoji-events" size={19} color={theme.colors.primary} />
+              <MaterialIcons
+                name="emoji-events"
+                size={19}
+                color={theme.colors.primary}
+              />
               <Text style={styles.progressText}>
                 {!hasRead
                   ? loadingError

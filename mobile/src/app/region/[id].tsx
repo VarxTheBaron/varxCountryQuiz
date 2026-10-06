@@ -1,10 +1,10 @@
-import { theme } from "@/theme";
 import {
   fetchCountriesByRegionAsync,
   fetchSingleRegionAsync,
 } from "@/api/regions";
 import CountryCard from "@/components/countryCard";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
+import { theme } from "@/theme";
 import { useQuery } from "@tanstack/react-query";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";

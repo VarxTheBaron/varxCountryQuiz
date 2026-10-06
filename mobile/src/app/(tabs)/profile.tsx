@@ -1,4 +1,3 @@
-import { theme } from "@/theme";
 import { fetchCountriesAsync } from "@/api/countries";
 import { fetchRegionsAsync } from "@/api/regions";
 import ProfileBestResults from "@/components/profile/profileBestResults";
@@ -6,6 +5,7 @@ import ProfileOverview from "@/components/profile/profileOverview";
 import ProfileRegionProgress from "@/components/profile/profileRegionProgress";
 import ProfileReset from "@/components/profile/profileReset";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useQuery } from "@tanstack/react-query";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -41,7 +41,11 @@ export default function ProfileScreen() {
         <View style={styles.content}>
           <View style={styles.heading}>
             <View style={styles.profileIcon}>
-              <MaterialIcons name="person-outline" size={34} color={theme.colors.primary} />
+              <MaterialIcons
+                name="person-outline"
+                size={34}
+                color={theme.colors.primary}
+              />
             </View>
             <Text style={styles.eyebrow}>DIN PROFIL</Text>
             <Text style={styles.title}>Din progress</Text>
@@ -96,8 +100,17 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: theme.colors.screen },
-  scrollContent: { paddingHorizontal: theme.spacing.xl, paddingTop: theme.spacing.xxl, paddingBottom: 36 },
-  content: { width: "100%", maxWidth: 600, alignSelf: "center", gap: theme.spacing.lg },
+  scrollContent: {
+    paddingHorizontal: theme.spacing.xl,
+    paddingTop: theme.spacing.xxl,
+    paddingBottom: 36,
+  },
+  content: {
+    width: "100%",
+    maxWidth: 600,
+    alignSelf: "center",
+    gap: theme.spacing.lg,
+  },
   heading: { alignItems: "center", gap: 7, marginBottom: 6 },
   profileIcon: {
     width: 62,
@@ -116,7 +129,11 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.extraBold,
     letterSpacing: 1.5,
   },
-  title: { color: theme.colors.heading, fontSize: 30, fontWeight: theme.fontWeights.extraBold },
+  title: {
+    color: theme.colors.heading,
+    fontSize: 30,
+    fontWeight: theme.fontWeights.extraBold,
+  },
   subtitle: {
     maxWidth: 330,
     color: theme.colors.secondary,
@@ -132,6 +149,14 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
   },
   emptyText: { color: theme.colors.secondary, fontSize: 14, lineHeight: 21 },
-  retryButton: { alignSelf: "flex-start", marginTop: 14, paddingVertical: theme.spacing.sm },
-  retryText: { color: theme.colors.primary, fontSize: 14, fontWeight: theme.fontWeights.bold },
+  retryButton: {
+    alignSelf: "flex-start",
+    marginTop: 14,
+    paddingVertical: theme.spacing.sm,
+  },
+  retryText: {
+    color: theme.colors.primary,
+    fontSize: 14,
+    fontWeight: theme.fontWeights.bold,
+  },
 });

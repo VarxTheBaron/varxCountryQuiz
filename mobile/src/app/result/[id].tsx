@@ -1,5 +1,5 @@
-import { theme } from "@/theme";
 import { fetchCountryAsync } from "@/api/countries";
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useQuery } from "@tanstack/react-query";
 import * as Clipboard from "expo-clipboard";
@@ -29,11 +29,13 @@ export default function ResultScreen() {
     total?: string;
     required?: string;
   }>();
+
   const router = useRouter();
   const [goToStart, setGoToStart] = useState(false);
   const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "error">(
     "idle",
   );
+
   const countryQuery = useQuery({
     queryKey: ["country", countryId],
     queryFn: () => fetchCountryAsync(countryId),
@@ -94,7 +96,11 @@ export default function ResultScreen() {
             {countryQuery.data?.flag ? (
               <Text style={styles.flag}>{countryQuery.data.flag}</Text>
             ) : (
-              <MaterialIcons name="emoji-events" size={56} color={theme.colors.primary} />
+              <MaterialIcons
+                name="emoji-events"
+                size={56}
+                color={theme.colors.primary}
+              />
             )}
             <Text style={styles.eyebrow}>
               RESULTAT · {countryName.toUpperCase()}
@@ -143,7 +149,11 @@ export default function ResultScreen() {
 
             {isDebugResult && (
               <View style={[styles.messageBox, styles.passedBox]}>
-                <MaterialIcons name="check-circle" size={23} color={theme.colors.success} />
+                <MaterialIcons
+                  name="check-circle"
+                  size={23}
+                  color={theme.colors.success}
+                />
                 <Text style={[styles.messageText, styles.passedText]}>
                   Landet klarades via debug-knappen. Inget poängresultat finns
                   för den här omgången.
@@ -174,7 +184,9 @@ export default function ResultScreen() {
                   color={theme.colors.primaryDark}
                 />
                 <Text style={styles.copyText}>
-                  {copyStatus === "copied" ? "Resultatet kopierat" : "Kopiera resultat"}
+                  {copyStatus === "copied"
+                    ? "Resultatet kopierat"
+                    : "Kopiera resultat"}
                 </Text>
               </Pressable>
               {copyStatus === "error" && (
@@ -194,7 +206,11 @@ export default function ResultScreen() {
             ]}
           >
             <Text style={styles.startText}>Till startsidan</Text>
-            <MaterialIcons name="arrow-forward" size={22} color={theme.colors.white} />
+            <MaterialIcons
+              name="arrow-forward"
+              size={22}
+              color={theme.colors.white}
+            />
           </Pressable>
         </View>
       </ScrollView>
@@ -210,7 +226,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.spacing.xl,
     paddingVertical: theme.spacing.xxl,
   },
-  content: { width: "100%", maxWidth: 560, alignSelf: "center", gap: theme.spacing.lg },
+  content: {
+    width: "100%",
+    maxWidth: 560,
+    alignSelf: "center",
+    gap: theme.spacing.lg,
+  },
   card: {
     alignItems: "center",
     paddingHorizontal: theme.spacing.xxl,
@@ -242,8 +263,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   scoreRow: { flexDirection: "row", alignItems: "baseline", marginTop: 22 },
-  score: { color: theme.colors.primaryDark, fontSize: 66, fontWeight: theme.fontWeights.extraBold },
-  scoreTotal: { color: theme.colors.muted, fontSize: 28, fontWeight: theme.fontWeights.bold },
+  score: {
+    color: theme.colors.primaryDark,
+    fontSize: 66,
+    fontWeight: theme.fontWeights.extraBold,
+  },
+  scoreTotal: {
+    color: theme.colors.muted,
+    fontSize: 28,
+    fontWeight: theme.fontWeights.bold,
+  },
   scoreLabel: {
     color: theme.colors.muted,
     fontSize: 12,
@@ -260,9 +289,20 @@ const styles = StyleSheet.create({
     borderRadius: theme.radii.lg,
     borderWidth: 1,
   },
-  passedBox: { backgroundColor: theme.colors.successSurface, borderColor: theme.colors.successBorder },
-  tryAgainBox: { backgroundColor: theme.colors.warningSurface, borderColor: theme.colors.warningBorder },
-  messageText: { flex: 1, fontSize: 14, fontWeight: theme.fontWeights.semiBold, lineHeight: 21 },
+  passedBox: {
+    backgroundColor: theme.colors.successSurface,
+    borderColor: theme.colors.successBorder,
+  },
+  tryAgainBox: {
+    backgroundColor: theme.colors.warningSurface,
+    borderColor: theme.colors.warningBorder,
+  },
+  messageText: {
+    flex: 1,
+    fontSize: 14,
+    fontWeight: theme.fontWeights.semiBold,
+    lineHeight: 21,
+  },
   passedText: { color: theme.colors.successDark },
   tryAgainText: { color: theme.colors.warning },
   fallbackText: {
@@ -283,7 +323,11 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
   },
   copyPressed: { backgroundColor: theme.colors.primarySurface },
-  copyText: { color: theme.colors.primaryDark, fontSize: 16, fontWeight: theme.fontWeights.bold },
+  copyText: {
+    color: theme.colors.primaryDark,
+    fontSize: 16,
+    fontWeight: theme.fontWeights.bold,
+  },
   copyError: { color: theme.colors.warning, fontSize: 14, textAlign: "center" },
   startButton: {
     minHeight: 56,
@@ -295,5 +339,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
   },
   startPressed: { backgroundColor: theme.colors.primaryDark },
-  startText: { color: theme.colors.white, fontSize: 17, fontWeight: theme.fontWeights.bold },
+  startText: {
+    color: theme.colors.white,
+    fontSize: 17,
+    fontWeight: theme.fontWeights.bold,
+  },
 });

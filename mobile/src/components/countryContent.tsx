@@ -32,7 +32,11 @@ export default function CountryContent({
 
         {progressLoaded && completed && (
           <View style={styles.completedBadge}>
-            <MaterialIcons name="check-circle" size={18} color={theme.colors.success} />
+            <MaterialIcons
+              name="check-circle"
+              size={18}
+              color={theme.colors.success}
+            />
             <Text style={styles.completedText}>Landet är avklarat</Text>
           </View>
         )}
@@ -68,12 +72,18 @@ export default function CountryContent({
               <Text style={styles.startText}>
                 {completed ? "Spela igen" : "Starta quiz"}
               </Text>
-              <MaterialIcons name="arrow-forward" size={22} color={theme.colors.white} />
+              <MaterialIcons
+                name="arrow-forward"
+                size={22}
+                color={theme.colors.white}
+              />
             </View>
           )}
         </Pressable>
       </Link>
-      <Text style={styles.hint}>Välj ett svar på varje fråga för att spela.</Text>
+      <Text style={styles.hint}>
+        Välj ett svar på varje fråga för att spela.
+      </Text>
     </View>
   );
 }

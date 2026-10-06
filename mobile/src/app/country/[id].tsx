@@ -1,7 +1,7 @@
-import { theme } from "@/theme";
 import { fetchCountryAsync } from "@/api/countries";
 import CountryContent from "@/components/countryContent";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
+import { theme } from "@/theme";
 import { useQuery } from "@tanstack/react-query";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, Text } from "react-native";

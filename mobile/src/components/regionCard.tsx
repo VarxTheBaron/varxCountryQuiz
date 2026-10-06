@@ -1,5 +1,5 @@
-import { theme } from "@/theme";
 import { usePlayerProgress } from "@/hooks/usePlayerProgress";
+import { theme } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -56,7 +56,11 @@ export default function RegionCard({ region, requiredRegionName }: Props) {
             {isUnlocked ? (
               <View style={styles.action}>
                 <Text style={styles.actionText}>Utforska</Text>
-                <MaterialIcons name="arrow-forward" size={20} color={theme.colors.white} />
+                <MaterialIcons
+                  name="arrow-forward"
+                  size={20}
+                  color={theme.colors.white}
+                />
               </View>
             ) : (
               <View style={styles.lockedInfo}>
@@ -134,7 +138,11 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     backgroundColor: theme.colors.primary,
   },
-  actionText: { color: theme.colors.white, fontSize: 15, fontWeight: theme.fontWeights.bold },
+  actionText: {
+    color: theme.colors.white,
+    fontSize: 15,
+    fontWeight: theme.fontWeights.bold,
+  },
   lockedInfo: {
     alignItems: "center",
     gap: 5,
@@ -150,5 +158,9 @@ const styles = StyleSheet.create({
     lineHeight: 17,
     textAlign: "center",
   },
-  completedText: { color: theme.colors.muted, fontSize: 11, fontWeight: theme.fontWeights.semiBold },
+  completedText: {
+    color: theme.colors.muted,
+    fontSize: 11,
+    fontWeight: theme.fontWeights.semiBold,
+  },
 });
